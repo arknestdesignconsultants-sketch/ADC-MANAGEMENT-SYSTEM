@@ -13,21 +13,54 @@
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
 
+    <!-- SECURE LOGIN SCREEN (FORCED VISIBLE ON START) -->
+    <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950 p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-8 shadow-2xl">
+            <div class="text-center mb-6">
+                <div id="loginLogoBox" class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-amber-500/10 text-amber-400 mb-3 text-2xl font-bold border border-amber-500/20">
+                    AD
+                </div>
+                <h1 id="loginCompanyName" class="text-xl font-bold text-white">Arknest Design Consultants</h1>
+                <p class="text-xs text-slate-400 mt-1">Role-Based Enterprise Portal</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold uppercase">Work Email ID</label>
+                    <input type="email" id="loginEmail" required placeholder="admin@arknest.com" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1 font-semibold uppercase">Password</label>
+                    <input type="password" id="loginPass" required placeholder="••••••••" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 rounded-xl transition duration-200 text-sm shadow-lg shadow-amber-500/20 mt-2">
+                    Sign In to Portal
+                </button>
+            </form>
+            <div class="mt-6 text-center text-[11px] text-slate-500 border-t border-slate-800 pt-4 space-y-1">
+                <p>Admin Login: <span class="text-amber-400">admin@arknest.com</span> / <span class="text-amber-400">admin123</span></p>
+                <p>Staff Login: <span class="text-amber-400">rohan@arknest.com</span> / <span class="text-amber-400">rohan123</span></p>
+            </div>
+        </div>
+    </div>
+
     <!-- MAIN APP INTERFACE -->
-    <div id="appInterface" class="flex-1 flex flex-col">
+    <div id="appInterface" class="hidden flex-1 flex flex-col">
         <!-- Top Navbar -->
         <header class="bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-lg bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-lg">AD</div>
+                <div id="navLogoBox" class="w-10 h-10 rounded-lg bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-lg">AD</div>
                 <div>
-                    <h2 class="font-bold text-white text-sm">Arknest Design Consultants</h2>
-                    <p class="text-xs text-amber-400">Role: Principal Architect (Full Admin)</p>
+                    <h2 id="navCompanyName" class="font-bold text-white text-sm">Arknest Design Consultants</h2>
+                    <p id="userRoleBadge" class="text-xs text-amber-400">Role: Loading...</p>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
                 <span class="text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
                     <i class="fa-solid fa-circle text-emerald-500 text-[8px] mr-1.5"></i> Live System Active
                 </span>
+                <button onclick="handleLogout()" class="text-slate-400 hover:text-white text-xs bg-slate-900 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-800 transition">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+                </button>
             </div>
         </header>
 
@@ -44,6 +77,9 @@
                 <button onclick="switchTab('projects')" id="nav-projects" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-building-shield w-5"></i><span>Team & Projects</span>
                 </button>
+                <button onclick="switchTab('departments')" id="nav-departments" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <i class="fa-solid fa-sitemap w-5"></i><span>Departments & Heads</span>
+                </button>
                 <button onclick="switchTab('payments')" id="nav-payments" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-file-invoice-dollar w-5"></i><span>Payment Schedule</span>
                 </button>
@@ -51,10 +87,11 @@
                     <i class="fa-solid fa-handshake w-5"></i><span>Meetings & MOM</span>
                 </button>
                 <button onclick="switchTab('attendance')" id="nav-attendance" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
-                    <i class="fa-solid fa-calendar-check w-5"></i><span>Attendance & Holidays</span>
+                    <i class="fa-solid fa-calendar-check w-5"></i><span>Attendance & Leaves</span>
                 </button>
-                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20">
-                    <i class="fa-solid fa-user-shield w-5"></i><span>Admin & Permissions</span>
+                <!-- ADMIN ONLY CONTROL TAB -->
+                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="admin-only w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20 hidden">
+                    <i class="fa-solid fa-user-shield w-5"></i><span>Admin Controls & Staff</span>
                 </button>
             </nav>
 
@@ -67,44 +104,127 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
                             <p class="text-xs font-semibold text-slate-400 uppercase">Active Leads</p>
-                            <h4 class="text-3xl font-bold text-white mt-2">12</h4>
+                            <h4 id="dashLeadCount" class="text-3xl font-bold text-white mt-2">0</h4>
                         </div>
                         <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
                             <p class="text-xs font-semibold text-slate-400 uppercase">Active Projects</p>
-                            <h4 class="text-3xl font-bold text-white mt-2">5</h4>
+                            <h4 id="dashProjCount" class="text-3xl font-bold text-white mt-2">0</h4>
                         </div>
                         <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
-                            <p class="text-xs font-semibold text-slate-400 uppercase">Pending Payments</p>
-                            <h4 class="text-3xl font-bold text-rose-400 mt-2">₹8.2 Lakhs</h4>
+                            <p class="text-xs font-semibold text-slate-400 uppercase">Total Billed</p>
+                            <h4 id="dashPayTotal" class="text-3xl font-bold text-amber-400 mt-2">₹0</h4>
                         </div>
                         <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
-                            <p class="text-xs font-semibold text-slate-400 uppercase">Upcoming Meetings</p>
-                            <h4 class="text-3xl font-bold text-amber-400 mt-2">3 Scheduled</h4>
+                            <p class="text-xs font-semibold text-slate-400 uppercase">Staff Registered</p>
+                            <h4 id="dashStaffCount" class="text-3xl font-bold text-emerald-400 mt-2">0</h4>
                         </div>
                     </div>
                 </div>
 
                 <!-- TAB 2: CRM -->
                 <div id="tab-crm" class="space-y-6 hidden">
-                    <h3 class="text-xl font-bold text-white">CRM & Client Lead Tracker</h3>
-                    <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-slate-400 text-sm">
-                        Client contact details, source tracking, and inquiry pipeline active.
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white">CRM & Client Lead Tracker</h3>
+                        <button onclick="addLead()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                            + Add New Lead
+                        </button>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-900 border-b border-slate-800 text-slate-400 text-xs uppercase">
+                                <tr>
+                                    <th class="p-4">Client Name</th>
+                                    <th class="p-4">Phone / Email</th>
+                                    <th class="p-4">Source</th>
+                                    <th class="p-4">Typology</th>
+                                    <th class="p-4">Est. Value</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leadTableBody" class="divide-y divide-slate-800 text-xs text-slate-300"></tbody>
+                        </table>
                     </div>
                 </div>
 
                 <!-- TAB 3: PROJECTS -->
                 <div id="tab-projects" class="space-y-6 hidden">
-                    <h3 class="text-xl font-bold text-white">Team Task & Project Assignment</h3>
-                    <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-slate-400 text-sm">
-                        Job codes, team allocations, and stage tracking.
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white">Team Task & Project Assignment</h3>
+                        <button onclick="addProject()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                            + Assign Project
+                        </button>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-900 border-b border-slate-800 text-slate-400 text-xs uppercase">
+                                <tr>
+                                    <th class="p-4">Job Code</th>
+                                    <th class="p-4">Project Name</th>
+                                    <th class="p-4">Assigned Architect</th>
+                                    <th class="p-4">Stage</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projTableBody" class="divide-y divide-slate-800 text-xs text-slate-300"></tbody>
+                        </table>
                     </div>
                 </div>
 
-                <!-- TAB 4: PAYMENT SCHEDULE -->
+                <!-- TAB 4: DEPARTMENTS -->
+                <div id="tab-departments" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white">Departments & Team Heads</h3>
+                        <span class="text-xs text-amber-400">Studio Hierarchy & Work Distribution</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold border border-blue-500/20"><i class="fa-solid fa-compass-drafting"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Design & Architecture</h4>
+                                    <p class="text-xs text-slate-400">Head: Ar. Rohan Mehta</p>
+                                </div>
+                            </div>
+                            <ul class="text-xs text-slate-300 space-y-2 pt-2 border-t border-slate-800">
+                                <li>• Concept Design & Massing</li>
+                                <li>• Statutory Approvals</li>
+                                <li>• Team Members: Ar. Sneha Kapoor, Vikram Singh</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold border border-purple-500/20"><i class="fa-solid fa-cube"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">BIM & 3D Visualization</h4>
+                                    <p class="text-xs text-slate-400">Head: Ar. Amit Verma</p>
+                                </div>
+                            </div>
+                            <ul class="text-xs text-slate-300 space-y-2 pt-2 border-t border-slate-800">
+                                <li>• BIM LOD 300 / 400 Modeling</li>
+                                <li>• Photorealistic Rendering</li>
+                                <li>• Team Members: Rahul Sen, Neha Gupta</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold border border-emerald-500/20"><i class="fa-solid fa-file-invoice"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Accounts & Administration</h4>
+                                    <p class="text-xs text-slate-400">Head: Priya Sharma</p>
+                                </div>
+                            </div>
+                            <ul class="text-xs text-slate-300 space-y-2 pt-2 border-t border-slate-800">
+                                <li>• GST, TDS & Client Billing</li>
+                                <li>• Vendor Quotations</li>
+                                <li>• Team Members: Office Admin Staff</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 5: PAYMENTS -->
                 <div id="tab-payments" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Project Payment Schedule & Milestones</h3>
-                        <button onclick="alert('New milestone payment added.')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                        <button onclick="addPayment()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
                             + Add Payment Milestone
                         </button>
                     </div>
@@ -112,71 +232,86 @@
                         <table class="w-full text-left text-sm">
                             <thead class="bg-slate-900 border-b border-slate-800 text-slate-400 text-xs uppercase">
                                 <tr>
-                                    <th class="p-4">Job Code & Project</th>
+                                    <th class="p-4">Project</th>
                                     <th class="p-4">Milestone Stage</th>
                                     <th class="p-4">Amount (₹)</th>
-                                    <th class="p-4">Due Date</th>
-                                    <th class="p-4">Payment Status</th>
+                                    <th class="p-4">Status</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-800 text-xs">
-                                <tr>
-                                    <td class="p-4 font-mono text-amber-400 font-bold">ARK-2026-001<br><span class="text-slate-400 font-normal">Apex Corporate</span></td>
-                                    <td class="p-4 text-slate-200">Concept Design Approval (25%)</td>
-                                    <td class="p-4 text-white font-semibold">₹4,62,500</td>
-                                    <td class="p-4 text-slate-300">Oct 15, 2026</td>
-                                    <td class="p-4"><span class="bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/20">Invoice Raised</span></td>
-                                </tr>
-                            </tbody>
+                            <tbody id="payTableBody" class="divide-y divide-slate-800 text-xs text-slate-300"></tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- TAB 5: CLIENT MEETINGS & MOM -->
+                <!-- TAB 6: MEETINGS -->
                 <div id="tab-meetings" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
-                        <h3 class="text-xl font-bold text-white">Client Meetings & Minutes of Meeting (MOM)</h3>
-                        <button onclick="alert('Meeting MOM logged successfully.')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
-                            + Record New Meeting MOM
+                        <h3 class="text-xl font-bold text-white">Client Meetings & MOM</h3>
+                        <button onclick="addMeeting()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                            + Record Meeting MOM
                         </button>
                     </div>
-                    <div class="space-y-4">
-                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-3">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/20">Apex Corporate Tower</span>
-                                    <h4 class="text-sm font-bold text-white mt-2">Client Review Meeting - Floor Plan & Facade</h4>
-                                </div>
-                                <span class="text-xs text-slate-400"><i class="fa-solid fa-calendar mr-1"></i> Oct 1, 2026 | 03:00 PM</span>
-                            </div>
-                            <p class="text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800">
-                                <strong>Minutes of Meeting (MOM):</strong> Client reviewed the ground floor lobby layout. Approved the double-height ceiling concept with minor adjustments to the entrance canopy.
-                            </p>
+                    <div id="meetingList" class="space-y-4"></div>
+                </div>
+
+                <!-- TAB 7: ATTENDANCE -->
+                <div id="tab-attendance" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">My Attendance Logs & Leave Application</h3>
+                            <p class="text-xs text-slate-400 mt-1">Check your daily office check-ins and apply for leave.</p>
+                        </div>
+                        <div class="space-x-2">
+                            <button onclick="checkInToday()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                                <i class="fa-solid fa-fingerprint mr-1"></i> Check-In Today
+                            </button>
+                            <button onclick="applyLeave()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                                <i class="fa-solid fa-paper-plane mr-1"></i> Apply for Leave
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4">
+                            <h4 class="font-semibold text-white text-sm">Your Attendance History</h4>
+                            <div id="myAttendanceList" class="space-y-2 text-xs"></div>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4">
+                            <h4 class="font-semibold text-white text-sm">Your Leave Applications</h4>
+                            <div id="myLeaveList" class="space-y-2 text-xs"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- TAB 6: ATTENDANCE & HOLIDAYS -->
-                <div id="tab-attendance" class="space-y-6 hidden">
+                <!-- TAB 8: ADMIN CONTROLS & LOGO UPLOADER -->
+                <div id="tab-adminPanel" class="space-y-6 hidden admin-only-section">
                     <div class="flex justify-between items-center">
-                        <h3 class="text-xl font-bold text-white">Staff Attendance & Holiday Calendar</h3>
-                        <button onclick="alert('Attendance marked!')" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
-                            <i class="fa-solid fa-fingerprint mr-1"></i> Check-In Today
-                        </button>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Admin Controls & Branding</h3>
+                            <p class="text-xs text-slate-400 mt-1">Manage Employee IDs, user login credentials, and company logo/name.</p>
+                        </div>
+                        <div class="space-x-2">
+                            <button onclick="registerNewStaff()" class="bg-rose-500 hover:bg-rose-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                                + Create Staff Login
+                            </button>
+                            <button onclick="updateCompanyBranding()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                                <i class="fa-solid fa-paintbrush mr-1"></i> Update Logo / Name
+                            </button>
+                        </div>
                     </div>
-                    <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-slate-400 text-sm">
-                        Staff attendance logs and holiday schedules active.
-                    </div>
-                </div>
-
-                <!-- TAB 7: ADMIN & PERMISSIONS -->
-                <div id="tab-adminPanel" class="space-y-6 hidden">
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-xl font-bold text-white">Admin Access & Permission Control</h3>
-                        <span class="text-xs text-rose-400">Principal Architect Full Control</span>
-                    </div>
-                    <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-slate-400 text-sm">
-                        Manage user roles, financial visibility, and system permissions.
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden p-6 space-y-4">
+                        <h4 class="font-semibold text-white text-sm">Registered Staff Accounts</h4>
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-900 border-b border-slate-800 text-slate-400 text-xs uppercase">
+                                <tr>
+                                    <th class="p-4">Emp ID</th>
+                                    <th class="p-4">Staff Name</th>
+                                    <th class="p-4">Work Email & Password</th>
+                                    <th class="p-4">Assigned Role</th>
+                                </tr>
+                            </thead>
+                            <tbody id="staffTableBody" class="divide-y divide-slate-800 text-xs text-slate-300"></tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -186,13 +321,242 @@
 
     <!-- JavaScript Logic -->
     <script>
+        let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoText: "AD" };
+        
+        let staffList = JSON.parse(localStorage.getItem('ark_staff')) || [
+            { empid: "ARK-EMP-01", name: "Principal Architect (Admin)", email: "admin@arknest.com", pass: "admin123", role: "Admin" },
+            { empid: "ARK-EMP-02", name: "Ar. Rohan Mehta", email: "rohan@arknest.com", pass: "rohan123", role: "Senior Architect" }
+        ];
+
+        let leads = JSON.parse(localStorage.getItem('ark_leads')) || [
+            {name: "Mr. Rajesh Sharma", phone: "9876543210", source: "Referral", typology: "Commercial", value: "18,50,000"}
+        ];
+        let projects = JSON.parse(localStorage.getItem('ark_projects')) || [
+            {code: "ARK-2026-001", name: "Apex Corporate Tower", architect: "Ar. Rohan Mehta", stage: "Schematic Design"}
+        ];
+        let payments = JSON.parse(localStorage.getItem('ark_payments')) || [
+            {project: "Apex Corporate", stage: "Concept Approval", amount: "4,62,500", status: "Invoice Raised"}
+        ];
+        let meetings = JSON.parse(localStorage.getItem('ark_meetings')) || [
+            {client: "Apex Corporate", topic: "Facade Review", mom: "Approved double-height lobby concept.", date: "01 Oct 2026"}
+        ];
+
+        let attendanceLogs = JSON.parse(localStorage.getItem('ark_attendance')) || {};
+        let leaveRequests = JSON.parse(localStorage.getItem('ark_leaves')) || {};
+
+        let currentUser = null;
+
+        function handleLogin(e) {
+            e.preventDefault();
+            let email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            let pass = document.getElementById('loginPass').value.trim();
+
+            let foundUser = staffList.find(s => s.email.toLowerCase() === email && s.pass === pass);
+            if(!foundUser) {
+                alert("Invalid Work Email ID or Password! Use admin@arknest.com / admin123");
+                return;
+            }
+
+            currentUser = foundUser;
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('appInterface').classList.remove('hidden');
+            
+            applyUserPermissions();
+            updateUI();
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            document.getElementById('appInterface').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('loginEmail').value = "";
+            document.getElementById('loginPass').value = "";
+        }
+
+        function applyUserPermissions() {
+            document.getElementById('navCompanyName').innerText = companyInfo.name;
+            document.getElementById('loginCompanyName').innerText = companyInfo.name;
+            document.getElementById('navLogoBox').innerText = companyInfo.logoText;
+            document.getElementById('loginLogoBox').innerText = companyInfo.logoText;
+
+            let adminTab = document.getElementById('nav-adminPanel');
+            if(currentUser.role === 'Admin') {
+                document.getElementById('userRoleBadge').innerText = "Role: " + currentUser.name + " (Full Admin Control)";
+                adminTab.classList.remove('hidden');
+            } else {
+                document.getElementById('userRoleBadge').innerText = "Role: " + currentUser.name + " (" + currentUser.role + ")";
+                adminTab.classList.add('hidden');
+                if(!document.getElementById('tab-adminPanel').classList.contains('hidden')) {
+                    switchTab('dashboard');
+                }
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('ark_staff', JSON.stringify(staffList));
+            localStorage.setItem('ark_leads', JSON.stringify(leads));
+            localStorage.setItem('ark_projects', JSON.stringify(projects));
+            localStorage.setItem('ark_payments', JSON.stringify(payments));
+            localStorage.setItem('ark_meetings', JSON.stringify(meetings));
+            localStorage.setItem('ark_company', JSON.stringify(companyInfo));
+            localStorage.setItem('ark_attendance', JSON.stringify(attendanceLogs));
+            localStorage.setItem('ark_leaves', JSON.stringify(leaveRequests));
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('dashLeadCount').innerText = leads.length;
+            document.getElementById('dashProjCount').innerText = projects.length;
+            document.getElementById('dashPayTotal').innerText = "₹" + payments.reduce((acc, p) => acc + parseInt(p.amount.replace(/,/g,'')||0), 0).toLocaleString('en-IN');
+            document.getElementById('dashStaffCount').innerText = staffList.length;
+
+            let lHtml = '';
+            leads.forEach(l => {
+                lHtml += `<tr><td class="p-4 font-semibold text-white">${l.name}</td><td class="p-4">${l.phone}</td><td class="p-4 text-amber-400">${l.source}</td><td class="p-4">${l.typology}</td><td class="p-4 text-white">₹${l.value}</td></tr>`;
+            });
+            document.getElementById('leadTableBody').innerHTML = lHtml || `<tr><td colspan="5" class="p-4 text-center text-slate-500">No leads added.</td></tr>`;
+
+            let pHtml = '';
+            projects.forEach(p => {
+                pHtml += `<tr><td class="p-4 font-mono text-amber-400 font-bold">${p.code}</td><td class="p-4 font-semibold text-white">${p.name}</td><td class="p-4">${p.architect}</td><td class="p-4">${p.stage}</td></tr>`;
+            });
+            document.getElementById('projTableBody').innerHTML = pHtml || `<tr><td colspan="4" class="p-4 text-center text-slate-500">No projects assigned.</td></tr>`;
+
+            let payHtml = '';
+            payments.forEach(pay => {
+                payHtml += `<tr><td class="p-4 font-semibold text-white">${pay.project}</td><td class="p-4">${pay.stage}</td><td class="p-4 text-amber-400 font-semibold">₹${pay.amount}</td><td class="p-4"><span class="bg-amber-500/10 text-amber-400 px-2 py-1 rounded-full border border-amber-500/20">${pay.status}</span></td></tr>`;
+            });
+            document.getElementById('payTableBody').innerHTML = payHtml || `<tr><td colspan="4" class="p-4 text-center text-slate-500">No payments added.</td></tr>`;
+
+            let mHtml = '';
+            meetings.forEach(m => {
+                mHtml += `<div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-2"><div class="flex justify-between"><span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/20">${m.client}</span><span class="text-xs text-slate-400">${m.date}</span></div><h4 class="text-sm font-bold text-white">${m.topic}</h4><p class="text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800"><strong>MOM:</strong> ${m.mom}</p></div>`;
+            });
+            document.getElementById('meetingList').innerHTML = mHtml || `<p class="text-slate-500 text-sm">No meetings recorded.</p>`;
+
+            let sHtml = '';
+            staffList.forEach(s => {
+                sHtml += `<tr><td class="p-4 font-mono text-amber-400 font-bold">${s.empid}</td><td class="p-4 font-semibold text-white">${s.name}</td><td class="p-4 text-slate-300">${s.email}<br><span class="text-slate-500 text-[10px]">Pass: ${s.pass}</span></td><td class="p-4 text-amber-300">${s.role}</td></tr>`;
+            });
+            document.getElementById('staffTableBody').innerHTML = sHtml;
+
+            renderUserAttendanceAndLeaves();
+        }
+
+        function checkInToday() {
+            let today = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+            let time = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+            
+            if(!attendanceLogs[currentUser.email]) attendanceLogs[currentUser.email] = [];
+            let already = attendanceLogs[currentUser.email].find(a => a.date === today);
+            if(already) {
+                alert("Already checked in today at " + already.time);
+                return;
+            }
+            attendanceLogs[currentUser.email].unshift({ date: today, time: time, status: "Present" });
+            saveData();
+            alert("Attendance marked for today (" + time + ")!");
+        }
+
+        function applyLeave() {
+            let reason = prompt("Enter leave reason (e.g. Medical, Casual):");
+            if(!reason) return;
+            let dates = prompt("Enter Leave Dates (e.g. 05 Oct - 06 Oct):") || "Today";
+
+            if(!leaveRequests[currentUser.email]) leaveRequests[currentUser.email] = [];
+            leaveRequests[currentUser.email].unshift({ dates: dates, reason: reason, status: "Pending" });
+            saveData();
+            alert("Leave application submitted!");
+        }
+
+        function renderUserAttendanceAndLeaves() {
+            if(!currentUser) return;
+            let userAtt = attendanceLogs[currentUser.email] || [];
+            let attHtml = '';
+            userAtt.forEach(a => {
+                attHtml += `<div class="flex justify-between p-3 bg-slate-900 rounded-xl border border-slate-800"><span class="text-white">${a.date}</span><span class="text-emerald-400">Present (${a.time})</span></div>`;
+            });
+            document.getElementById('myAttendanceList').innerHTML = attHtml || `<p class="text-slate-500">No attendance records.</p>`;
+
+            let userLeaves = leaveRequests[currentUser.email] || [];
+            let leaveHtml = '';
+            userLeaves.forEach(lv => {
+                leaveHtml += `<div class="flex justify-between p-3 bg-slate-900 rounded-xl border border-slate-800"><div><strong class="text-white">${lv.dates}</strong><p class="text-slate-400 text-[10px]">${lv.reason}</p></div><span class="text-amber-400 font-semibold">${lv.status}</span></div>`;
+            });
+            document.getElementById('myLeaveList').innerHTML = leaveHtml || `<p class="text-slate-500">No leave requests.</p>`;
+        }
+
+        function registerNewStaff() {
+            if(currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
+            let empid = prompt("Enter Employee ID (e.g. ARK-EMP-03):") || "ARK-EMP-03";
+            let name = prompt("Enter Staff Full Name:");
+            if(!name) return;
+            let email = prompt("Enter Work Email ID:");
+            let pass = prompt("Set Password:");
+            let role = prompt("Enter Role (e.g. Architect):") || "Architect";
+
+            staffList.push({empid, name, email, pass, role});
+            saveData();
+            alert("New staff member registered!");
+        }
+
+        function updateCompanyBranding() {
+            if(currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
+            let name = prompt("Enter Company Name:", companyInfo.name);
+            if(name) companyInfo.name = name;
+            let logoText = prompt("Enter Logo Initials (e.g. AD or ARK):", companyInfo.logoText);
+            if(logoText) companyInfo.logoText = logoText;
+            saveData();
+            applyUserPermissions();
+            alert("Branding updated successfully!");
+        }
+
+        function addLead() {
+            let name = prompt("Client Name:");
+            if(!name) return;
+            let phone = prompt("Phone:") || "";
+            let source = prompt("Source:") || "Direct";
+            let typology = prompt("Typology:") || "General";
+            let value = prompt("Value (₹):") || "5,00,000";
+            leads.push({name, phone, source, typology, value});
+            saveData();
+        }
+
+        function addProject() {
+            let code = prompt("Job Code:") || "ARK-2026-003";
+            let name = prompt("Project Name:");
+            if(!name) return;
+            let architect = prompt("Assigned Architect:") || "Team";
+            let stage = prompt("Stage:") || "Concept";
+            projects.push({code, name, architect, stage});
+            saveData();
+        }
+
+        function addPayment() {
+            let project = prompt("Project Name:") || "General";
+            let stage = prompt("Stage:") || "Advance";
+            let amount = prompt("Amount (₹):") || "1,00,000";
+            let status = prompt("Status:") || "Invoice Raised";
+            payments.push({project, stage, amount, status});
+            saveData();
+        }
+
+        function addMeeting() {
+            let client = prompt("Client / Project:") || "Client";
+            let topic = prompt("Subject:") || "Review";
+            let mom = prompt("MOM Details:") || "Discussed plans.";
+            let date = prompt("Date:") || "Today";
+            meetings.push({client, topic, mom, date});
+            saveData();
+        }
+
         function switchTab(tabId) {
-            const tabs = ['dashboard', 'crm', 'projects', 'payments', 'meetings', 'attendance', 'adminPanel'];
+            const tabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'adminPanel'];
             tabs.forEach(t => {
-                const tabEl = document.getElementById('tab-' + t);
-                const navEl = document.getElementById('nav-' + t);
+                let tabEl = document.getElementById('tab-' + t);
+                let navEl = document.getElementById('nav-' + t);
                 if(tabEl) tabEl.classList.add('hidden');
-                if(navEl) navEl.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white";
+                if(navEl) navEl.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" + (t==='adminPanel' ? ' admin-only' : '');
             });
             document.getElementById('tab-' + tabId).classList.remove('hidden');
             document.getElementById('nav-' + tabId).className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition bg-amber-500/10 text-amber-400 border border-amber-500/20";
