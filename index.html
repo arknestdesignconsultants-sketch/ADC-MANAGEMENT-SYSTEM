@@ -13,7 +13,7 @@
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
 
-    <!-- SECURE LOGIN SCREEN (FORCED VISIBLE ON START) -->
+    <!-- SECURE LOGIN SCREEN -->
     <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950 p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-8 shadow-2xl">
             <div class="text-center mb-6">
@@ -25,8 +25,8 @@
             </div>
             <form onsubmit="handleLogin(event)" class="space-y-4 text-xs">
                 <div>
-                    <label class="block text-slate-400 mb-1 font-semibold uppercase">Work Email ID</label>
-                    <input type="email" id="loginEmail" required placeholder="admin@arknest.com" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
+                    <label class="block text-slate-400 mb-1 font-semibold uppercase">Login ID / Username</label>
+                    <input type="text" id="loginEmail" required placeholder="ADC2025" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
                 </div>
                 <div>
                     <label class="block text-slate-400 mb-1 font-semibold uppercase">Password</label>
@@ -36,10 +36,6 @@
                     Sign In to Portal
                 </button>
             </form>
-            <div class="mt-6 text-center text-[11px] text-slate-500 border-t border-slate-800 pt-4 space-y-1">
-                <p>Admin Login: <span class="text-amber-400">admin@arknest.com</span> / <span class="text-amber-400">admin123</span></p>
-                <p>Staff Login: <span class="text-amber-400">rohan@arknest.com</span> / <span class="text-amber-400">rohan123</span></p>
-            </div>
         </div>
     </div>
 
@@ -283,7 +279,7 @@
                     </div>
                 </div>
 
-                <!-- TAB 8: ADMIN CONTROLS & LOGO UPLOADER -->
+                <!-- TAB 8: ADMIN CONTROLS -->
                 <div id="tab-adminPanel" class="space-y-6 hidden admin-only-section">
                     <div class="flex justify-between items-center">
                         <div>
@@ -306,7 +302,7 @@
                                 <tr>
                                     <th class="p-4">Emp ID</th>
                                     <th class="p-4">Staff Name</th>
-                                    <th class="p-4">Work Email & Password</th>
+                                    <th class="p-4">Login ID / Username</th>
                                     <th class="p-4">Assigned Role</th>
                                 </tr>
                             </thead>
@@ -323,8 +319,9 @@
     <script>
         let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoText: "AD" };
         
+        // Updated Default Credentials: Username -> ADC2025 | Password -> Adc250826
         let staffList = JSON.parse(localStorage.getItem('ark_staff')) || [
-            { empid: "ARK-EMP-01", name: "Principal Architect (Admin)", email: "admin@arknest.com", pass: "admin123", role: "Admin" },
+            { empid: "ARK-EMP-01", name: "Principal Architect (Admin)", email: "ADC2025", pass: "Adc250826", role: "Admin" },
             { empid: "ARK-EMP-02", name: "Ar. Rohan Mehta", email: "rohan@arknest.com", pass: "rohan123", role: "Senior Architect" }
         ];
 
@@ -348,12 +345,12 @@
 
         function handleLogin(e) {
             e.preventDefault();
-            let email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            let inputId = document.getElementById('loginEmail').value.trim();
             let pass = document.getElementById('loginPass').value.trim();
 
-            let foundUser = staffList.find(s => s.email.toLowerCase() === email && s.pass === pass);
+            let foundUser = staffList.find(s => s.email.trim().toLowerCase() === inputId.toLowerCase() && s.pass === pass);
             if(!foundUser) {
-                alert("Invalid Work Email ID or Password! Use admin@arknest.com / admin123");
+                alert("Invalid Login ID or Password!");
                 return;
             }
 
@@ -436,7 +433,7 @@
 
             let sHtml = '';
             staffList.forEach(s => {
-                sHtml += `<tr><td class="p-4 font-mono text-amber-400 font-bold">${s.empid}</td><td class="p-4 font-semibold text-white">${s.name}</td><td class="p-4 text-slate-300">${s.email}<br><span class="text-slate-500 text-[10px]">Pass: ${s.pass}</span></td><td class="p-4 text-amber-300">${s.role}</td></tr>`;
+                sHtml += `<tr><td class="p-4 font-mono text-amber-400 font-bold">${s.empid}</td><td class="p-4 font-semibold text-white">${s.name}</td><td class="p-4 text-slate-300">${s.email}</td><td class="p-4 text-amber-300">${s.role}</td></tr>`;
             });
             document.getElementById('staffTableBody').innerHTML = sHtml;
 
@@ -491,7 +488,7 @@
             let empid = prompt("Enter Employee ID (e.g. ARK-EMP-03):") || "ARK-EMP-03";
             let name = prompt("Enter Staff Full Name:");
             if(!name) return;
-            let email = prompt("Enter Work Email ID:");
+            let email = prompt("Enter Login ID / Username:");
             let pass = prompt("Set Password:");
             let role = prompt("Enter Role (e.g. Architect):") || "Architect";
 
