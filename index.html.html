@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arknest Design Consultants - Enterprise Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
+
+    <!-- MAIN APP INTERFACE -->
+    <div id="appInterface" class="flex-1 flex flex-col">
+        <!-- Top Navbar -->
+        <header class="bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-lg">AD</div>
+                <div>
+                    <h2 class="font-bold text-white text-sm">Arknest Design Consultants</h2>
+                    <p class="text-xs text-amber-400">Role: Principal Architect (Full Admin)</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+                    <i class="fa-solid fa-circle text-emerald-500 text-[8px] mr-1.5"></i> Live System Active
+                </span>
+            </div>
+        </header>
+
+        <!-- Main Body with Tabs -->
+        <div class="flex-1 flex flex-col md:flex-row">
+            <!-- Sidebar Navigation -->
+            <nav class="w-full md:w-64 bg-slate-950 border-r border-slate-800 p-4 space-y-1.5 text-sm">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                    <i class="fa-solid fa-chart-pie w-5"></i><span>Master Dashboard</span>
+                </button>
+                <button onclick="switchTab('crm')" id="nav-crm" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <i class="fa-solid fa-users-viewfinder w-5"></i><span>CRM & Leads</span>
+                </button>
+                <button onclick="switchTab('projects')" id="nav-projects" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <i class="fa-solid fa-building-shield w-5"></i><span>Team & Projects</span>
+                </button>
+                <button onclick="switchTab('payments')" id="nav-payments" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <i class="fa-solid fa-file-invoice-dollar w-5"></i><span>Payment Schedule</span>
+                </button>
+                <button onclick="switchTab('meetings')" id="nav-meetings" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <i class="fa-solid fa-handshake w-5"></i><span>Meetings & MOM</span>
+                </button>
+                <button onclick="switchTab('attendance')" id="nav-attendance" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                    <i class="fa-solid fa-calendar-check w-5"></i><span>Attendance & Holidays</span>
+                </button>
+                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20">
+                    <i class="fa-solid fa-user-shield w-5"></i><span>Admin & Permissions</span>
+                </button>
+            </nav>
+
+            <!-- Dynamic Content Area -->
+            <main class="flex-1 p-6 overflow-y-auto bg-slate-900">
+                
+                <!-- TAB 1: DASHBOARD -->
+                <div id="tab-dashboard" class="space-y-6">
+                    <h3 class="text-xl font-bold text-white">Executive Command Dashboard</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
+                            <p class="text-xs font-semibold text-slate-400 uppercase">Active Leads</p>
+                            <h4 class="text-3xl font-bold text-white mt-2">12</h4>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
+                            <p class="text-xs font-semibold text-slate-400 uppercase">Active Projects</p>
+                            <h4 class="text-3xl font-bold text-white mt-2">5</h4>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
+                            <p class="text-xs font-semibold text-slate-400 uppercase">Pending Payments</p>
+                            <h4 class="text-3xl font-bold text-rose-400 mt-2">₹8.2 Lakhs</h4>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
+                            <p class="text-xs font-semibold text-slate-400 uppercase">Upcoming Meetings</p>
+                            <h4 class="text-3xl font-bold text-amber-400 mt-2">3 Scheduled</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: CRM -->
+                <div id="tab-crm" class="space-y-6 hidden">
+                    <h3 class="text-xl font-bold text-white">CRM & Client Lead Tracker</h3>
+                    <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-slate-400 text-sm">
+                        Client contact details, source tracking, and inquiry pipeline active.
+                    </div>
+                </div>
+
+                <!-- TAB 3: PROJECTS -->
+                <div id="tab-projects" class="space-y-6 hidden">
+                    <h3 class="text-xl font-bold text-white">Team Task & Project Assignment</h3>
+                    <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-slate-400 text-sm">
+                        Job codes, team allocations, and stage tracking.
+                    </div>
+                </div>
+
+                <!-- TAB 4: PAYMENT SCHEDULE -->
+                <div id="tab-payments" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white">Project Payment Schedule & Milestones</h3>
+                        <button onclick="alert('New milestone payment added.')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                            + Add Payment Milestone
+                        </button>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-900 border-b border-slate-800 text-slate-400 text-xs uppercase">
+                                <tr>
+                                    <th class="p-4">Job Code & Project</th>
+                                    <th class="p-4">Milestone Stage</th>
+                                    <th class="p-4">Amount (₹)</th>
+                                    <th class="p-4">Due Date</th>
+                                    <th class="p-4">Payment Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-xs">
+                                <tr>
+                                    <td class="p-4 font-mono text-amber-400 font-bold">ARK-2026-001<br><span class="text-slate-400 font-normal">Apex Corporate</span></td>
+                                    <td class="p-4 text-slate-200">Concept Design Approval (25%)</td>
+                                    <td class="p-4 text-white font-semibold">₹4,62,500</td>
+                                    <td class="p-4 text-slate-300">Oct 15, 2026</td>
+                                    <td class="p-4"><span class="bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/20">Invoice Raised</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 5: CLIENT MEETINGS & MOM -->
+                <div id="tab-meetings" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white">Client Meetings & Minutes of Meeting (MOM)</h3>
+                        <button onclick="alert('Meeting MOM logged successfully.')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                            + Record New Meeting MOM
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-3">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/20">Apex Corporate Tower</span>
+                                    <h4 class="text-sm font-bold text-white mt-2">Client Review Meeting - Floor Plan & Facade</h4>
+                                </div>
+                                <span class="text-xs text-slate-400"><i class="fa-solid fa-calendar mr-1"></i> Oct 1, 2026 | 03:00 PM</span>
+                            </div>
+                            <p class="text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800">
+                                <strong>Minutes of Meeting (MOM):</strong> Client reviewed the ground floor lobby layout. Approved the double-height ceiling concept with minor adjustments to the entrance canopy.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 6: ATTENDANCE & HOLIDAYS -->
+                <div id="tab-attendance" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white">Staff Attendance & Holiday Calendar</h3>
+                        <button onclick="alert('Attendance marked!')" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                            <i class="fa-solid fa-fingerprint mr-1"></i> Check-In Today
+                        </button>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-slate-400 text-sm">
+                        Staff attendance logs and holiday schedules active.
+                    </div>
+                </div>
+
+                <!-- TAB 7: ADMIN & PERMISSIONS -->
+                <div id="tab-adminPanel" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white">Admin Access & Permission Control</h3>
+                        <span class="text-xs text-rose-400">Principal Architect Full Control</span>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-slate-400 text-sm">
+                        Manage user roles, financial visibility, and system permissions.
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function switchTab(tabId) {
+            const tabs = ['dashboard', 'crm', 'projects', 'payments', 'meetings', 'attendance', 'adminPanel'];
+            tabs.forEach(t => {
+                const tabEl = document.getElementById('tab-' + t);
+                const navEl = document.getElementById('nav-' + t);
+                if(tabEl) tabEl.classList.add('hidden');
+                if(navEl) navEl.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white";
+            });
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('nav-' + tabId).className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition bg-amber-500/10 text-amber-400 border border-amber-500/20";
+        }
+    </script>
+</body>
+</html>
