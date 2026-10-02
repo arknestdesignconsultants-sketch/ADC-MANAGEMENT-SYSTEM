@@ -18,7 +18,7 @@
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-8 shadow-2xl">
             <div class="text-center mb-6">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 font-extrabold text-xl mb-3 shadow-inner overflow-hidden p-2">
-                    <img id="loginLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC" class="w-full h-full object-contain" onerror="this.style.display='none'; this.parentElement.innerText='ADC';">
+                    <div id="loginLogoBox" class="w-full h-full flex items-center justify-center font-bold text-amber-400 text-lg">ADC</div>
                 </div>
                 <h1 id="loginCompanyName" class="text-xl font-bold text-white">Arknest Design Consultants</h1>
                 <p class="text-xs text-slate-400 mt-1">Enterprise Practice Management Portal</p>
@@ -48,7 +48,7 @@
         <header class="bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center overflow-hidden p-1">
-                    <img id="navLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC" class="w-full h-full object-contain" onerror="this.style.display='none'; this.parentElement.innerText='ADC';">
+                    <div id="navLogoBox" class="w-full h-full flex items-center justify-center font-bold text-amber-400 text-xs">ADC</div>
                 </div>
                 <div>
                     <h2 id="navCompanyName" class="font-bold text-white text-sm">Arknest Design Consultants</h2>
@@ -226,12 +226,12 @@
                     </div>
                 </div>
 
-                <!-- TAB 6: MEETINGS -->
+                <!-- TAB 6: MEETINGS & MOM WITH TEAM LEADER PDF UPLOAD -->
                 <div id="tab-meetings" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Client Meetings & MOM</h3>
-                        <button onclick="addMeeting()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
-                            + Record Meeting MOM
+                        <button onclick="addMeeting()" class="leader-admin-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">
+                            + Record Meeting MOM with PDF
                         </button>
                     </div>
                     <div id="meetingList" class="space-y-4"></div>
@@ -318,11 +318,11 @@
                     </div>
                 </div>
 
-                <!-- TAB: CA / CS PORTAL -->
+                <!-- TAB: CA / CS PORTAL WITH RESTRICTED PDF UPLOAD -->
                 <div id="tab-cacsPortal" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-scale-balanced text-purple-400 mr-2"></i> CA / CS Dedicated Compliance Portal</h3>
-                        <button onclick="addCaUpdate()" class="bg-purple-500 hover:bg-purple-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Post Tax Update with PDF</button>
+                        <button onclick="addCaUpdate()" class="cacs-action bg-purple-500 hover:bg-purple-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">+ Post Tax Update with PDF</button>
                     </div>
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
                         <h4 class="font-semibold text-white text-sm">Official Taxation & Compliance Updates</h4>
@@ -385,7 +385,7 @@
                             <p class="text-xs text-slate-400 mt-1">Upload company logo (Director/Admin only) and manage staff records.</p>
                         </div>
                         <div class="space-x-2">
-                            <button onclick="triggerLogoUpload()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                            <button onclick="triggerLogoUpload()" class="director-admin-only-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
                                 <i class="fa-solid fa-upload mr-1"></i> Upload Company Logo
                             </button>
                             <input type="file" id="companyLogoInput" accept="image/*" class="hidden" onchange="uploadCompanyLogo(event)">
@@ -422,9 +422,9 @@
 
     <!-- JavaScript Logic -->
     <script>
-        if(!localStorage.getItem('ark_version_v19')) {
+        if(!localStorage.getItem('ark_version_v20')) {
             localStorage.clear();
-            localStorage.setItem('ark_version_v19', 'true');
+            localStorage.setItem('ark_version_v20', 'true');
         }
 
         let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "ADC_LOGO-removebg-preview.png" };
@@ -576,6 +576,24 @@
             let isDirectorOrAdmin = (role === 'Director' || role === 'Admin');
             document.querySelectorAll('.director-admin-action').forEach(el => {
                 if(isDirectorOrAdmin) el.classList.remove('hidden');
+                else el.classList.add('hidden');
+            });
+
+            let isDirectorOnly = (role === 'Director');
+            document.querySelectorAll('.director-admin-only-action').forEach(el => {
+                if(isDirectorOnly) el.classList.remove('hidden');
+                else el.classList.add('hidden');
+            });
+
+            let isLeaderAdminDirector = (role === 'Director' || role === 'Admin' || role === 'Team Leader');
+            document.querySelectorAll('.leader-admin-action').forEach(el => {
+                if(isLeaderAdminDirector) el.classList.remove('hidden');
+                else el.classList.add('hidden');
+            });
+
+            let isCacsAdminDirector = (role === 'Director' || role === 'Admin' || role === 'CA/CS');
+            document.querySelectorAll('.cacs-action').forEach(el => {
+                if(isCacsAdminDirector) el.classList.remove('hidden');
                 else el.classList.add('hidden');
             });
 
@@ -762,7 +780,7 @@
         function deleteCaUpdate(index) { caUpdates.splice(index, 1); saveData(); }
 
         function triggerLogoUpload() {
-            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied! Only Director or Admin can change the company logo."); return; }
+            if(currentUser.role !== 'Director') { alert("Access Denied! Only the Director can change the company logo."); return; }
             document.getElementById('companyLogoInput').click();
         }
         function uploadCompanyLogo(event) {
@@ -876,7 +894,7 @@
 
             let name = prompt("Enter Staff Full Name:");
             if(!name) return;
-            let email = prompt("Enter Login Username:") || "staff" + nextIdNum;
+            let email = prompt("Enter Login Username/Email:") || "staff" + nextIdNum;
             let pass = prompt("Set Password:") || "123456";
             let roleInput = prompt("Select Designation / Role (Director, Admin, Team Leader, Accountant, HR, CA/CS, Employee):") || "Employee";
             let dobInput = prompt("Enter Date of Birth (DD-MM-YYYY):") || "01-01-1995";
