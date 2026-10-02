@@ -17,8 +17,8 @@
     <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950 p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-8 shadow-2xl">
             <div class="text-center mb-6">
-                <div class="inline-flex items-center justify-center mb-3">
-                    <img id="loginLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC Logo" class="h-12 object-contain" onerror="this.style.display='none'">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 font-extrabold text-2xl mb-3 shadow-inner">
+                    <img id="loginLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC" class="h-10 object-contain" onerror="this.style.display='none'; this.parentElement.innerText='ADC';">
                 </div>
                 <h1 id="loginCompanyName" class="text-xl font-bold text-white">Arknest Design Consultants</h1>
                 <p class="text-xs text-slate-400 mt-1">Enterprise Practice Management Portal</p>
@@ -44,8 +44,8 @@
         <!-- Top Navbar -->
         <header class="bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="flex items-center">
-                    <img id="navLogoImg" src="ADC_LOGO-removebg-preview.png" alt="Logo" class="h-9 object-contain" onerror="this.style.display='none'">
+                <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-extrabold flex items-center justify-center text-sm">
+                    <img id="navLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC" class="h-7 object-contain" onerror="this.style.display='none'; this.parentElement.innerText='ADC';">
                 </div>
                 <div>
                     <h2 id="navCompanyName" class="font-bold text-white text-sm">Arknest Design Consultants</h2>
@@ -406,6 +406,12 @@
 
     <!-- JavaScript Logic -->
     <script>
+        // Force reset localStorage once for fresh credentials & structure
+        if(!localStorage.getItem('ark_version_v6')) {
+            localStorage.clear();
+            localStorage.setItem('ark_version_v6', 'true');
+        }
+
         let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "ADC_LOGO-removebg-preview.png" };
         
         let staffList = JSON.parse(localStorage.getItem('ark_staff')) || [
@@ -515,11 +521,6 @@
             if(companyInfo.logoUrl) {
                 document.getElementById('navLogoImg').src = companyInfo.logoUrl;
                 document.getElementById('loginLogoImg').src = companyInfo.logoUrl;
-                document.getElementById('navLogoImg').style.display = 'block';
-                document.getElementById('loginLogoImg').style.display = 'block';
-            } else {
-                document.getElementById('navLogoImg').style.display = 'none';
-                document.getElementById('loginLogoImg').style.display = 'none';
             }
 
             let role = currentUser.role;
