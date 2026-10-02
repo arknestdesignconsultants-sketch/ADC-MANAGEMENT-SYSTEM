@@ -17,8 +17,8 @@
     <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950 p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-8 shadow-2xl">
             <div class="text-center mb-6">
-                <div id="loginLogoBox" class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-amber-500/10 text-amber-400 mb-3 text-xl font-extrabold border border-amber-500/20">
-                    <img id="loginLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC" class="h-10 object-contain" onerror="this.parentElement.innerHTML='ADC'">
+                <div id="loginLogoBox" class="inline-flex items-center justify-center mb-3">
+                    <img id="loginLogoImg" src="" alt="ADC Logo" class="h-12 object-contain" onerror="this.style.display='none'">
                 </div>
                 <h1 id="loginCompanyName" class="text-xl font-bold text-white">Arknest Design Consultants</h1>
                 <p class="text-xs text-slate-400 mt-1">Enterprise Practice Management Portal</p>
@@ -26,7 +26,7 @@
             <form onsubmit="handleLogin(event)" class="space-y-4 text-xs">
                 <div>
                     <label class="block text-slate-400 mb-1 font-semibold uppercase">Login ID / Username</label>
-                    <input type="text" id="loginEmail" required placeholder="ADC2025" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
+                    <input type="text" id="loginEmail" required placeholder="director" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500">
                 </div>
                 <div>
                     <label class="block text-slate-400 mb-1 font-semibold uppercase">Password</label>
@@ -36,6 +36,9 @@
                     Sign In to Portal
                 </button>
             </form>
+            <div class="mt-4 text-center text-[11px] text-slate-500">
+                <p>Director Login: <span class="text-amber-400">director</span> / <span class="text-amber-400">dir2026</span></p>
+            </div>
         </div>
     </div>
 
@@ -44,8 +47,8 @@
         <!-- Top Navbar -->
         <header class="bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div id="navLogoBox" class="w-10 h-10 rounded-lg bg-amber-500 text-slate-950 font-extrabold flex items-center justify-center text-sm">
-                    <img id="navLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC" class="h-8 object-contain" onerror="this.parentElement.innerHTML='ADC'">
+                <div id="navLogoBox" class="flex items-center">
+                    <img id="navLogoImg" src="" alt="Logo" class="h-9 object-contain" onerror="this.style.display='none'">
                 </div>
                 <div>
                     <h2 id="navCompanyName" class="font-bold text-white text-sm">Arknest Design Consultants</h2>
@@ -69,7 +72,7 @@
                 <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition bg-amber-500/10 text-amber-400 border border-amber-500/20">
                     <i class="fa-solid fa-chart-pie w-5"></i><span>Master Dashboard</span>
                 </button>
-                <button onclick="switchTab('crm')" id="nav-crm" class="role-admin-leader w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                <button onclick="switchTab('crm')" id="nav-crm" class="nav-perm-crm w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-users-viewfinder w-5"></i><span>CRM & Leads</span>
                 </button>
                 <button onclick="switchTab('projects')" id="nav-projects" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
@@ -78,17 +81,29 @@
                 <button onclick="switchTab('departments')" id="nav-departments" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-sitemap w-5"></i><span>Departments & Heads</span>
                 </button>
-                <button onclick="switchTab('payments')" id="nav-payments" class="role-admin-only w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
-                    <i class="fa-solid fa-file-invoice-dollar w-5"></i><span>Payment Schedule</span>
+                <button onclick="switchTab('payments')" id="nav-payments" class="nav-perm-accountant w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white hidden">
+                    <i class="fa-solid fa-file-invoice-dollar w-5"></i><span>Payment Schedule (Accounts)</span>
                 </button>
-                <button onclick="switchTab('meetings')" id="nav-meetings" class="role-admin-leader w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                <button onclick="switchTab('meetings')" id="nav-meetings" class="nav-perm-leader w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-handshake w-5"></i><span>Meetings & MOM</span>
                 </button>
                 <button onclick="switchTab('attendance')" id="nav-attendance" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-calendar-check w-5"></i><span>Attendance & Calendar</span>
                 </button>
-                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="role-admin-only w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20">
-                    <i class="fa-solid fa-user-shield w-5"></i><span>Admin & Director Controls</span>
+                <button onclick="switchTab('hrPortal')" id="nav-hrPortal" class="nav-perm-hr w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-emerald-400 hover:bg-slate-900 border border-emerald-500/20 hidden">
+                    <i class="fa-solid fa-users-gear w-5"></i><span>HR & Staff Portal</span>
+                </button>
+                <button onclick="switchTab('cacsSection')" id="nav-cacsSection" class="nav-perm-cacs w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-purple-400 hover:bg-slate-900 border border-purple-500/20 hidden">
+                    <i class="fa-solid fa-scale-balanced w-5"></i><span>CA / CS Compliance</span>
+                </button>
+                <button onclick="switchTab('directorDiary')" id="nav-directorDiary" class="nav-perm-director w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-amber-300 hover:bg-slate-900 border border-amber-500/30 hidden">
+                    <i class="fa-solid fa-book-lock w-5"></i><span>Director's Private Diary</span>
+                </button>
+                <button onclick="switchTab('changePassword')" id="nav-changePassword" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-sky-400 hover:bg-slate-900 border border-sky-500/20">
+                    <i class="fa-solid fa-key w-5"></i><span>Change Password</span>
+                </button>
+                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="nav-perm-admin w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20 hidden">
+                    <i class="fa-solid fa-user-shield w-5"></i><span>Director Master Control</span>
                 </button>
             </nav>
 
@@ -99,7 +114,7 @@
                 <div id="tab-dashboard" class="space-y-6">
                     <h3 class="text-xl font-bold text-white">Executive Command Dashboard</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl role-admin-leader">
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl nav-perm-leader">
                             <p class="text-xs font-semibold text-slate-400 uppercase">Active Leads</p>
                             <h4 id="dashLeadCount" class="text-3xl font-bold text-white mt-2">0</h4>
                         </div>
@@ -107,13 +122,24 @@
                             <p class="text-xs font-semibold text-slate-400 uppercase">Active Projects</p>
                             <h4 id="dashProjCount" class="text-3xl font-bold text-white mt-2">0</h4>
                         </div>
-                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl role-admin-only">
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl nav-perm-accountant hidden">
                             <p class="text-xs font-semibold text-slate-400 uppercase">Total Billed</p>
                             <h4 id="dashPayTotal" class="text-3xl font-bold text-amber-400 mt-2">₹0</h4>
                         </div>
-                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl role-admin-only">
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl nav-perm-admin hidden">
                             <p class="text-xs font-semibold text-slate-400 uppercase">Staff Registered</p>
                             <h4 id="dashStaffCount" class="text-3xl font-bold text-emerald-400 mt-2">0</h4>
+                        </div>
+                    </div>
+
+                    <div class="nav-perm-leader grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 hidden">
+                        <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-3">
+                            <h4 class="font-bold text-amber-400 text-sm flex items-center"><i class="fa-solid fa-fire mr-2"></i> Top Priority Projects & Lead</h4>
+                            <div id="dashPriorityList" class="space-y-2 text-xs"></div>
+                        </div>
+                        <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-3">
+                            <h4 class="font-bold text-rose-400 text-sm flex items-center"><i class="fa-solid fa-user-clock mr-2"></i> Staff on Leave Today</h4>
+                            <div id="dashLeaveStatusList" class="space-y-2 text-xs"></div>
                         </div>
                     </div>
                 </div>
@@ -122,7 +148,7 @@
                 <div id="tab-crm" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">CRM & Client Lead Tracker</h3>
-                        <button onclick="addLead()" class="role-admin-leader bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                        <button onclick="addLead()" class="nav-perm-admin bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">
                             + Add New Lead
                         </button>
                     </div>
@@ -135,7 +161,7 @@
                                     <th class="p-4">Source</th>
                                     <th class="p-4">Typology</th>
                                     <th class="p-4">Est. Value</th>
-                                    <th class="role-admin-leader p-4 text-right">Action</th>
+                                    <th class="nav-perm-admin p-4 text-right hidden">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="leadTableBody" class="divide-y divide-slate-800 text-xs text-slate-300"></tbody>
@@ -147,7 +173,7 @@
                 <div id="tab-projects" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Team Tasks & Assigned Projects</h3>
-                        <button onclick="addProject()" class="role-admin-leader bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                        <button onclick="addProject()" class="nav-perm-admin bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">
                             + Assign Project
                         </button>
                     </div>
@@ -157,9 +183,9 @@
                                 <tr>
                                     <th class="p-4">Job Code</th>
                                     <th class="p-4">Project Name</th>
-                                    <th class="p-4">Assigned Architect</th>
-                                    <th class="p-4">Stage</th>
-                                    <th class="role-admin-leader p-4 text-right">Action</th>
+                                    <th class="p-4">Lead Architect</th>
+                                    <th class="p-4">Priority & Stage</th>
+                                    <th class="nav-perm-admin p-4 text-right hidden">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="projTableBody" class="divide-y divide-slate-800 text-xs text-slate-300"></tbody>
@@ -171,7 +197,7 @@
                 <div id="tab-departments" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Departments & Team Heads</h3>
-                        <button onclick="addDepartmentHead()" class="role-admin-only bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Add Department Head</button>
+                        <button onclick="addDepartmentHead()" class="nav-perm-admin bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">+ Add Department Head</button>
                     </div>
                     <div id="departmentsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
                 </div>
@@ -179,8 +205,8 @@
                 <!-- TAB 5: PAYMENTS -->
                 <div id="tab-payments" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
-                        <h3 class="text-xl font-bold text-white">Project Payment Schedule & Milestones</h3>
-                        <button onclick="addPayment()" class="role-admin-only bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                        <h3 class="text-xl font-bold text-white">Project Payment Schedule & Milestones (Accountant Portal)</h3>
+                        <button onclick="addPayment()" class="nav-perm-accountant bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
                             + Add Payment Milestone
                         </button>
                     </div>
@@ -204,7 +230,7 @@
                 <div id="tab-meetings" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Client Meetings & MOM</h3>
-                        <button onclick="addMeeting()" class="role-admin-leader bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                        <button onclick="addMeeting()" class="nav-perm-leader bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
                             + Record Meeting MOM
                         </button>
                     </div>
@@ -248,8 +274,8 @@
                                 <div class="p-3 bg-slate-900 rounded-xl text-slate-600">28</div>
                                 <div class="p-3 bg-slate-900 rounded-xl text-slate-600">29</div>
                                 <div class="p-3 bg-slate-900 rounded-xl text-slate-600">30</div>
-                                <div class="p-3 bg-slate-900 rounded-xl text-white font-bold bg-amber-500/20 border border-amber-500/40">1</div>
-                                <div class="p-3 bg-slate-900 rounded-xl text-white font-bold bg-emerald-500/20 border border-emerald-500/40">2 (Today)</div>
+                                <div class="p-3 bg-slate-900 rounded-xl text-white font-bold bg-amber-500/25 border border-amber-500/40">1</div>
+                                <div class="p-3 bg-slate-900 rounded-xl text-white font-bold bg-emerald-500/25 border border-emerald-500/40">2 (Today)</div>
                                 <div class="p-3 bg-slate-900 rounded-xl text-white">3</div>
                                 <div class="p-3 bg-slate-900 rounded-xl text-rose-400">4 (Sun)</div>
                             </div>
@@ -258,7 +284,7 @@
                         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4">
                             <div class="flex justify-between items-center">
                                 <h4 class="font-semibold text-white text-sm"><i class="fa-solid fa-umbrella-beach text-amber-400 mr-2"></i> Restricted Holidays</h4>
-                                <button onclick="addRestrictedHoliday()" class="role-admin-only text-[10px] bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg font-bold">+ Add</button>
+                                <button onclick="addRestrictedHoliday()" class="nav-perm-admin text-[10px] bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg font-bold hidden">+ Add</button>
                             </div>
                             <div id="restrictedHolidaysList" class="space-y-2 text-xs"></div>
                         </div>
@@ -270,42 +296,97 @@
                             <div id="myAttendanceList" class="space-y-2 text-xs"></div>
                         </div>
                         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4">
-                            <h4 class="font-semibold text-white text-sm">Leave Applications & Email Routing</h4>
+                            <h4 class="font-semibold text-white text-sm">Leave Applications & Status</h4>
                             <div id="myLeaveList" class="space-y-2 text-xs"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- TAB 8: ADMIN & DIRECTOR CONTROLS -->
+                <!-- TAB: HR PORTAL -->
+                <div id="tab-hrPortal" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-users-gear text-emerald-400 mr-2"></i> HR & Staff Management Portal</h3>
+                        <button onclick="registerNewStaff()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Register New Staff</button>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
+                        <h4 class="font-semibold text-white text-sm">Pending Staff Leave Approvals</h4>
+                        <div id="hrLeaveList" class="space-y-2 text-xs"></div>
+                    </div>
+                </div>
+
+                <!-- TAB: CA / CS SECTION -->
+                <div id="tab-cacsSection" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-scale-balanced text-purple-400 mr-2"></i> CA / CS Compliance & Tax Updates</h3>
+                        <button onclick="addCaUpdate()" class="bg-purple-500 hover:bg-purple-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Post Tax/Compliance Update</button>
+                    </div>
+                    <div id="caUpdatesList" class="space-y-4 text-xs"></div>
+                </div>
+
+                <!-- TAB: DIRECTOR PRIVATE DIARY -->
+                <div id="tab-directorDiary" class="space-y-6 hidden">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-amber-300"><i class="fa-solid fa-book-lock mr-2"></i> Director's Private Confidential Diary</h3>
+                            <p class="text-xs text-slate-400 mt-1">Strictly private notes visible only to the Director ID.</p>
+                        </div>
+                        <button onclick="saveDirectorDiary()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">Save Diary Notes</button>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
+                        <textarea id="directorNotesArea" rows="12" placeholder="Write confidential director notes here..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-white text-sm focus:outline-none focus:border-amber-500"></textarea>
+                    </div>
+                </div>
+
+                <!-- TAB: CHANGE PASSWORD -->
+                <div id="tab-changePassword" class="space-y-6 hidden">
+                    <div class="max-w-md mx-auto bg-slate-950 border border-slate-800 p-8 rounded-2xl shadow-xl space-y-6">
+                        <div class="text-center">
+                            <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-key text-sky-400 mr-2"></i> Change Password</h3>
+                            <p class="text-xs text-slate-400 mt-1">Update your account login password securely.</p>
+                        </div>
+                        <form onsubmit="handlePasswordChange(event)" class="space-y-4 text-xs">
+                            <div>
+                                <label class="block text-slate-400 mb-1 font-semibold uppercase">Current Password</label>
+                                <input type="password" id="oldPass" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1 font-semibold uppercase">New Password</label>
+                                <input type="password" id="newPass" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1 font-semibold uppercase">Confirm New Password</label>
+                                <input type="password" id="confirmNewPass" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500">
+                            </div>
+                            <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-slate-950 font-bold py-3 rounded-xl transition text-sm shadow-lg">
+                                Update Password
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- TAB: DIRECTOR MASTER CONTROL -->
                 <div id="tab-adminPanel" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <div>
-                            <h3 class="text-xl font-bold text-white">Admin & Director Controls</h3>
-                            <p class="text-xs text-slate-400 mt-1">Manage staff roles, directory, and leave requests.</p>
+                            <h3 class="text-xl font-bold text-white">Director Master Control</h3>
+                            <p class="text-xs text-slate-400 mt-1">Upload company logo and manage studio roles.</p>
                         </div>
                         <div class="space-x-2">
-                            <button onclick="registerNewStaff()" class="bg-rose-500 hover:bg-rose-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
-                                + Create Staff Login
+                            <button onclick="triggerLogoUpload()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                                <i class="fa-solid fa-upload mr-1"></i> Upload Company Logo
                             </button>
-                            <button onclick="updateCompanyBranding()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
-                                <i class="fa-solid fa-image mr-1"></i> Set Logo Image
-                            </button>
+                            <input type="file" id="companyLogoInput" accept="image/*" class="hidden" onchange="uploadCompanyLogo(event)">
                         </div>
-                    </div>
-
-                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-                        <h4 class="font-semibold text-white text-sm">Pending Leave Requests from Staff</h4>
-                        <div id="adminLeaveList" class="space-y-2 text-xs"></div>
                     </div>
 
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden p-6 space-y-4">
-                        <h4 class="font-semibold text-white text-sm">Staff Directory & Roles (Admin, Team Leader, Employee)</h4>
+                        <h4 class="font-semibold text-white text-sm">Full Studio Staff Directory & Roles</h4>
                         <table class="w-full text-left text-sm">
                             <thead class="bg-slate-900 border-b border-slate-800 text-slate-400 text-xs uppercase">
                                 <tr>
                                     <th class="p-4">Photo</th>
                                     <th class="p-4">Staff Name / ID</th>
-                                    <th class="p-4">System Role</th>
+                                    <th class="p-4">Assigned Domain / Role</th>
                                     <th class="p-4">Parents & University</th>
                                     <th class="p-4">Contact & Address</th>
                                     <th class="p-4 text-right">Action</th>
@@ -320,14 +401,19 @@
         </div>
     </div>
 
+    <input type="file" id="staffPhotoInput" accept="image/*" class="hidden" onchange="saveStaffPhoto(event)">
+
     <!-- JavaScript Logic -->
     <script>
-        let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "ADC_LOGO-removebg-preview.png" };
+        let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "" };
         
         let staffList = JSON.parse(localStorage.getItem('ark_staff')) || [
-            { empid: "ARK-EMP-01", name: "Director / Admin", email: "ADC2025", pass: "Adc250826", role: "Admin", parents: "Mr. & Mrs. Sharma", university: "SPA Delhi", phone: "+91 9876543210", address: "Greater Kailash, New Delhi", photo: "https://i.pravatar.cc/150?img=11" },
-            { empid: "ARK-EMP-02", name: "Ar. Rohan Mehta", email: "rohan", pass: "rohan123", role: "Team Leader", parents: "Mr. & Mrs. Mehta", university: "CEPT University", phone: "+91 9123456789", address: "Skyline Apartments, Gurgaon", photo: "https://i.pravatar.cc/150?img=12" },
-            { empid: "ARK-EMP-03", name: "Rahul Sen", email: "rahul", pass: "rahul123", role: "Employee", parents: "Mr. & Mrs. Sen", university: "IIT Roorkee", phone: "+91 9988776655", address: "Lajpat Nagar, New Delhi", photo: "https://i.pravatar.cc/150?img=13" }
+            { empid: "ARK-EMP-01", name: "Director", email: "director", pass: "dir2026", role: "Admin", parents: "Mr. & Mrs. Sharma", university: "SPA Delhi", phone: "+91 9876543210", address: "Greater Kailash, Delhi", photo: "" },
+            { empid: "ARK-EMP-02", name: "Ar. Rohan Mehta", email: "rohan", pass: "rohan123", role: "Team Leader", parents: "Mr. & Mrs. Mehta", university: "CEPT", phone: "+91 9123456789", address: "Gurgaon", photo: "" },
+            { empid: "ARK-EMP-03", name: "Priya Sharma", email: "accountant", pass: "acc123", role: "Accountant", parents: "Mr. & Mrs. Sharma", university: "Delhi Univ", phone: "+91 9988776655", address: "Noida", photo: "" },
+            { empid: "ARK-EMP-04", name: "Sunil Verma", email: "hr", pass: "hr123", role: "HR", parents: "Mr. & Mrs. Verma", university: "MDI Gurgaon", phone: "+91 9811223344", address: "Delhi", photo: "" },
+            { empid: "ARK-EMP-05", name: "CA Ramesh Gupta", email: "cacs", pass: "tax123", role: "CA/CS", parents: "Mr. & Mrs. Gupta", university: "ICAI", phone: "+91 9711556677", address: "Connaught Place", photo: "" },
+            { empid: "ARK-EMP-06", name: "Rahul Sen", email: "rahul", pass: "rahul123", role: "Employee", parents: "Mr. & Mrs. Sen", university: "IIT Roorkee", phone: "+91 9988776655", address: "Lajpat Nagar", photo: "" }
         ];
 
         let restrictedHolidays = JSON.parse(localStorage.getItem('ark_holidays')) || [
@@ -337,16 +423,15 @@
         ];
 
         let departments = JSON.parse(localStorage.getItem('ark_departments')) || [
-            { title: "Design & Architecture", head: "Ar. Rohan Mehta", photo: "https://i.pravatar.cc/150?img=12", details: "Concept Design & Approvals" },
-            { title: "BIM & 3D Visualization", head: "Ar. Amit Verma", photo: "https://i.pravatar.cc/150?img=13", details: "BIM LOD 300/400 & Renderings" },
-            { title: "Accounts & Admin", head: "Priya Sharma", photo: "https://i.pravatar.cc/150?img=32", details: "GST, TDS & Client Billing" }
+            { title: "Design & Architecture", head: "Ar. Rohan Mehta", photo: "", details: "Concept Design & Approvals" },
+            { title: "BIM & 3D Visualization", head: "Ar. Amit Verma", photo: "", details: "BIM LOD 300/400 & Renderings" }
         ];
 
         let leads = JSON.parse(localStorage.getItem('ark_leads')) || [
             {name: "Mr. Rajesh Sharma", phone: "9876543210", source: "Referral", typology: "Commercial", value: "18,50,000"}
         ];
         let projects = JSON.parse(localStorage.getItem('ark_projects')) || [
-            {code: "ARK-2026-001", name: "Apex Corporate Tower", architect: "Ar. Rohan Mehta", stage: "Schematic Design"}
+            {code: "ARK-2026-001", name: "Apex Corporate Tower", architect: "Ar. Rohan Mehta", stage: "Schematic Design", priority: "High (Top Priority)"}
         ];
         let payments = JSON.parse(localStorage.getItem('ark_payments')) || [
             {project: "Apex Corporate", stage: "Concept Approval", amount: "4,62,500", status: "Invoice Raised"}
@@ -354,11 +439,16 @@
         let meetings = JSON.parse(localStorage.getItem('ark_meetings')) || [
             {client: "Apex Corporate", topic: "Facade Review", mom: "Approved double-height lobby concept.", date: "01 Oct 2026"}
         ];
+        let caUpdates = JSON.parse(localStorage.getItem('ark_cacs')) || [
+            {title: "Q2 GST Filing Notice", desc: "All vendor invoices for Q2 must be submitted to accounts by Oct 15.", date: "01 Oct 2026"}
+        ];
+        let directorNotes = localStorage.getItem('ark_dir_notes') || "";
 
         let attendanceLogs = JSON.parse(localStorage.getItem('ark_attendance')) || {};
         let leaveRequests = JSON.parse(localStorage.getItem('ark_leaves')) || {};
 
         let currentUser = null;
+        let selectedStaffIndexForPhoto = null;
 
         function handleLogin(e) {
             e.preventDefault();
@@ -387,6 +477,34 @@
             document.getElementById('loginPass').value = "";
         }
 
+        function handlePasswordChange(e) {
+            e.preventDefault();
+            let oldP = document.getElementById('oldPass').value.trim();
+            let newP = document.getElementById('newPass').value.trim();
+            let confP = document.getElementById('confirmNewPass').value.trim();
+
+            if(currentUser.pass !== oldP) {
+                alert("Current password is incorrect!");
+                return;
+            }
+            if(newP !== confP) {
+                alert("New passwords do not match!");
+                return;
+            }
+
+            let staffObj = staffList.find(s => s.email === currentUser.email);
+            if(staffObj) {
+                staffObj.pass = newP;
+                currentUser.pass = newP;
+                saveData();
+                alert("Password updated successfully!");
+                document.getElementById('oldPass').value = "";
+                document.getElementById('newPass').value = "";
+                document.getElementById('confirmNewPass').value = "";
+                switchTab('dashboard');
+            }
+        }
+
         function applyUserPermissions() {
             document.getElementById('navCompanyName').innerText = companyInfo.name;
             document.getElementById('loginCompanyName').innerText = companyInfo.name;
@@ -394,40 +512,40 @@
             if(companyInfo.logoUrl) {
                 document.getElementById('navLogoImg').src = companyInfo.logoUrl;
                 document.getElementById('loginLogoImg').src = companyInfo.logoUrl;
+                document.getElementById('navLogoImg').style.display = 'block';
+                document.getElementById('loginLogoImg').style.display = 'block';
+            } else {
+                document.getElementById('navLogoImg').style.display = 'none';
+                document.getElementById('loginLogoImg').style.display = 'none';
             }
 
-            let role = currentUser.role; // Admin, Team Leader, Employee
+            let role = currentUser.role;
             document.getElementById('userRoleBadge').innerText = "Role: " + currentUser.name + " (" + role + ")";
 
-            let adminOnlyEls = document.querySelectorAll('.role-admin-only');
-            let adminLeaderEls = document.querySelectorAll('.role-admin-leader');
-            let adminTab = document.getElementById('nav-adminPanel');
+            document.querySelectorAll('.nav-perm-admin').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-perm-leader').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-perm-accountant').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-perm-hr').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-perm-cacs').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-perm-director').forEach(el => el.classList.add('hidden'));
 
             if(role === 'Admin') {
-                adminTab.classList.remove('hidden');
-                adminOnlyEls.forEach(el => el.classList.remove('hidden'));
-                adminLeaderEls.forEach(el => el.classList.remove('hidden'));
+                document.querySelectorAll('.nav-perm-admin, .nav-perm-leader, .nav-perm-accountant, .nav-perm-hr, .nav-perm-cacs, .nav-perm-director').forEach(el => el.classList.remove('hidden'));
             } else if(role === 'Team Leader') {
-                adminTab.classList.add('hidden');
-                adminOnlyEls.forEach(el => el.classList.add('hidden'));
-                adminLeaderEls.forEach(el => el.classList.remove('hidden'));
-            } else { // Employee
-                adminTab.classList.add('hidden');
-                adminOnlyEls.forEach(el => el.classList.add('hidden'));
-                adminLeaderEls.forEach(el => el.classList.add('hidden'));
-                if(['crm', 'payments', 'meetings', 'adminPanel'].includes(getCurrentActiveTab())) {
-                    switchTab('dashboard');
-                }
+                document.querySelectorAll('.nav-perm-leader').forEach(el => el.classList.remove('hidden'));
+            } else if(role === 'Accountant') {
+                document.querySelectorAll('.nav-perm-accountant').forEach(el => el.classList.remove('hidden'));
+            } else if(role === 'HR') {
+                document.querySelectorAll('.nav-perm-hr').forEach(el => el.classList.remove('hidden'));
+            } else if(role === 'CA/CS') {
+                document.querySelectorAll('.nav-perm-cacs').forEach(el => el.classList.remove('hidden'));
             }
-        }
 
-        function getCurrentActiveTab() {
-            const tabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'adminPanel'];
-            for(let t of tabs) {
-                let el = document.getElementById('tab-' + t);
-                if(el && !el.classList.contains('hidden')) return t;
-            }
-            return 'dashboard';
+            if(role === 'Accountant') switchTab('payments');
+            else if(role === 'HR') switchTab('hrPortal');
+            else if(role === 'CA/CS') switchTab('cacsSection');
+            else if(role === 'Employee') switchTab('attendance');
+            else switchTab('dashboard');
         }
 
         function saveData() {
@@ -438,6 +556,7 @@
             localStorage.setItem('ark_projects', JSON.stringify(projects));
             localStorage.setItem('ark_payments', JSON.stringify(payments));
             localStorage.setItem('ark_meetings', JSON.stringify(meetings));
+            localStorage.setItem('ark_cacs', JSON.stringify(caUpdates));
             localStorage.setItem('ark_company', JSON.stringify(companyInfo));
             localStorage.setItem('ark_attendance', JSON.stringify(attendanceLogs));
             localStorage.setItem('ark_leaves', JSON.stringify(leaveRequests));
@@ -447,8 +566,56 @@
         function updateUI() {
             document.getElementById('dashLeadCount').innerText = leads.length;
             document.getElementById('dashProjCount').innerText = projects.length;
-            document.getElementById('dashPayTotal').innerText = "₹" + payments.reduce((acc, p) => acc + parseInt(p.amount.replace(/,/g,'')||0), 0).toLocaleString('en-IN');
-            document.getElementById('dashStaffCount').innerText = staffList.length;
+            let payTotal = payments.reduce((acc, p) => acc + parseInt(p.amount.replace(/,/g,'')||0), 0);
+            let payEl = document.getElementById('dashPayTotal');
+            if(payEl) payEl.innerText = "₹" + payTotal.toLocaleString('en-IN');
+            let staffCountEl = document.getElementById('dashStaffCount');
+            if(staffCountEl) staffCountEl.innerText = staffList.length;
+
+            if(currentUser && currentUser.role === 'Admin') {
+                document.getElementById('directorNotesArea').value = directorNotes;
+            }
+
+            if(currentUser && (currentUser.role === 'Admin' || currentUser.role === 'Team Leader')) {
+                let priHtml = '';
+                projects.forEach(p => {
+                    if(p.priority && p.priority.includes("High")) {
+                        priHtml += `<div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center"><span class="text-white font-semibold">${p.name} (${p.code})</span><span class="text-amber-400">Lead: ${p.architect}</span></div>`;
+                    }
+                });
+                let priEl = document.getElementById('dashPriorityList');
+                if(priEl) priEl.innerHTML = priHtml || `<p class="text-slate-500">No high priority projects marked.</p>`;
+
+                let leaveHtml = '';
+                for(let email in leaveRequests) {
+                    leaveRequests[email].forEach(lv => {
+                        if(lv.status.includes("Approved")) {
+                            leaveHtml += `<div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center"><span class="text-white">${lv.name}</span><span class="text-rose-400">${lv.dates}</span></div>`;
+                        }
+                    });
+                }
+                let leaveEl = document.getElementById('dashLeaveStatusList');
+                if(leaveEl) leaveEl.innerHTML = leaveHtml || `<p class="text-slate-500">No staff on leave today.</p>`;
+            }
+
+            let cacsHtml = '';
+            caUpdates.forEach((c, index) => {
+                let delBtn = currentUser && currentUser.role === 'Admin' ? `<button onclick="deleteCaUpdate(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button>` : '';
+                cacsHtml += `<div class="bg-slate-950 border border-slate-800 p-4 rounded-xl space-y-1"><div class="flex justify-between"><strong class="text-purple-400">${c.title}</strong><span class="text-slate-500">${c.date} ${delBtn}</span></div><p class="text-slate-300">${c.desc}</p></div>`;
+            });
+            let caEl = document.getElementById('caUpdatesList');
+            if(caEl) caEl.innerHTML = cacsHtml || `<p class="text-slate-500">No compliance updates.</p>`;
+
+            let hrLeaveHtml = '';
+            for(let email in leaveRequests) {
+                leaveRequests[email].forEach((lv, idx) => {
+                    if(lv.status === "Pending Approval") {
+                        hrLeaveHtml += `<div class="flex justify-between items-center p-3 bg-slate-900 rounded-xl border border-slate-800"><div><strong class="text-white">${lv.name}</strong><p class="text-slate-400 text-[11px]">${lv.dates}: ${lv.reason}</p></div><div class="space-x-2"><button onclick="approveLeave('${email}', ${idx})" class="bg-emerald-500 text-slate-950 px-3 py-1 rounded-lg font-bold">Approve</button><button onclick="rejectLeave('${email}', ${idx})" class="bg-rose-500 text-slate-950 px-3 py-1 rounded-lg font-bold">Reject</button></div></div>`;
+                    }
+                });
+            }
+            let hrEl = document.getElementById('hrLeaveList');
+            if(hrEl) hrEl.innerHTML = hrLeaveHtml || `<p class="text-slate-500">No pending leave requests.</p>`;
 
             let hHtml = '';
             restrictedHolidays.forEach((h, index) => {
@@ -459,65 +626,103 @@
 
             let dHtml = '';
             departments.forEach((d, index) => {
-                let adminBtns = currentUser && currentUser.role === 'Admin' ? `<div class="flex space-x-2"><button onclick="editDept(${index})" class="text-amber-400 hover:text-amber-300 text-xs"><i class="fa-solid fa-pen"></i></button><button onclick="deleteDept(${index})" class="text-rose-400 hover:text-rose-300 text-xs"><i class="fa-solid fa-trash"></i></button></div>` : '';
-                dHtml += `<div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4"><div class="flex items-center justify-between"><div class="flex items-center space-x-3"><img src="${d.photo}" class="w-12 h-12 rounded-xl object-cover border border-slate-700"><div><h4 class="font-bold text-white text-sm">${d.title}</h4><p class="text-xs text-slate-400">Head: ${d.head}</p></div></div>${adminBtns}</div><p class="text-xs text-slate-300 pt-2 border-t border-slate-800">${d.details}</p></div>`;
+                let avatar = d.photo ? `<img src="${d.photo}" class="w-12 h-12 rounded-xl object-cover border border-slate-700">` : `<div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-amber-400 font-bold">👤</div>`;
+                let adminBtns = currentUser && currentUser.role === 'Admin' ? `<div class="flex space-x-2"><button onclick="editDept(${index})" class="text-amber-400 text-xs"><i class="fa-solid fa-pen"></i></button><button onclick="deleteDept(${index})" class="text-rose-400 text-xs"><i class="fa-solid fa-trash"></i></button></div>` : '';
+                dHtml += `<div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4"><div class="flex items-center justify-between"><div class="flex items-center space-x-3">${avatar}<div><h4 class="font-bold text-white text-sm">${d.title}</h4><p class="text-xs text-slate-400">Head: ${d.head}</p></div></div>${adminBtns}</div><p class="text-xs text-slate-300 pt-2 border-t border-slate-800">${d.details}</p></div>`;
             });
             document.getElementById('departmentsContainer').innerHTML = dHtml;
 
             let lHtml = '';
             leads.forEach((l, index) => {
-                let actionBtn = currentUser && currentUser.role !== 'Employee' ? `<td class="p-4 text-right"><button onclick="deleteLead(${index})" class="text-rose-400 hover:text-rose-300"><i class="fa-solid fa-trash"></i></button></td>` : '';
+                let actionBtn = currentUser && currentUser.role === 'Admin' ? `<td class="p-4 text-right"><button onclick="deleteLead(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
                 lHtml += `<tr><td class="p-4 font-semibold text-white">${l.name}</td><td class="p-4">${l.phone}</td><td class="p-4 text-amber-400">${l.source}</td><td class="p-4">${l.typology}</td><td class="p-4 text-white">₹${l.value}</td>${actionBtn}</tr>`;
             });
             document.getElementById('leadTableBody').innerHTML = lHtml || `<tr><td colspan="6" class="p-4 text-center text-slate-500">No leads added.</td></tr>`;
 
             let pHtml = '';
             projects.forEach((p, index) => {
-                let actionBtn = currentUser && currentUser.role !== 'Employee' ? `<td class="p-4 text-right space-x-2"><button onclick="editProject(${index})" class="text-amber-400 hover:text-amber-300"><i class="fa-solid fa-pen"></i></button><button onclick="deleteProject(${index})" class="text-rose-400 hover:text-rose-300"><i class="fa-solid fa-trash"></i></button></td>` : '';
-                pHtml += `<tr><td class="p-4 font-mono text-amber-400 font-bold">${p.code}</td><td class="p-4 font-semibold text-white">${p.name}</td><td class="p-4">${p.architect}</td><td class="p-4">${p.stage}</td>${actionBtn}</tr>`;
+                let actionBtn = currentUser && currentUser.role === 'Admin' ? `<td class="p-4 text-right space-x-2"><button onclick="editProject(${index})" class="text-amber-400"><i class="fa-solid fa-pen"></i></button><button onclick="deleteProject(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
+                pHtml += `<tr><td class="p-4 font-mono text-amber-400 font-bold">${p.code}</td><td class="p-4 font-semibold text-white">${p.name}</td><td class="p-4">${p.architect}</td><td class="p-4"><span class="bg-amber-500/10 text-amber-400 px-2 py-1 rounded-full border border-amber-500/20 text-[10px]">${p.priority || 'Normal'}</span> - ${p.stage}</td>${actionBtn}</tr>`;
             });
             document.getElementById('projTableBody').innerHTML = pHtml || `<tr><td colspan="5" class="p-4 text-center text-slate-500">No projects assigned.</td></tr>`;
 
             let payHtml = '';
             payments.forEach((pay, index) => {
-                payHtml += `<tr><td class="p-4 font-semibold text-white">${pay.project}</td><td class="p-4">${pay.stage}</td><td class="p-4 text-amber-400 font-semibold">₹${pay.amount}</td><td class="p-4"><span class="bg-amber-500/10 text-amber-400 px-2 py-1 rounded-full border border-amber-500/20">${pay.status}</span></td><td class="p-4 text-right"><button onclick="deletePayment(${index})" class="text-rose-400 hover:text-rose-300"><i class="fa-solid fa-trash"></i></button></td></tr>`;
+                let payAction = currentUser && (currentUser.role === 'Admin' || currentUser.role === 'Accountant') ? `<td class="p-4 text-right"><button onclick="deletePayment(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
+                payHtml += `<tr><td class="p-4 font-semibold text-white">${pay.project}</td><td class="p-4">${pay.stage}</td><td class="p-4 text-amber-400 font-semibold">₹${pay.amount}</td><td class="p-4"><span class="bg-amber-500/10 text-amber-400 px-2 py-1 rounded-full border border-amber-500/20">${pay.status}</span></td>${payAction}</tr>`;
             });
             document.getElementById('payTableBody').innerHTML = payHtml || `<tr><td colspan="5" class="p-4 text-center text-slate-500">No payments added.</td></tr>`;
 
             let mHtml = '';
             meetings.forEach((m, index) => {
-                mHtml += `<div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-2"><div class="flex justify-between"><span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/20">${m.client}</span><div class="space-x-3"><span class="text-xs text-slate-400">${m.date}</span><button onclick="deleteMeeting(${index})" class="text-rose-400 hover:text-rose-300"><i class="fa-solid fa-trash"></i></button></div></div><h4 class="text-sm font-bold text-white">${m.topic}</h4><p class="text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800"><strong>MOM:</strong> ${m.mom}</p></div>`;
+                mHtml += `<div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-2"><div class="flex justify-between"><span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/20">${m.client}</span><span class="text-xs text-slate-400">${m.date}</span></div><h4 class="text-sm font-bold text-white">${m.topic}</h4><p class="text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800"><strong>MOM:</strong> ${m.mom}</p></div>`;
             });
             document.getElementById('meetingList').innerHTML = mHtml || `<p class="text-slate-500 text-sm">No meetings recorded.</p>`;
 
             let sHtml = '';
             staffList.forEach((s, index) => {
-                let avatar = s.photo ? `<img src="${s.photo}" class="w-8 h-8 rounded-full object-cover border border-slate-700">` : `<div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-amber-400">👤</div>`;
-                sHtml += `<tr><td class="p-4">${avatar}</td><td class="p-4"><strong class="text-white">${s.name}</strong><br><span class="text-amber-400 font-mono text-[10px]">${s.empid}</span></td><td class="p-4 text-emerald-400 font-semibold">${s.role}</td><td class="p-4 text-slate-300">${s.parents || 'N/A'}<br><span class="text-[10px] text-amber-300">${s.university || ''}</span></td><td class="p-4 text-slate-300 text-[11px]">📞 ${s.phone || 'N/A'}<br>🏠 ${s.address || 'N/A'}</td><td class="p-4 text-right"><button onclick="deleteStaff(${index})" class="text-rose-400 hover:text-rose-300"><i class="fa-solid fa-trash"></i></button></td></tr>`;
+                let avatar = s.photo ? `<img src="${s.photo}" class="w-10 h-10 rounded-full object-cover border border-slate-700 cursor-pointer" onclick="triggerStaffPhotoUpload(${index})" title="Change Photo">` : `<div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-amber-400 cursor-pointer" onclick="triggerStaffPhotoUpload(${index})" title="Upload Photo">📷</div>`;
+                sHtml += `<tr><td class="p-4">${avatar}</td><td class="p-4"><strong class="text-white">${s.name}</strong><br><span class="text-amber-400 font-mono text-[10px]">${s.empid}</span></td><td class="p-4 text-emerald-400 font-semibold">${s.role}</td><td class="p-4 text-slate-300">${s.parents || 'N/A'}<br><span class="text-[10px] text-amber-300">${s.university || ''}</span></td><td class="p-4 text-slate-300 text-[11px]">📞 ${s.phone || 'N/A'}<br>🏠 ${s.address || 'N/A'}</td><td class="p-4 text-right"><button onclick="deleteStaff(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td></tr>`;
             });
             document.getElementById('staffTableBody').innerHTML = sHtml;
 
             renderUserAttendanceAndLeaves();
-            renderAdminLeaveRequests();
+        }
+
+        function saveDirectorDiary() {
+            if(currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
+            directorNotes = document.getElementById('directorNotesArea').value;
+            localStorage.setItem('ark_dir_notes', directorNotes);
+            alert("Director's private notes saved securely!");
+        }
+
+        function addCaUpdate() {
+            let title = prompt("Enter Update Title:");
+            if(!title) return;
+            let desc = prompt("Enter Details:");
+            caUpdates.unshift({ title, desc, date: new Date().toLocaleDateString('en-IN') });
+            saveData();
+        }
+        function deleteCaUpdate(index) { caUpdates.splice(index, 1); saveData(); }
+
+        function triggerLogoUpload() { document.getElementById('companyLogoInput').click(); }
+        function uploadCompanyLogo(event) {
+            let file = event.target.files[0];
+            if(!file) return;
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                companyInfo.logoUrl = e.target.result;
+                saveData();
+                alert("Company logo uploaded successfully!");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function triggerStaffPhotoUpload(index) {
+            selectedStaffIndexForPhoto = index;
+            document.getElementById('staffPhotoInput').click();
+        }
+        function saveStaffPhoto(event) {
+            let file = event.target.files[0];
+            if(!file || selectedStaffIndexForPhoto === null) return;
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                staffList[selectedStaffIndexForPhoto].photo = e.target.result;
+                saveData();
+                alert("Staff photo uploaded successfully!");
+                selectedStaffIndexForPhoto = null;
+            };
+            reader.readAsDataURL(file);
         }
 
         function checkInToday() {
             let today = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
             let time = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
-            
             if(!attendanceLogs[currentUser.email]) attendanceLogs[currentUser.email] = [];
             let todayLog = attendanceLogs[currentUser.email].find(a => a.date === today);
-            
-            if(todayLog && todayLog.in) {
-                alert("Already checked in today at " + todayLog.in);
-                return;
-            }
-
-            if(!todayLog) {
-                attendanceLogs[currentUser.email].unshift({ date: today, in: time, out: "Pending", status: "Present" });
-            } else {
-                todayLog.in = time;
-            }
+            if(todayLog && todayLog.in) { alert("Already checked in today at " + todayLog.in); return; }
+            if(!todayLog) attendanceLogs[currentUser.email].unshift({ date: today, in: time, out: "Pending", status: "Present" });
+            else todayLog.in = time;
             saveData();
             alert("Checked-In successfully at " + time + "!");
         }
@@ -525,30 +730,22 @@
         function checkOutToday() {
             let today = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
             let time = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
-            
             if(!attendanceLogs[currentUser.email]) attendanceLogs[currentUser.email] = [];
             let todayLog = attendanceLogs[currentUser.email].find(a => a.date === today);
-            
-            if(!todayLog || !todayLog.in) {
-                alert("Please Check-In first before checking out!");
-                return;
-            }
-
+            if(!todayLog || !todayLog.in) { alert("Please Check-In first!"); return; }
             todayLog.out = time;
             saveData();
             alert("Checked-Out successfully at " + time + "!");
         }
 
         function applyLeave() {
-            let reason = prompt("Enter leave reason (e.g. Medical, Casual Leave):");
+            let reason = prompt("Enter leave reason:");
             if(!reason) return;
-            let dates = prompt("Enter Leave Dates (e.g. 05 Oct - 06 Oct):") || "Today";
-            let sendMailTo = prompt("Enter Notification Recipient Email (e.g. admin@arknest.com):", "admin@arknest.com") || "admin@arknest.com";
-
+            let dates = prompt("Enter Leave Dates:") || "Today";
             if(!leaveRequests[currentUser.email]) leaveRequests[currentUser.email] = [];
-            leaveRequests[currentUser.email].unshift({ id: Date.now(), name: currentUser.name, dates: dates, reason: reason, mailTo: sendMailTo, status: "Pending Approval" });
+            leaveRequests[currentUser.email].unshift({ id: Date.now(), name: currentUser.name, dates: dates, reason: reason, status: "Pending Approval" });
             saveData();
-            alert("Leave application sent successfully to " + sendMailTo + "!");
+            alert("Leave request submitted to HR!");
         }
 
         function renderUserAttendanceAndLeaves() {
@@ -563,105 +760,56 @@
             let userLeaves = leaveRequests[currentUser.email] || [];
             let leaveHtml = '';
             userLeaves.forEach(lv => {
-                leaveHtml += `<div class="flex justify-between p-3 bg-slate-900 rounded-xl border border-slate-800"><div><strong class="text-white">${lv.dates}</strong><p class="text-slate-400 text-[10px]">${lv.reason} (Sent to: ${lv.mailTo})</p></div><span class="text-amber-400 font-semibold">${lv.status}</span></div>`;
+                leaveHtml += `<div class="flex justify-between p-3 bg-slate-900 rounded-xl border border-slate-800"><div><strong class="text-white">${lv.dates}</strong><p class="text-slate-400 text-[10px]">${lv.reason}</p></div><span class="text-amber-400 font-semibold">${lv.status}</span></div>`;
             });
             document.getElementById('myLeaveList').innerHTML = leaveHtml || `<p class="text-slate-500">No leave requests.</p>`;
         }
 
-        function renderAdminLeaveRequests() {
-            if(currentUser.role !== 'Admin') return;
-            let allLeavesHtml = '';
-            for(let email in leaveRequests) {
-                leaveRequests[email].forEach((lv, idx) => {
-                    if(lv.status === "Pending Approval") {
-                        allLeavesHtml += `<div class="flex justify-between items-center p-3 bg-slate-900 rounded-xl border border-slate-800"><div><strong class="text-white">${lv.name} (${email})</strong><p class="text-slate-400 text-[11px]">${lv.dates}: ${lv.reason}</p></div><div class="space-x-2"><button onclick="approveLeave('${email}', ${idx})" class="bg-emerald-500 text-slate-950 px-3 py-1 rounded-lg font-bold">Approve</button><button onclick="rejectLeave('${email}', ${idx})" class="bg-rose-500 text-slate-950 px-3 py-1 rounded-lg font-bold">Reject</button></div></div>`;
-                    }
-                });
-            }
-            document.getElementById('adminLeaveList').innerHTML = allLeavesHtml || `<p class="text-slate-500">No pending leave requests.</p>`;
-        }
-
-        function approveLeave(email, idx) {
-            leaveRequests[email][idx].status = "Approved ✅";
-            saveData();
-        }
-        function rejectLeave(email, idx) {
-            leaveRequests[email][idx].status = "Rejected ❌";
-            saveData();
-        }
+        function approveLeave(email, idx) { leaveRequests[email][idx].status = "Approved ✅"; saveData(); }
+        function rejectLeave(email, idx) { leaveRequests[email][idx].status = "Rejected ❌"; saveData(); }
 
         function registerNewStaff() {
-            if(currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
-            let empid = prompt("Enter Employee ID (e.g. ARK-EMP-03):") || "ARK-EMP-03";
-            let name = prompt("Enter Staff Full Name:");
+            if(currentUser.role !== 'Admin' && currentUser.role !== 'HR') { alert("Access Denied!"); return; }
+            let empid = prompt("Employee ID:") || "ARK-EMP-07";
+            let name = prompt("Staff Full Name:");
             if(!name) return;
-            let email = prompt("Enter Login Username:") || "staff";
-            let pass = prompt("Set Password:") || "123456";
-            let role = prompt("Enter Role (Admin, Team Leader, Employee):") || "Employee";
-            let parents = prompt("Enter Parents Name:") || "";
-            let university = prompt("Enter University / College:") || "";
-            let phone = prompt("Enter Contact Number:") || "";
-            let address = prompt("Enter Home Address:") || "";
-            let photo = prompt("Enter Photo URL:") || "https://i.pravatar.cc/150?img=13";
-
-            staffList.push({empid, name, email, pass, role, parents, university, phone, address, photo});
+            let email = prompt("Login Username:") || "staff";
+            let pass = prompt("Password:") || "123456";
+            let role = prompt("Role (Admin, Team Leader, Accountant, HR, CA/CS, Employee):") || "Employee";
+            let parents = prompt("Parents Name:") || "";
+            let university = prompt("University:") || "";
+            let phone = prompt("Contact Number:") || "";
+            let address = prompt("Home Address:") || "";
+            staffList.push({empid, name, email, pass, role, parents, university, phone, address, photo: ""});
             saveData();
             alert("New staff member registered!");
         }
 
         function addRestrictedHoliday() {
-            let date = prompt("Enter Holiday Date (e.g. 15 Nov 2026):");
+            let date = prompt("Holiday Date:");
             if(!date) return;
-            let name = prompt("Enter Holiday Name:") || "Restricted Holiday";
+            let name = prompt("Holiday Name:") || "Restricted Holiday";
             restrictedHolidays.push({date, name});
             saveData();
         }
-
-        function deleteHoliday(index) {
-            if(confirm("Delete holiday?")) {
-                restrictedHolidays.splice(index, 1);
-                saveData();
-            }
-        }
+        function deleteHoliday(index) { restrictedHolidays.splice(index, 1); saveData(); }
 
         function addDepartmentHead() {
             let title = prompt("Department Name:");
             if(!title) return;
             let head = prompt("Head Name:") || "";
-            let photo = prompt("Head Photo URL:") || "https://i.pravatar.cc/150?img=40";
-            let details = prompt("Department Details:") || "General";
-            departments.push({title, head, photo, details});
+            let details = prompt("Details:") || "General";
+            departments.push({title, head, photo: "", details});
             saveData();
         }
-
         function editDept(index) {
             let d = departments[index];
-            let title = prompt("Edit Department Name:", d.title);
+            let title = prompt("Edit Dept:", d.title);
             if(!title) return;
-            let head = prompt("Edit Head Name:", d.head);
-            let photo = prompt("Edit Photo URL:", d.photo);
-            let details = prompt("Edit Details:", d.details);
-            departments[index] = { title, head, photo, details };
+            departments[index].title = title;
             saveData();
         }
-
-        function deleteDept(index) {
-            if(confirm("Delete department?")) {
-                departments.splice(index, 1);
-                saveData();
-            }
-        }
-
-        function updateCompanyBranding() {
-            if(currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
-            let name = prompt("Enter Company Name:", companyInfo.name);
-            if(name) companyInfo.name = name;
-            let logoUrl = prompt("Enter Logo Image URL:", companyInfo.logoUrl);
-            if(logoUrl) companyInfo.logoUrl = logoUrl;
-            saveData();
-            applyUserPermissions();
-            alert("Company branding updated!");
-        }
+        function deleteDept(index) { departments.splice(index, 1); saveData(); }
 
         function addLead() {
             let name = prompt("Client Name:");
@@ -673,40 +821,26 @@
             leads.push({name, phone, source, typology, value});
             saveData();
         }
-
-        function deleteLead(index) {
-            if(confirm("Delete lead?")) {
-                leads.splice(index, 1);
-                saveData();
-            }
-        }
+        function deleteLead(index) { leads.splice(index, 1); saveData(); }
 
         function addProject() {
             let code = prompt("Job Code:") || "ARK-2026-003";
             let name = prompt("Project Name:");
             if(!name) return;
-            let architect = prompt("Assigned Architect:") || "Team";
+            let architect = prompt("Lead Architect:") || "Team";
+            let priority = prompt("Priority (High / Normal):", "High (Top Priority)") || "Normal";
             let stage = prompt("Stage:") || "Concept";
-            projects.push({code, name, architect, stage});
+            projects.push({code, name, architect, priority, stage});
             saveData();
         }
-
         function editProject(index) {
             let p = projects[index];
-            let name = prompt("Edit Project Name:", p.name);
+            let name = prompt("Edit Project:", p.name);
             if(!name) return;
-            let architect = prompt("Edit Assigned Architect:", p.architect);
-            let stage = prompt("Edit Stage:", p.stage);
-            projects[index] = { code: p.code, name, architect, stage };
+            projects[index].name = name;
             saveData();
         }
-
-        function deleteProject(index) {
-            if(confirm("Delete project?")) {
-                projects.splice(index, 1);
-                saveData();
-            }
-        }
+        function deleteProject(index) { projects.splice(index, 1); saveData(); }
 
         function addPayment() {
             let project = prompt("Project Name:") || "General";
@@ -716,48 +850,36 @@
             payments.push({project, stage, amount, status});
             saveData();
         }
-
-        function deletePayment(index) {
-            if(confirm("Delete payment?")) {
-                payments.splice(index, 1);
-                saveData();
-            }
-        }
+        function deletePayment(index) { payments.splice(index, 1); saveData(); }
 
         function addMeeting() {
-            let client = prompt("Client / Project:") || "Client";
+            let client = prompt("Client:") || "Client";
             let topic = prompt("Subject:") || "Review";
-            let mom = prompt("MOM Details:") || "Discussed plans.";
+            let mom = prompt("MOM:") || "Discussed.";
             let date = prompt("Date:") || "Today";
             meetings.push({client, topic, mom, date});
             saveData();
         }
-
-        function deleteMeeting(index) {
-            if(confirm("Delete meeting?")) {
-                meetings.splice(index, 1);
-                saveData();
-            }
-        }
+        function deleteMeeting(index) { meetings.splice(index, 1); saveData(); }
 
         function deleteStaff(index) {
             if(staffList.length <= 1) { alert("Cannot delete last admin!"); return; }
-            if(confirm("Delete staff?")) {
-                staffList.splice(index, 1);
-                saveData();
-            }
+            staffList.splice(index, 1);
+            saveData();
         }
 
         function switchTab(tabId) {
-            const tabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'adminPanel'];
+            const tabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsSection', 'directorDiary', 'changePassword', 'adminPanel'];
             tabs.forEach(t => {
                 let tabEl = document.getElementById('tab-' + t);
                 let navEl = document.getElementById('nav-' + t);
                 if(tabEl) tabEl.classList.add('hidden');
                 if(navEl) navEl.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white";
             });
-            document.getElementById('tab-' + tabId).classList.remove('hidden');
-            document.getElementById('nav-' + tabId).className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition bg-amber-500/10 text-amber-400 border border-amber-500/20";
+            let targetTab = document.getElementById('tab-' + tabId);
+            if(targetTab) targetTab.classList.remove('hidden');
+            let targetNav = document.getElementById('nav-' + tabId);
+            if(targetNav) targetNav.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition bg-amber-500/10 text-amber-400 border border-amber-500/20";
         }
     </script>
 </body>
