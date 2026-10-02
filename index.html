@@ -17,8 +17,8 @@
     <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950 p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-8 shadow-2xl">
             <div class="text-center mb-6">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 font-extrabold text-xl mb-3 shadow-inner overflow-hidden p-2">
-                    <div id="loginLogoBox" class="w-full h-full flex items-center justify-center font-bold text-amber-400 text-lg">ADC</div>
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-950 border border-amber-500/30 text-amber-400 mb-3 shadow-inner overflow-hidden p-1">
+                    <img id="loginLogoImg" src="" alt="ADC Logo" class="w-full h-full object-contain">
                 </div>
                 <h1 id="loginCompanyName" class="text-xl font-bold text-white">Arknest Design Consultants</h1>
                 <p class="text-xs text-slate-400 mt-1">Enterprise Practice Management Portal</p>
@@ -47,8 +47,8 @@
         <!-- Top Navbar -->
         <header class="bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center overflow-hidden p-1">
-                    <div id="navLogoBox" class="w-full h-full flex items-center justify-center font-bold text-amber-400 text-xs">ADC</div>
+                <div class="w-10 h-10 rounded-xl bg-slate-950 border border-amber-500/30 flex items-center justify-center overflow-hidden p-1">
+                    <img id="navLogoImg" src="" alt="ADC Logo" class="w-full h-full object-contain">
                 </div>
                 <div>
                     <h2 id="navCompanyName" class="font-bold text-white text-sm">Arknest Design Consultants</h2>
@@ -226,7 +226,7 @@
                     </div>
                 </div>
 
-                <!-- TAB 6: MEETINGS & MOM WITH TEAM LEADER PDF UPLOAD -->
+                <!-- TAB 6: MEETINGS -->
                 <div id="tab-meetings" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Client Meetings & MOM</h3>
@@ -284,7 +284,7 @@
                         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4">
                             <div class="flex justify-between items-center">
                                 <h4 class="font-semibold text-white text-sm"><i class="fa-solid fa-umbrella-beach text-amber-400 mr-2"></i> Restricted Holidays</h4>
-                                <button onclick="addRestrictedHoliday()" class="hr-admin-action text-[10px] bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg font-bold hidden">+ Add</button>
+                                <button onclick="addRestrictedHoliday()" class="hr-admin-action text-[10px] bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg font-bold hidden">+ Add Holiday</button>
                             </div>
                             <div id="restrictedHolidaysList" class="space-y-2 text-xs"></div>
                         </div>
@@ -313,12 +313,19 @@
                         <div id="hrLeaveList" class="space-y-2 text-xs"></div>
                     </div>
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-semibold text-white text-sm">Restricted Holidays Management (HR Control)</h4>
+                            <button onclick="addRestrictedHoliday()" class="bg-amber-500 text-slate-950 px-3 py-1.5 rounded-lg font-bold text-xs">+ Add Holiday</button>
+                        </div>
+                        <div id="hrRestrictedHolidaysList" class="space-y-2 text-xs"></div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
                         <h4 class="font-semibold text-white text-sm">Staff Management & Offboarding (Delete ID)</h4>
                         <div id="hrStaffRemovalList" class="space-y-2 text-xs"></div>
                     </div>
                 </div>
 
-                <!-- TAB: CA / CS PORTAL WITH RESTRICTED PDF UPLOAD -->
+                <!-- TAB: CA / CS PORTAL -->
                 <div id="tab-cacsPortal" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-scale-balanced text-purple-400 mr-2"></i> CA / CS Dedicated Compliance Portal</h3>
@@ -381,11 +388,11 @@
                 <div id="tab-adminPanel" class="space-y-6 hidden">
                     <div class="flex justify-between items-center flex-wrap gap-4">
                         <div>
-                            <h3 class="text-xl font-bold text-white">Director & Admin Master Control</h3>
-                            <p class="text-xs text-slate-400 mt-1">Upload company logo (Director/Admin only) and manage staff records.</p>
+                            <h3 class="text-xl font-bold text-white">Director Master Control</h3>
+                            <p class="text-xs text-slate-400 mt-1">Upload company logo (Director only) and manage staff records.</p>
                         </div>
                         <div class="space-x-2">
-                            <button onclick="triggerLogoUpload()" class="director-admin-only-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
+                            <button onclick="triggerLogoUpload()" class="director-admin-only-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">
                                 <i class="fa-solid fa-upload mr-1"></i> Upload Company Logo
                             </button>
                             <input type="file" id="companyLogoInput" accept="image/*" class="hidden" onchange="uploadCompanyLogo(event)">
@@ -403,7 +410,7 @@
                                     <th class="p-4">Photo</th>
                                     <th class="p-4">Staff Name / ID</th>
                                     <th class="p-4">Assigned Role</th>
-                                    <th class="p-4">DOB & Parents</th>
+                                    <th class="p-4">Email & DOB</th>
                                     <th class="p-4">Contact & Address</th>
                                     <th class="director-admin-action p-4 text-right hidden">Action</th>
                                 </tr>
@@ -422,12 +429,16 @@
 
     <!-- JavaScript Logic -->
     <script>
-        if(!localStorage.getItem('ark_version_v20')) {
+        if(!localStorage.getItem('ark_version_v23')) {
             localStorage.clear();
-            localStorage.setItem('ark_version_v20', 'true');
+            localStorage.setItem('ark_version_v23', 'true');
         }
 
-        let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "ADC_LOGO-removebg-preview.png" };
+        // Default Embedded ADC Logo Base64
+        const defaultAdcLogo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEUAAACnej3aAAAASElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIC3AcWpAAELeE5yAAAAAElFTkSuQmCC";
+
+        let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: defaultAdcLogo };
+        if(!companyInfo.logoUrl) companyInfo.logoUrl = defaultAdcLogo;
         
         let staffList = JSON.parse(localStorage.getItem('ark_staff')) || [
             { empid: "ARK-EMP-01", name: "Director", email: "director", pass: "dir2026", role: "Director", dob: "01-01-1980", parents: "Mr. & Mrs. Sharma", university: "SPA Delhi", phone: "+91 9876543210", address: "Greater Kailash, Delhi", photo: "" },
@@ -562,7 +573,6 @@
             let role = currentUser.role;
             document.getElementById('userRoleBadge').innerText = "Role: " + currentUser.name + " (" + role + ")";
 
-            // Strict Role-Based Visibility Check for Sidebar Navigation Buttons
             const navButtons = document.querySelectorAll('.tab-btn');
             navButtons.forEach(btn => {
                 let allowedRoles = btn.getAttribute('data-roles').split(',');
@@ -688,12 +698,15 @@
             let hrEl = document.getElementById('hrLeaveList');
             if(hrEl) hrEl.innerHTML = hrLeaveHtml || `<p class="text-slate-500">No pending leave requests.</p>`;
 
+            // Render Restricted Holidays for both Attendance and HR Portal
             let hHtml = '';
             restrictedHolidays.forEach((h, index) => {
                 let delBtn = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin' || currentUser.role === 'HR') ? `<button onclick="deleteHoliday(${index})" class="text-rose-400 hover:text-rose-300 ml-2"><i class="fa-solid fa-trash"></i></button>` : '';
                 hHtml += `<div class="flex justify-between items-center p-2 bg-slate-900 rounded-xl border border-slate-800"><span class="text-white">${h.date}</span><span class="text-amber-400">${h.name} ${delBtn}</span></div>`;
             });
             document.getElementById('restrictedHolidaysList').innerHTML = hHtml;
+            let hrHolidaysEl = document.getElementById('hrRestrictedHolidaysList');
+            if(hrHolidaysEl) hrHolidaysEl.innerHTML = hHtml;
 
             let dHtml = '';
             departments.forEach((d, index) => {
@@ -737,9 +750,9 @@
                 let avatar = s.photo ? `<img src="${s.photo}" class="w-10 h-10 rounded-full object-cover border border-slate-700 cursor-pointer" onclick="triggerStaffPhotoUpload(${index})" title="Change Photo">` : `<div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-amber-400 cursor-pointer" onclick="triggerStaffPhotoUpload(${index})" title="Upload Photo">📷</div>`;
                 
                 let staffAction = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin') ? `<td class="p-4 text-right"><button onclick="deleteStaff(${index})" class="text-rose-400" title="Delete Staff"><i class="fa-solid fa-trash"></i></button></td>` : '';
-                sHtml += `<tr><td class="p-4">${avatar}</td><td class="p-4"><strong class="text-white">${s.name}</strong><br><span class="text-amber-400 font-mono text-[10px]">${s.empid}</span></td><td class="p-4 text-emerald-400 font-semibold">${s.role}</td><td class="p-4 text-slate-300">DOB: ${s.dob || 'N/A'}<br><span class="text-[10px] text-amber-300">${s.parents || ''}</span></td><td class="p-4 text-slate-300 text-[11px]">📞 ${s.phone || 'N/A'}<br>🏠 ${s.address || 'N/A'}</td>${staffAction}</tr>`;
+                sHtml += `<tr><td class="p-4">${avatar}</td><td class="p-4"><strong class="text-white">${s.name}</strong><br><span class="text-amber-400 font-mono text-[10px]">${s.empid}</span></td><td class="p-4 text-emerald-400 font-semibold">${s.role}</td><td class="p-4 text-slate-300">Email: ${s.email || 'N/A'}<br>DOB: ${s.dob || 'N/A'}</td><td class="p-4 text-slate-300 text-[11px]">📞 ${s.phone || 'N/A'}<br>🏠 ${s.address || 'N/A'}</td>${staffAction}</tr>`;
 
-                hrStaffHtml += `<div class="flex justify-between items-center p-3 bg-slate-900 rounded-xl border border-slate-800"><div><strong class="text-white">${s.name}</strong> <span class="text-amber-400 text-[10px]">(${s.empid} - ${s.role})</span><p class="text-slate-400 text-[11px]">Phone: ${s.phone || 'N/A'}</p></div><button onclick="deleteStaff(${index})" class="bg-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-slate-950 px-3 py-1.5 rounded-lg font-bold text-xs transition"><i class="fa-solid fa-user-xmark mr-1"></i> Remove / Offboard</button></div>`;
+                hrStaffHtml += `<div class="flex justify-between items-center p-3 bg-slate-900 rounded-xl border border-slate-800"><div><strong class="text-white">${s.name}</strong> <span class="text-amber-400 text-[10px]">(${s.empid} - ${s.role})</span><p class="text-slate-400 text-[11px]">Email: ${s.email} | Phone: ${s.phone || 'N/A'}</p></div><button onclick="deleteStaff(${index})" class="bg-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-slate-950 px-3 py-1.5 rounded-lg font-bold text-xs transition"><i class="fa-solid fa-user-xmark mr-1"></i> Remove / Offboard</button></div>`;
             });
             document.getElementById('staffTableBody').innerHTML = sHtml;
             let hrStaffEl = document.getElementById('hrStaffRemovalList');
@@ -790,8 +803,6 @@
             reader.onload = function(e) {
                 companyInfo.logoUrl = e.target.result;
                 saveData();
-                document.getElementById('navLogoImg').src = companyInfo.logoUrl;
-                document.getElementById('loginLogoImg').src = companyInfo.logoUrl;
                 alert("Company logo uploaded and updated successfully!");
             };
             reader.readAsDataURL(file);
@@ -894,7 +905,7 @@
 
             let name = prompt("Enter Staff Full Name:");
             if(!name) return;
-            let email = prompt("Enter Login Username/Email:") || "staff" + nextIdNum;
+            let email = prompt("Enter Staff Email ID (Login Username):") || "staff" + nextIdNum;
             let pass = prompt("Set Password:") || "123456";
             let roleInput = prompt("Select Designation / Role (Director, Admin, Team Leader, Accountant, HR, CA/CS, Employee):") || "Employee";
             let dobInput = prompt("Enter Date of Birth (DD-MM-YYYY):") || "01-01-1995";
@@ -910,16 +921,18 @@
 
         function addRestrictedHoliday() {
             if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'HR') { alert("Access Denied!"); return; }
-            let date = prompt("Holiday Date:");
+            let date = prompt("Holiday Date (e.g. 24 Oct 2026):");
             if(!date) return;
             let name = prompt("Holiday Name:") || "Restricted Holiday";
             restrictedHolidays.push({date, name});
             saveData();
+            alert("Restricted Holiday added successfully!");
         }
         function deleteHoliday(index) {
             if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'HR') { alert("Access Denied!"); return; }
             restrictedHolidays.splice(index, 1);
             saveData();
+            alert("Restricted Holiday removed!");
         }
 
         function addDepartmentHead() {
