@@ -17,8 +17,8 @@
     <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950 p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-8 shadow-2xl">
             <div class="text-center mb-6">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 font-extrabold text-2xl mb-3 shadow-inner">
-                    <img id="loginLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC" class="h-10 object-contain" onerror="this.style.display='none'; this.parentElement.innerText='ADC';">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 font-extrabold text-xl mb-3 shadow-inner overflow-hidden p-2">
+                    <img id="loginLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100';">
                 </div>
                 <h1 id="loginCompanyName" class="text-xl font-bold text-white">Arknest Design Consultants</h1>
                 <p class="text-xs text-slate-400 mt-1">Enterprise Practice Management Portal</p>
@@ -44,8 +44,8 @@
         <!-- Top Navbar -->
         <header class="bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-extrabold flex items-center justify-center text-sm">
-                    <img id="navLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC" class="h-7 object-contain" onerror="this.style.display='none'; this.parentElement.innerText='ADC';">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center overflow-hidden p-1">
+                    <img id="navLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100';">
                 </div>
                 <div>
                     <h2 id="navCompanyName" class="font-bold text-white text-sm">Arknest Design Consultants</h2>
@@ -129,9 +129,10 @@
                         </div>
                     </div>
 
-                    <div class="nav-perm-leader grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 hidden">
+                    <!-- MANAGEMENT LIVE STATUS SECTION -->
+                    <div id="managementLiveSection" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 hidden">
                         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-3">
-                            <h4 class="font-bold text-amber-400 text-sm flex items-center"><i class="fa-solid fa-fire mr-2"></i> Top Priority Projects & Lead</h4>
+                            <h4 class="font-bold text-amber-400 text-sm flex items-center"><i class="fa-solid fa-fire mr-2"></i> Top Priority Projects & Lead Architect</h4>
                             <div id="dashPriorityList" class="space-y-2 text-xs"></div>
                         </div>
                         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-3">
@@ -406,10 +407,9 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Force reset localStorage once for fresh credentials & structure
-        if(!localStorage.getItem('ark_version_v6')) {
+        if(!localStorage.getItem('ark_version_v8')) {
             localStorage.clear();
-            localStorage.setItem('ark_version_v6', 'true');
+            localStorage.setItem('ark_version_v8', 'true');
         }
 
         let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "ADC_LOGO-removebg-preview.png" };
@@ -532,13 +532,17 @@
             document.querySelectorAll('.nav-perm-hr').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.nav-perm-cacs').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.nav-perm-director').forEach(el => el.classList.add('hidden'));
+            document.getElementById('managementLiveSection').classList.add('hidden');
 
             if(role === 'Director') {
                 document.querySelectorAll('.nav-perm-admin, .nav-perm-leader, .nav-perm-accountant, .nav-perm-hr, .nav-perm-cacs, .nav-perm-director').forEach(el => el.classList.remove('hidden'));
+                document.getElementById('managementLiveSection').classList.remove('hidden');
             } else if(role === 'Admin') {
                 document.querySelectorAll('.nav-perm-admin, .nav-perm-leader, .nav-perm-accountant, .nav-perm-hr, .nav-perm-cacs').forEach(el => el.classList.remove('hidden'));
+                document.getElementById('managementLiveSection').classList.remove('hidden');
             } else if(role === 'Team Leader') {
                 document.querySelectorAll('.nav-perm-leader').forEach(el => el.classList.remove('hidden'));
+                document.getElementById('managementLiveSection').classList.remove('hidden');
             } else if(role === 'Accountant') {
                 document.querySelectorAll('.nav-perm-accountant').forEach(el => el.classList.remove('hidden'));
             } else if(role === 'HR') {
@@ -593,15 +597,17 @@
                 if(priEl) priEl.innerHTML = priHtml || `<p class="text-slate-500">No high priority projects marked.</p>`;
 
                 let leaveHtml = '';
+                let hasLeave = false;
                 for(let email in leaveRequests) {
                     leaveRequests[email].forEach(lv => {
                         if(lv.status.includes("Approved")) {
-                            leaveHtml += `<div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center"><span class="text-white">${lv.name}</span><span class="text-rose-400">${lv.dates}</span></div>`;
+                            hasLeave = true;
+                            leaveHtml += `<div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center"><span class="text-white">${lv.name}</span><span class="text-rose-400 font-bold">${lv.dates}</span></div>`;
                         }
                     });
                 }
                 let leaveEl = document.getElementById('dashLeaveStatusList');
-                if(leaveEl) leaveEl.innerHTML = leaveHtml || `<p class="text-slate-500">No staff on leave today.</p>`;
+                if(leaveEl) leaveEl.innerHTML = hasLeave ? leaveHtml : `<p class="text-slate-500 italic">No employees on leave currently.</p>`;
             }
 
             let cacsHtml = '';
@@ -835,7 +841,7 @@
             departments[index].head = head;
             saveData();
         }
-        function deleteDept(index) { departments.splice(index, 1); saveData(); }
+        function deleteDept(index) {departments.splice(index, 1); saveData(); }
 
         function addLead() {
             let name = prompt("Client Name:");
