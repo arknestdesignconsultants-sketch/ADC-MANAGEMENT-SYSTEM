@@ -35,8 +35,8 @@
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 rounded-xl transition duration-200 text-sm shadow-lg shadow-amber-500/20 mt-2">
                     Sign In to Portal
                 </button>
-                <div class="text-right pt-1">
-                    <button type="button" onclick="forgotPasswordPrompt()" class="text-amber-400 hover:underline text-[11px]">Forgot Password?</button>
+                <div class="text-right pt-2">
+                    <button type="button" onclick="forgotPasswordByEmpIdDob()" class="text-amber-400 hover:underline text-[11px] font-semibold">Forgot Password? (Emp ID & DOB)</button>
                 </div>
             </form>
         </div>
@@ -72,37 +72,37 @@
                 <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition bg-amber-500/10 text-amber-400 border border-amber-500/20">
                     <i class="fa-solid fa-chart-pie w-5"></i><span>Master Dashboard</span>
                 </button>
-                <button onclick="switchTab('crm')" id="nav-crm" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Team Leader">
+                <button onclick="switchTab('crm')" id="nav-crm" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-roles="Director,Admin,Team Leader">
                     <i class="fa-solid fa-users-viewfinder w-5"></i><span>CRM & Leads</span>
                 </button>
-                <button onclick="switchTab('projects')" id="nav-projects" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Team Leader,Employee">
+                <button onclick="switchTab('projects')" id="nav-projects" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-roles="Director,Admin,Team Leader,Employee">
                     <i class="fa-solid fa-building-shield w-5"></i><span>Team & Projects</span>
                 </button>
-                <button onclick="switchTab('departments')" id="nav-departments" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Team Leader,Employee,Accountant,HR,CA/CS">
+                <button onclick="switchTab('departments')" id="nav-departments" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-roles="Director,Admin,Team Leader,Employee,Accountant,HR,CA/CS">
                     <i class="fa-solid fa-sitemap w-5"></i><span>Departments & Heads</span>
                 </button>
-                <button onclick="switchTab('payments')" id="nav-payments" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Accountant">
+                <button onclick="switchTab('payments')" id="nav-payments" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-roles="Director,Admin,Accountant">
                     <i class="fa-solid fa-file-invoice-dollar w-5"></i><span>Payment Schedule (Accounts)</span>
                 </button>
-                <button onclick="switchTab('meetings')" id="nav-meetings" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Team Leader">
+                <button onclick="switchTab('meetings')" id="nav-meetings" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-roles="Director,Admin,Team Leader">
                     <i class="fa-solid fa-handshake w-5"></i><span>Meetings & MOM</span>
                 </button>
-                <button onclick="switchTab('attendance')" id="nav-attendance" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Team Leader,Employee,Accountant,HR,CA/CS">
+                <button onclick="switchTab('attendance')" id="nav-attendance" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-roles="Director,Admin,Team Leader,Employee,Accountant,HR,CA/CS">
                     <i class="fa-solid fa-calendar-check w-5"></i><span>Attendance & Calendar</span>
                 </button>
-                <button onclick="switchTab('hrPortal')" id="nav-hrPortal" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-emerald-400 hover:bg-slate-900 border border-emerald-500/20" data-allowed="Director,Admin,HR">
+                <button onclick="switchTab('hrPortal')" id="nav-hrPortal" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-emerald-400 hover:bg-slate-900 border border-emerald-500/20" data-roles="Director,Admin,HR">
                     <i class="fa-solid fa-users-gear w-5"></i><span>HR Portal</span>
                 </button>
-                <button onclick="switchTab('cacsPortal')" id="nav-cacsPortal" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-purple-400 hover:bg-slate-900 border border-purple-500/20" data-allowed="Director,Admin,CA/CS">
+                <button onclick="switchTab('cacsPortal')" id="nav-cacsPortal" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-purple-400 hover:bg-slate-900 border border-purple-500/20" data-roles="Director,Admin,CA/CS">
                     <i class="fa-solid fa-scale-balanced w-5"></i><span>CA / CS Portal</span>
                 </button>
-                <button onclick="switchTab('directorDiary')" id="nav-directorDiary" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-amber-300 hover:bg-slate-900 border border-amber-500/30" data-allowed="Director">
+                <button onclick="switchTab('directorDiary')" id="nav-directorDiary" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-amber-300 hover:bg-slate-900 border border-amber-500/30" data-roles="Director">
                     <i class="fa-solid fa-book-lock w-5"></i><span>Director's Private Diary</span>
                 </button>
                 <button onclick="switchTab('changePassword')" id="nav-changePassword" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-sky-400 hover:bg-slate-900 border border-sky-500/20">
                     <i class="fa-solid fa-key w-5"></i><span>Change Password</span>
                 </button>
-                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20" data-allowed="Director,Admin">
+                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="tab-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20" data-roles="Director,Admin">
                     <i class="fa-solid fa-user-shield w-5"></i><span>Admin Master Control</span>
                 </button>
             </nav>
@@ -205,7 +205,7 @@
                 <!-- TAB 5: PAYMENTS -->
                 <div id="tab-payments" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
-                        <h3 class="text-xl font-bold text-white">Project Payment Schedule & Milestones (Accountants & Director)</h3>
+                        <h3 class="text-xl font-bold text-white">Project Payment Schedule & Milestones</h3>
                         <button onclick="addPayment()" class="accountant-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">
                             + Add Payment Milestone
                         </button>
@@ -226,7 +226,7 @@
                     </div>
                 </div>
 
-                <!-- TAB 6: MEETINGS & MOM WITH ATTACHMENT -->
+                <!-- TAB 6: MEETINGS -->
                 <div id="tab-meetings" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Client Meetings & MOM</h3>
@@ -302,23 +302,27 @@
                     </div>
                 </div>
 
-                <!-- TAB: HR PORTAL WITH ATTACHMENT -->
+                <!-- TAB: HR PORTAL WITH STAFF DELETION -->
                 <div id="tab-hrPortal" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-users-gear text-emerald-400 mr-2"></i> HR & Staff Management Portal</h3>
                         <button onclick="registerNewStaff()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Register New Staff</button>
                     </div>
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-                        <h4 class="font-semibold text-white text-sm">Pending Staff Leave Approvals & Document Attachments</h4>
+                        <h4 class="font-semibold text-white text-sm">Pending Staff Leave Approvals</h4>
                         <div id="hrLeaveList" class="space-y-2 text-xs"></div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
+                        <h4 class="font-semibold text-white text-sm">Staff Management & Offboarding (Delete ID)</h4>
+                        <div id="hrStaffRemovalList" class="space-y-2 text-xs"></div>
                     </div>
                 </div>
 
-                <!-- TAB: CA / CS PORTAL WITH ATTACHMENT -->
+                <!-- TAB: CA / CS PORTAL -->
                 <div id="tab-cacsPortal" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-scale-balanced text-purple-400 mr-2"></i> CA / CS Dedicated Compliance Portal</h3>
-                        <button onclick="addCaUpdate()" class="bg-purple-500 hover:bg-purple-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Post Tax / Audit Update with Doc</button>
+                        <button onclick="addCaUpdate()" class="bg-purple-500 hover:bg-purple-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Post Tax Update with PDF</button>
                     </div>
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
                         <h4 class="font-semibold text-white text-sm">Official Taxation & Compliance Updates</h4>
@@ -326,16 +330,16 @@
                     </div>
                 </div>
 
-                <!-- TAB: DIRECTOR PRIVATE DIARY WITH ATTACHMENT -->
+                <!-- TAB: DIRECTOR PRIVATE DIARY -->
                 <div id="tab-directorDiary" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-xl font-bold text-amber-300"><i class="fa-solid fa-book-lock mr-2"></i> Director's Private Confidential Diary</h3>
-                            <p class="text-xs text-slate-400 mt-1">Strictly private notes visible only to the Director ID with attachment support.</p>
+                            <p class="text-xs text-slate-400 mt-1">Strictly private notes visible only to the Director ID.</p>
                         </div>
                         <div class="space-x-2">
                             <label class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl text-xs font-semibold cursor-pointer border border-amber-500/30">
-                                <i class="fa-solid fa-paperclip mr-1"></i> Attach Doc <input type="file" id="dirDocInput" class="hidden" onchange="attachDirDoc(event)">
+                                <i class="fa-solid fa-file-pdf mr-1"></i> Attach PDF <input type="file" id="dirDocInput" accept="application/pdf,image/*" class="hidden" onchange="attachDirPdf(event)">
                             </label>
                             <button onclick="saveDirectorDiary()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">Save Diary Notes</button>
                         </div>
@@ -378,7 +382,7 @@
                     <div class="flex justify-between items-center flex-wrap gap-4">
                         <div>
                             <h3 class="text-xl font-bold text-white">Director & Admin Master Control</h3>
-                            <p class="text-xs text-slate-400 mt-1">Upload company logo, manage staff records, and configure roles.</p>
+                            <p class="text-xs text-slate-400 mt-1">Upload company logo (Director/Admin only) and manage staff records.</p>
                         </div>
                         <div class="space-x-2">
                             <button onclick="triggerLogoUpload()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
@@ -399,7 +403,7 @@
                                     <th class="p-4">Photo</th>
                                     <th class="p-4">Staff Name / ID</th>
                                     <th class="p-4">Assigned Role</th>
-                                    <th class="p-4">Parents & University</th>
+                                    <th class="p-4">DOB & Parents</th>
                                     <th class="p-4">Contact & Address</th>
                                     <th class="director-admin-action p-4 text-right hidden">Action</th>
                                 </tr>
@@ -418,21 +422,21 @@
 
     <!-- JavaScript Logic -->
     <script>
-        if(!localStorage.getItem('ark_version_v14')) {
+        if(!localStorage.getItem('ark_version_v17')) {
             localStorage.clear();
-            localStorage.setItem('ark_version_v14', 'true');
+            localStorage.setItem('ark_version_v17', 'true');
         }
 
         let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "ADC_LOGO-removebg-preview.png" };
         
         let staffList = JSON.parse(localStorage.getItem('ark_staff')) || [
-            { empid: "ARK-EMP-01", name: "Director", email: "director", pass: "dir2026", role: "Director", parents: "Mr. & Mrs. Sharma", university: "SPA Delhi", phone: "+91 9876543210", address: "Greater Kailash, Delhi", photo: "" },
-            { empid: "ARK-EMP-02", name: "System Admin", email: "admin", pass: "admin2026", role: "Admin", parents: "Mr. & Mrs. Verma", university: "IIT Delhi", phone: "+91 9112233445", address: "South Extension, Delhi", photo: "" },
-            { empid: "ARK-EMP-03", name: "Ar. Rohan Mehta", email: "rohan", pass: "rohan123", role: "Team Leader", parents: "Mr. & Mrs. Mehta", university: "CEPT", phone: "+91 9123456789", address: "Gurgaon", photo: "" },
-            { empid: "ARK-EMP-04", name: "Priya Sharma", email: "accountant", pass: "acc123", role: "Accountant", parents: "Mr. & Mrs. Sharma", university: "Delhi Univ", phone: "+91 9988776655", address: "Noida", photo: "" },
-            { empid: "ARK-EMP-05", name: "Sunil Verma", email: "hr", pass: "hr123", role: "HR", parents: "Mr. & Mrs. Verma", university: "MDI Gurgaon", phone: "+91 9811223344", address: "Delhi", photo: "" },
-            { empid: "ARK-EMP-06", name: "CA Ramesh Gupta", email: "cacs", pass: "tax123", role: "CA/CS", parents: "Mr. & Mrs. Gupta", university: "ICAI", phone: "+91 9711556677", address: "Connaught Place", photo: "" },
-            { empid: "ARK-EMP-07", name: "Rahul Sen", email: "rahul", pass: "rahul123", role: "Employee", parents: "Mr. & Mrs. Sen", university: "IIT Roorkee", phone: "+91 9988776655", address: "Lajpat Nagar", photo: "" }
+            { empid: "ARK-EMP-01", name: "Director", email: "director", pass: "dir2026", role: "Director", dob: "01-01-1980", parents: "Mr. & Mrs. Sharma", university: "SPA Delhi", phone: "+91 9876543210", address: "Greater Kailash, Delhi", photo: "" },
+            { empid: "ARK-EMP-02", name: "System Admin", email: "admin", pass: "admin2026", role: "Admin", dob: "12-05-1985", parents: "Mr. & Mrs. Verma", university: "IIT Delhi", phone: "+91 9112233445", address: "South Extension, Delhi", photo: "" },
+            { empid: "ARK-EMP-03", name: "Ar. Rohan Mehta", email: "rohan", pass: "rohan123", role: "Team Leader", dob: "15-08-1990", parents: "Mr. & Mrs. Mehta", university: "CEPT", phone: "+91 9123456789", address: "Gurgaon", photo: "" },
+            { empid: "ARK-EMP-04", name: "Priya Sharma", email: "accountant", pass: "acc123", role: "Accountant", dob: "22-10-1992", parents: "Mr. & Mrs. Sharma", university: "Delhi Univ", phone: "+91 9988776655", address: "Noida", photo: "" },
+            { empid: "ARK-EMP-05", name: "Sunil Verma", email: "hr", pass: "hr123", role: "HR", dob: "05-11-1988", parents: "Mr. & Mrs. Verma", university: "MDI Gurgaon", phone: "+91 9811223344", address: "Delhi", photo: "" },
+            { empid: "ARK-EMP-06", name: "CA Ramesh Gupta", email: "cacs", pass: "tax123", role: "CA/CS", dob: "30-03-1982", parents: "Mr. & Mrs. Gupta", university: "ICAI", phone: "+91 9711556677", address: "Connaught Place", photo: "" },
+            { empid: "ARK-EMP-07", name: "Rahul Sen", email: "rahul", pass: "rahul123", role: "Employee", dob: "10-12-1995", parents: "Mr. & Mrs. Sen", university: "IIT Roorkee", phone: "+91 9988776655", address: "Lajpat Nagar", photo: "" }
         ];
 
         let restrictedHolidays = JSON.parse(localStorage.getItem('ark_holidays')) || [
@@ -498,19 +502,24 @@
             document.getElementById('loginPass').value = "";
         }
 
-        function forgotPasswordPrompt() {
-            let userEmail = prompt("Enter your registered Username / Login ID to reset password:");
-            if(!userEmail) return;
-            let found = staffList.find(s => s.email.toLowerCase() === userEmail.toLowerCase());
-            if(!found) {
-                alert("Username not found in staff registry!");
+        function forgotPasswordByEmpIdDob() {
+            let empIdInput = prompt("Enter your Employee ID (e.g. ARK-EMP-03):");
+            if(!empIdInput) return;
+            let dobInput = prompt("Enter your Date of Birth (DD-MM-YYYY):");
+            if(!dobInput) return;
+
+            let staffObj = staffList.find(s => s.empid.toUpperCase() === empIdInput.trim().toUpperCase() && s.dob === dobInput.trim());
+            if(!staffObj) {
+                alert("Employee ID and Date of Birth do not match our records!");
                 return;
             }
-            let newTempPass = prompt("Username verified! Enter your new temporary password:");
-            if(!newTempPass) return;
-            found.pass = newTempPass;
+
+            let newPassInput = prompt("Verification Successful! Enter your new password:");
+            if(!newPassInput) return;
+
+            staffObj.pass = newPassInput;
             saveData();
-            alert("Password updated successfully! You can now sign in with your new password.");
+            alert("Password reset successfully! You can now log in with your new password.");
         }
 
         function handlePasswordChange(e) {
@@ -553,31 +562,13 @@
             let role = currentUser.role;
             document.getElementById('userRoleBadge').innerText = "Role: " + currentUser.name + " (" + role + ")";
 
-            // Strict Role-Based Visibility
-            let allowedTabs = ['dashboard', 'projects', 'departments', 'meetings', 'attendance', 'changePassword'];
-
-            if(role === 'Director') {
-                allowedTabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'directorDiary', 'changePassword', 'adminPanel'];
-            } else if(role === 'Admin') {
-                allowedTabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'changePassword', 'adminPanel'];
-            } else if(role === 'Team Leader') {
-                allowedTabs = ['dashboard', 'crm', 'projects', 'departments', 'meetings', 'attendance', 'changePassword'];
-            } else if(role === 'Accountant') {
-                allowedTabs = ['dashboard', 'payments', 'attendance', 'changePassword'];
-            } else if(role === 'HR') {
-                allowedTabs = ['dashboard', 'attendance', 'hrPortal', 'changePassword'];
-            } else if(role === 'CA/CS') {
-                allowedTabs = ['dashboard', 'cacsPortal', 'attendance', 'changePassword'];
-            } else if(role === 'Employee') {
-                allowedTabs = ['dashboard', 'attendance', 'changePassword'];
-            }
-
-            const allTabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'directorDiary', 'changePassword', 'adminPanel'];
-            allTabs.forEach(t => {
-                let navBtn = document.getElementById('nav-' + t);
-                if(navBtn) {
-                    if(allowedTabs.includes(t)) navBtn.classList.remove('hidden');
-                    else navBtn.classList.add('hidden');
+            const navButtons = document.querySelectorAll('.tab-btn');
+            navButtons.forEach(btn => {
+                let allowedRoles = btn.getAttribute('data-roles').split(',');
+                if(allowedRoles.includes(role)) {
+                    btn.classList.remove('hidden');
+                } else {
+                    btn.classList.add('hidden');
                 }
             });
 
@@ -587,9 +578,9 @@
                 else el.classList.add('hidden');
             });
 
-            let isHrOrAdmin = (role === 'Director' || role === 'Admin' || role === 'HR');
+            let isHrAdminDirector = (role === 'Director' || role === 'Admin' || role === 'HR');
             document.querySelectorAll('.hr-admin-action').forEach(el => {
-                if(isHrOrAdmin) el.classList.remove('hidden');
+                if(isHrAdminDirector) el.classList.remove('hidden');
                 else el.classList.add('hidden');
             });
 
@@ -599,7 +590,10 @@
                 else el.classList.add('hidden');
             });
 
-            switchTab(allowedTabs[0] || 'dashboard');
+            if(role === 'Accountant') switchTab('payments');
+            else if(role === 'HR') switchTab('hrPortal');
+            else if(role === 'CA/CS') switchTab('cacsPortal');
+            else switchTab('dashboard');
         }
 
         function saveData() {
@@ -628,7 +622,7 @@
 
             if(currentUser && currentUser.role === 'Director') {
                 document.getElementById('directorNotesArea').value = directorNotes;
-                if(directorDoc) document.getElementById('dirAttachedDocView').innerHTML = `<a href="${directorDoc}" target="_blank" class="underline text-amber-300"><i class="fa-solid fa-file-arrow-down mr-1"></i> View Attached Document</a>`;
+                if(directorDoc) document.getElementById('dirAttachedDocView').innerHTML = `<a href="${directorDoc}" target="_blank" class="underline text-amber-300"><i class="fa-solid fa-file-pdf mr-1"></i> View Attached PDF/Doc</a>`;
             }
 
             if(currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin' || currentUser.role === 'Team Leader')) {
@@ -658,7 +652,7 @@
             let cacsHtml = '';
             caUpdates.forEach((c, index) => {
                 let delBtn = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin' || currentUser.role === 'CA/CS') ? `<button onclick="deleteCaUpdate(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button>` : '';
-                let docLink = c.doc ? `<br><a href="${c.doc}" target="_blank" class="text-xs text-sky-400 underline"><i class="fa-solid fa-file mr-1"></i> Attachment</a>` : '';
+                let docLink = c.doc ? `<br><a href="${c.doc}" target="_blank" class="text-xs text-sky-400 underline"><i class="fa-solid fa-file-pdf mr-1"></i> Attached PDF Document</a>` : '';
                 cacsHtml += `<div class="bg-slate-950 border border-slate-800 p-4 rounded-xl space-y-1"><div class="flex justify-between"><strong class="text-purple-400">${c.title}</strong><span class="text-slate-500">${c.date} ${delBtn}</span></div><p class="text-slate-300">${c.desc}</p>${docLink}</div>`;
             });
             let caEl = document.getElementById('caUpdatesList');
@@ -713,18 +707,25 @@
 
             let mHtml = '';
             meetings.forEach((m, index) => {
-                let docView = m.doc ? `<br><a href="${m.doc}" target="_blank" class="text-xs text-sky-400 underline mt-1 inline-block"><i class="fa-solid fa-file mr-1"></i> Attached MOM Document</a>` : '';
+                let docView = m.doc ? `<br><a href="${m.doc}" target="_blank" class="text-xs text-sky-400 underline mt-1 inline-block"><i class="fa-solid fa-file-pdf mr-1"></i> Attached MOM Document</a>` : '';
                 mHtml += `<div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-2"><div class="flex justify-between"><span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/20">${m.client}</span><span class="text-xs text-slate-400">${m.date}</span></div><h4 class="text-sm font-bold text-white">${m.topic}</h4><p class="text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800"><strong>MOM:</strong> ${m.mom} ${docView}</p></div>`;
             });
             document.getElementById('meetingList').innerHTML = mHtml || `<p class="text-slate-500 text-sm">No meetings recorded.</p>`;
 
             let sHtml = '';
+            let hrStaffHtml = '';
             staffList.forEach((s, index) => {
                 let avatar = s.photo ? `<img src="${s.photo}" class="w-10 h-10 rounded-full object-cover border border-slate-700 cursor-pointer" onclick="triggerStaffPhotoUpload(${index})" title="Change Photo">` : `<div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-amber-400 cursor-pointer" onclick="triggerStaffPhotoUpload(${index})" title="Upload Photo">📷</div>`;
-                let staffAction = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin') ? `<td class="p-4 text-right"><button onclick="deleteStaff(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
-                sHtml += `<tr><td class="p-4">${avatar}</td><td class="p-4"><strong class="text-white">${s.name}</strong><br><span class="text-amber-400 font-mono text-[10px]">${s.empid}</span></td><td class="p-4 text-emerald-400 font-semibold">${s.role}</td><td class="p-4 text-slate-300">${s.parents || 'N/A'}<br><span class="text-[10px] text-amber-300">${s.university || ''}</span></td><td class="p-4 text-slate-300 text-[11px]">📞 ${s.phone || 'N/A'}<br>🏠 ${s.address || 'N/A'}</td>${staffAction}</tr>`;
+                
+                let staffAction = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin') ? `<td class="p-4 text-right"><button onclick="deleteStaff(${index})" class="text-rose-400" title="Delete Staff"><i class="fa-solid fa-trash"></i></button></td>` : '';
+                sHtml += `<tr><td class="p-4">${avatar}</td><td class="p-4"><strong class="text-white">${s.name}</strong><br><span class="text-amber-400 font-mono text-[10px]">${s.empid}</span></td><td class="p-4 text-emerald-400 font-semibold">${s.role}</td><td class="p-4 text-slate-300">DOB: ${s.dob || 'N/A'}<br><span class="text-[10px] text-amber-300">${s.parents || ''}</span></td><td class="p-4 text-slate-300 text-[11px]">📞 ${s.phone || 'N/A'}<br>🏠 ${s.address || 'N/A'}</td>${staffAction}</tr>`;
+
+                // HR Offboarding List (HR can remove staff who left)
+                hrStaffHtml += `<div class="flex justify-between items-center p-3 bg-slate-900 rounded-xl border border-slate-800"><div><strong class="text-white">${s.name}</strong> <span class="text-amber-400 text-[10px]">(${s.empid} - ${s.role})</span><p class="text-slate-400 text-[11px]">Phone: ${s.phone || 'N/A'}</p></div><button onclick="deleteStaff(${index})" class="bg-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-slate-950 px-3 py-1.5 rounded-lg font-bold text-xs transition"><i class="fa-solid fa-user-xmark mr-1"></i> Remove / Offboard</button></div>`;
             });
             document.getElementById('staffTableBody').innerHTML = sHtml;
+            let hrStaffEl = document.getElementById('hrStaffRemovalList');
+            if(hrStaffEl) hrStaffEl.innerHTML = hrStaffHtml;
 
             renderUserAttendanceAndLeaves();
         }
@@ -736,15 +737,15 @@
             alert("Director's private notes saved securely!");
         }
 
-        function attachDirDoc(event) {
+        function attachDirPdf(event) {
             let file = event.target.files[0];
             if(!file) return;
             let reader = new FileReader();
             reader.onload = function(e) {
                 directorDoc = e.target.result;
                 localStorage.setItem('ark_dir_doc', directorDoc);
-                document.getElementById('dirAttachedDocView').innerHTML = `<a href="${directorDoc}" target="_blank" class="underline text-amber-300"><i class="fa-solid fa-file-arrow-down mr-1"></i> View Attached Document</a>`;
-                alert("Document attached to Director Diary!");
+                document.getElementById('dirAttachedDocView').innerHTML = `<a href="${directorDoc}" target="_blank" class="underline text-amber-300"><i class="fa-solid fa-file-pdf mr-1"></i> View Attached PDF/Doc</a>`;
+                alert("PDF attached to Director Diary!");
             };
             reader.readAsDataURL(file);
         }
@@ -754,13 +755,16 @@
             let title = prompt("Enter Tax / Compliance Update Title:");
             if(!title) return;
             let desc = prompt("Enter Details / Notice:");
-            let docUrl = prompt("Enter Optional Attachment Document URL (or leave blank):") || "";
+            let docUrl = prompt("Enter Optional PDF/Document URL (or leave blank):") || "";
             caUpdates.unshift({ title, desc, date: new Date().toLocaleDateString('en-IN'), doc: docUrl });
             saveData();
         }
         function deleteCaUpdate(index) { caUpdates.splice(index, 1); saveData(); }
 
-        function triggerLogoUpload() { document.getElementById('companyLogoInput').click(); }
+        function triggerLogoUpload() {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied! Only Director or Admin can change the company logo."); return; }
+            document.getElementById('companyLogoInput').click();
+        }
         function uploadCompanyLogo(event) {
             let file = event.target.files[0];
             if(!file) return;
@@ -866,20 +870,25 @@
 
         function registerNewStaff() {
             if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'HR') { alert("Access Denied!"); return; }
-            let empid = prompt("Enter Employee ID (e.g. ARK-EMP-08):") || "ARK-EMP-08";
+            
+            // Automatic Employee ID Generation
+            let nextIdNum = staffList.length + 1;
+            let autoEmpId = "ARK-EMP-" + String(nextIdNum).padStart(2, '0');
+
             let name = prompt("Enter Staff Full Name:");
             if(!name) return;
-            let email = prompt("Enter Login Username:") || "staff";
+            let email = prompt("Enter Login Username:") || "staff" + nextIdNum;
             let pass = prompt("Set Password:") || "123456";
             let roleInput = prompt("Select Designation / Role (Director, Admin, Team Leader, Accountant, HR, CA/CS, Employee):") || "Employee";
+            let dobInput = prompt("Enter Date of Birth (DD-MM-YYYY):") || "01-01-1995";
             let parents = prompt("Enter Parents Name:") || "";
             let university = prompt("Enter University / College:") || "";
             let phone = prompt("Enter Contact Number:") || "";
             let address = prompt("Enter Home Address:") || "";
 
-            staffList.push({empid, name, email, pass, role: roleInput, parents, university, phone, address, photo: ""});
+            staffList.push({empid: autoEmpId, name, email, pass, role: roleInput, dob: dobInput, parents, university, phone, address, photo: ""});
             saveData();
-            alert("New staff member registered successfully with role: " + roleInput);
+            alert("New staff member registered successfully! Assigned Auto Employee ID: " + autoEmpId);
         }
 
         function addRestrictedHoliday() {
@@ -968,17 +977,19 @@
             let topic = prompt("Subject:") || "Review";
             let mom = prompt("MOM:") || "Discussed.";
             let date = prompt("Date:") || "Today";
-            let doc = prompt("Optional Attachment Link/URL:") || "";
+            let doc = prompt("Optional PDF/Document Link or URL:") || "";
             meetings.push({client, topic, mom, date, doc});
             saveData();
         }
         function deleteMeeting(index) { meetings.splice(index, 1); saveData(); }
 
         function deleteStaff(index) {
-            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
-            if(staffList.length <= 1) { alert("Cannot delete last admin!"); return; }
-            staffList.splice(index, 1);
-            saveData();
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'HR') { alert("Access Denied!"); return; }
+            if(staffList.length <= 1) { alert("Cannot delete last admin/director!"); return; }
+            if(confirm("Are you sure you want to remove/offboard this employee?")) {
+                staffList.splice(index, 1);
+                saveData();
+            }
         }
 
         function switchTab(tabId) {
