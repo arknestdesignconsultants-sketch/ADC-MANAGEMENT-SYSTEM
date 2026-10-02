@@ -35,6 +35,9 @@
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 rounded-xl transition duration-200 text-sm shadow-lg shadow-amber-500/20 mt-2">
                     Sign In to Portal
                 </button>
+                <div class="text-right pt-1">
+                    <button type="button" onclick="forgotPasswordPrompt()" class="text-amber-400 hover:underline text-[11px]">Forgot Password?</button>
+                </div>
             </form>
         </div>
     </div>
@@ -49,7 +52,7 @@
                 </div>
                 <div>
                     <h2 id="navCompanyName" class="font-bold text-white text-sm">Arknest Design Consultants</h2>
-                    <p id="userRoleBadge" class="text-xs text-amber-400">Role: Loading...</p>
+                    <p id="userRoleBadge" class="text-xs text-amber-400 font-semibold">Role: Loading...</p>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
@@ -69,37 +72,37 @@
                 <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition bg-amber-500/10 text-amber-400 border border-amber-500/20">
                     <i class="fa-solid fa-chart-pie w-5"></i><span>Master Dashboard</span>
                 </button>
-                <button onclick="switchTab('crm')" id="nav-crm" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                <button onclick="switchTab('crm')" id="nav-crm" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Team Leader">
                     <i class="fa-solid fa-users-viewfinder w-5"></i><span>CRM & Leads</span>
                 </button>
-                <button onclick="switchTab('projects')" id="nav-projects" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                <button onclick="switchTab('projects')" id="nav-projects" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Team Leader,Employee">
                     <i class="fa-solid fa-building-shield w-5"></i><span>Team & Projects</span>
                 </button>
-                <button onclick="switchTab('departments')" id="nav-departments" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                <button onclick="switchTab('departments')" id="nav-departments" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Team Leader,Employee,Accountant,HR,CA/CS">
                     <i class="fa-solid fa-sitemap w-5"></i><span>Departments & Heads</span>
                 </button>
-                <button onclick="switchTab('payments')" id="nav-payments" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                <button onclick="switchTab('payments')" id="nav-payments" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Accountant">
                     <i class="fa-solid fa-file-invoice-dollar w-5"></i><span>Payment Schedule (Accounts)</span>
                 </button>
-                <button onclick="switchTab('meetings')" id="nav-meetings" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                <button onclick="switchTab('meetings')" id="nav-meetings" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Team Leader">
                     <i class="fa-solid fa-handshake w-5"></i><span>Meetings & MOM</span>
                 </button>
-                <button onclick="switchTab('attendance')" id="nav-attendance" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
+                <button onclick="switchTab('attendance')" id="nav-attendance" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-allowed="Director,Admin,Team Leader,Employee,Accountant,HR,CA/CS">
                     <i class="fa-solid fa-calendar-check w-5"></i><span>Attendance & Calendar</span>
                 </button>
-                <button onclick="switchTab('hrPortal')" id="nav-hrPortal" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-emerald-400 hover:bg-slate-900 border border-emerald-500/20">
+                <button onclick="switchTab('hrPortal')" id="nav-hrPortal" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-emerald-400 hover:bg-slate-900 border border-emerald-500/20" data-allowed="Director,Admin,HR">
                     <i class="fa-solid fa-users-gear w-5"></i><span>HR Portal</span>
                 </button>
-                <button onclick="switchTab('cacsPortal')" id="nav-cacsPortal" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-purple-400 hover:bg-slate-900 border border-purple-500/20">
+                <button onclick="switchTab('cacsPortal')" id="nav-cacsPortal" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-purple-400 hover:bg-slate-900 border border-purple-500/20" data-allowed="Director,Admin,CA/CS">
                     <i class="fa-solid fa-scale-balanced w-5"></i><span>CA / CS Portal</span>
                 </button>
-                <button onclick="switchTab('directorDiary')" id="nav-directorDiary" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-amber-300 hover:bg-slate-900 border border-amber-500/30">
+                <button onclick="switchTab('directorDiary')" id="nav-directorDiary" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-amber-300 hover:bg-slate-900 border border-amber-500/30" data-allowed="Director">
                     <i class="fa-solid fa-book-lock w-5"></i><span>Director's Private Diary</span>
                 </button>
                 <button onclick="switchTab('changePassword')" id="nav-changePassword" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-sky-400 hover:bg-slate-900 border border-sky-500/20">
                     <i class="fa-solid fa-key w-5"></i><span>Change Password</span>
                 </button>
-                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20">
+                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="tab-nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20" data-allowed="Director,Admin">
                     <i class="fa-solid fa-user-shield w-5"></i><span>Admin Master Control</span>
                 </button>
             </nav>
@@ -223,7 +226,7 @@
                     </div>
                 </div>
 
-                <!-- TAB 6: MEETINGS -->
+                <!-- TAB 6: MEETINGS & MOM WITH ATTACHMENT -->
                 <div id="tab-meetings" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Client Meetings & MOM</h3>
@@ -281,7 +284,7 @@
                         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4">
                             <div class="flex justify-between items-center">
                                 <h4 class="font-semibold text-white text-sm"><i class="fa-solid fa-umbrella-beach text-amber-400 mr-2"></i> Restricted Holidays</h4>
-                                <button onclick="addRestrictedHoliday()" class="director-admin-action text-[10px] bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg font-bold hidden">+ Add</button>
+                                <button onclick="addRestrictedHoliday()" class="hr-admin-action text-[10px] bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg font-bold hidden">+ Add</button>
                             </div>
                             <div id="restrictedHolidaysList" class="space-y-2 text-xs"></div>
                         </div>
@@ -299,23 +302,23 @@
                     </div>
                 </div>
 
-                <!-- TAB: HR PORTAL -->
+                <!-- TAB: HR PORTAL WITH ATTACHMENT -->
                 <div id="tab-hrPortal" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-users-gear text-emerald-400 mr-2"></i> HR & Staff Management Portal</h3>
                         <button onclick="registerNewStaff()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Register New Staff</button>
                     </div>
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-                        <h4 class="font-semibold text-white text-sm">Pending Staff Leave Approvals</h4>
+                        <h4 class="font-semibold text-white text-sm">Pending Staff Leave Approvals & Document Attachments</h4>
                         <div id="hrLeaveList" class="space-y-2 text-xs"></div>
                     </div>
                 </div>
 
-                <!-- TAB: CA / CS PORTAL -->
+                <!-- TAB: CA / CS PORTAL WITH ATTACHMENT -->
                 <div id="tab-cacsPortal" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-scale-balanced text-purple-400 mr-2"></i> CA / CS Dedicated Compliance Portal</h3>
-                        <button onclick="addCaUpdate()" class="bg-purple-500 hover:bg-purple-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Post Tax / Audit Update</button>
+                        <button onclick="addCaUpdate()" class="bg-purple-500 hover:bg-purple-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Post Tax / Audit Update with Doc</button>
                     </div>
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
                         <h4 class="font-semibold text-white text-sm">Official Taxation & Compliance Updates</h4>
@@ -323,17 +326,23 @@
                     </div>
                 </div>
 
-                <!-- TAB: DIRECTOR PRIVATE DIARY -->
+                <!-- TAB: DIRECTOR PRIVATE DIARY WITH ATTACHMENT -->
                 <div id="tab-directorDiary" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-xl font-bold text-amber-300"><i class="fa-solid fa-book-lock mr-2"></i> Director's Private Confidential Diary</h3>
-                            <p class="text-xs text-slate-400 mt-1">Strictly private notes visible only to the Director ID.</p>
+                            <p class="text-xs text-slate-400 mt-1">Strictly private notes visible only to the Director ID with attachment support.</p>
                         </div>
-                        <button onclick="saveDirectorDiary()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">Save Diary Notes</button>
+                        <div class="space-x-2">
+                            <label class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl text-xs font-semibold cursor-pointer border border-amber-500/30">
+                                <i class="fa-solid fa-paperclip mr-1"></i> Attach Doc <input type="file" id="dirDocInput" class="hidden" onchange="attachDirDoc(event)">
+                            </label>
+                            <button onclick="saveDirectorDiary()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">Save Diary Notes</button>
+                        </div>
                     </div>
-                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
-                        <textarea id="directorNotesArea" rows="12" placeholder="Write confidential director notes here..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-white text-sm focus:outline-none focus:border-amber-500"></textarea>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
+                        <textarea id="directorNotesArea" rows="10" placeholder="Write confidential director notes here..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-white text-sm focus:outline-none focus:border-amber-500"></textarea>
+                        <div id="dirAttachedDocView" class="text-xs text-amber-400"></div>
                     </div>
                 </div>
 
@@ -368,8 +377,8 @@
                 <div id="tab-adminPanel" class="space-y-6 hidden">
                     <div class="flex justify-between items-center flex-wrap gap-4">
                         <div>
-                            <h3 class="text-xl font-bold text-white">Director Master Control & Access Locker</h3>
-                            <p class="text-xs text-slate-400 mt-1">Upload company logo, manage staff records, and lock/unlock specific tabs for roles.</p>
+                            <h3 class="text-xl font-bold text-white">Director & Admin Master Control</h3>
+                            <p class="text-xs text-slate-400 mt-1">Upload company logo, manage staff records, and configure roles.</p>
                         </div>
                         <div class="space-x-2">
                             <button onclick="triggerLogoUpload()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
@@ -377,14 +386,6 @@
                             </button>
                             <input type="file" id="companyLogoInput" accept="image/*" class="hidden" onchange="uploadCompanyLogo(event)">
                         </div>
-                    </div>
-
-                    <!-- Role Access Matrix Configuration -->
-                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-                        <h4 class="font-semibold text-white text-sm"><i class="fa-solid fa-shield-halved text-amber-400 mr-2"></i> Role-Based Tab Permission Lock</h4>
-                        <p class="text-xs text-slate-400">Select which roles can access specific tabs in the system:</p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs" id="permissionMatrixContainer"></div>
-                        <button onclick="savePermissions()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">Save Access Rules</button>
                     </div>
 
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden p-6 space-y-4">
@@ -417,9 +418,9 @@
 
     <!-- JavaScript Logic -->
     <script>
-        if(!localStorage.getItem('ark_version_v12')) {
+        if(!localStorage.getItem('ark_version_v14')) {
             localStorage.clear();
-            localStorage.setItem('ark_version_v12', 'true');
+            localStorage.setItem('ark_version_v14', 'true');
         }
 
         let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "ADC_LOGO-removebg-preview.png" };
@@ -433,16 +434,6 @@
             { empid: "ARK-EMP-06", name: "CA Ramesh Gupta", email: "cacs", pass: "tax123", role: "CA/CS", parents: "Mr. & Mrs. Gupta", university: "ICAI", phone: "+91 9711556677", address: "Connaught Place", photo: "" },
             { empid: "ARK-EMP-07", name: "Rahul Sen", email: "rahul", pass: "rahul123", role: "Employee", parents: "Mr. & Mrs. Sen", university: "IIT Roorkee", phone: "+91 9988776655", address: "Lajpat Nagar", photo: "" }
         ];
-
-        let rolePermissions = JSON.parse(localStorage.getItem('ark_permissions')) || {
-            "Director": ["dashboard", "crm", "projects", "departments", "payments", "meetings", "attendance", "hrPortal", "cacsPortal", "directorDiary", "changePassword", "adminPanel"],
-            "Admin": ["dashboard", "crm", "projects", "departments", "payments", "meetings", "attendance", "hrPortal", "cacsPortal", "changePassword", "adminPanel"],
-            "Team Leader": ["dashboard", "crm", "projects", "departments", "meetings", "attendance", "changePassword"],
-            "Accountant": ["dashboard", "payments", "attendance", "changePassword"],
-            "HR": ["dashboard", "attendance", "hrPortal", "changePassword"],
-            "CA/CS": ["dashboard", "cacsPortal", "attendance", "changePassword"],
-            "Employee": ["dashboard", "attendance", "changePassword"]
-        };
 
         let restrictedHolidays = JSON.parse(localStorage.getItem('ark_holidays')) || [
             { date: "24 Oct 2026", name: "Dussehra (Restricted)" },
@@ -465,12 +456,13 @@
             {project: "Apex Corporate", stage: "Concept Approval", amount: "4,62,500", status: "Invoice Raised"}
         ];
         let meetings = JSON.parse(localStorage.getItem('ark_meetings')) || [
-            {client: "Apex Corporate", topic: "Facade Review", mom: "Approved double-height lobby concept.", date: "01 Oct 2026"}
+            {client: "Apex Corporate", topic: "Facade Review", mom: "Approved double-height lobby concept.", date: "01 Oct 2026", doc: ""}
         ];
         let caUpdates = JSON.parse(localStorage.getItem('ark_cacs')) || [
-            {title: "Q2 GST Filing Notice", desc: "All vendor invoices for Q2 must be submitted to accounts by Oct 15.", date: "01 Oct 2026"}
+            {title: "Q2 GST Filing Notice", desc: "All vendor invoices for Q2 must be submitted to accounts by Oct 15.", date: "01 Oct 2026", doc: ""}
         ];
         let directorNotes = localStorage.getItem('ark_dir_notes') || "";
+        let directorDoc = localStorage.getItem('ark_dir_doc') || "";
 
         let attendanceLogs = JSON.parse(localStorage.getItem('ark_attendance')) || {};
         let leaveRequests = JSON.parse(localStorage.getItem('ark_leaves')) || {};
@@ -504,6 +496,21 @@
             document.getElementById('loginScreen').classList.remove('hidden');
             document.getElementById('loginEmail').value = "";
             document.getElementById('loginPass').value = "";
+        }
+
+        function forgotPasswordPrompt() {
+            let userEmail = prompt("Enter your registered Username / Login ID to reset password:");
+            if(!userEmail) return;
+            let found = staffList.find(s => s.email.toLowerCase() === userEmail.toLowerCase());
+            if(!found) {
+                alert("Username not found in staff registry!");
+                return;
+            }
+            let newTempPass = prompt("Username verified! Enter your new temporary password:");
+            if(!newTempPass) return;
+            found.pass = newTempPass;
+            saveData();
+            alert("Password updated successfully! You can now sign in with your new password.");
         }
 
         function handlePasswordChange(e) {
@@ -546,7 +553,24 @@
             let role = currentUser.role;
             document.getElementById('userRoleBadge').innerText = "Role: " + currentUser.name + " (" + role + ")";
 
-            let allowedTabs = rolePermissions[role] || ["dashboard", "attendance", "changePassword"];
+            // Strict Role-Based Visibility
+            let allowedTabs = ['dashboard', 'projects', 'departments', 'meetings', 'attendance', 'changePassword'];
+
+            if(role === 'Director') {
+                allowedTabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'directorDiary', 'changePassword', 'adminPanel'];
+            } else if(role === 'Admin') {
+                allowedTabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'changePassword', 'adminPanel'];
+            } else if(role === 'Team Leader') {
+                allowedTabs = ['dashboard', 'crm', 'projects', 'departments', 'meetings', 'attendance', 'changePassword'];
+            } else if(role === 'Accountant') {
+                allowedTabs = ['dashboard', 'payments', 'attendance', 'changePassword'];
+            } else if(role === 'HR') {
+                allowedTabs = ['dashboard', 'attendance', 'hrPortal', 'changePassword'];
+            } else if(role === 'CA/CS') {
+                allowedTabs = ['dashboard', 'cacsPortal', 'attendance', 'changePassword'];
+            } else if(role === 'Employee') {
+                allowedTabs = ['dashboard', 'attendance', 'changePassword'];
+            }
 
             const allTabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'directorDiary', 'changePassword', 'adminPanel'];
             allTabs.forEach(t => {
@@ -563,6 +587,12 @@
                 else el.classList.add('hidden');
             });
 
+            let isHrOrAdmin = (role === 'Director' || role === 'Admin' || role === 'HR');
+            document.querySelectorAll('.hr-admin-action').forEach(el => {
+                if(isHrOrAdmin) el.classList.remove('hidden');
+                else el.classList.add('hidden');
+            });
+
             let isAccountantOrDirector = (role === 'Director' || role === 'Admin' || role === 'Accountant');
             document.querySelectorAll('.accountant-action').forEach(el => {
                 if(isAccountantOrDirector) el.classList.remove('hidden');
@@ -570,42 +600,6 @@
             });
 
             switchTab(allowedTabs[0] || 'dashboard');
-            renderPermissionMatrix();
-        }
-
-        function renderPermissionMatrix() {
-            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') return;
-            let container = document.getElementById('permissionMatrixContainer');
-            if(!container) return;
-            
-            let html = '';
-            let roles = Object.keys(rolePermissions);
-            let tabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'directorDiary', 'adminPanel'];
-
-            roles.forEach(r => {
-                html += `<div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2"><strong class="text-amber-400 block border-b border-slate-800 pb-1">${r}</strong><div class="space-y-1 pt-1">`;
-                tabs.forEach(t => {
-                    let checked = rolePermissions[r].includes(t) ? 'checked' : '';
-                    html += `<label class="flex items-center space-x-2 text-slate-300 text-[11px]"><input type="checkbox" class="perm-checkbox rounded bg-slate-800 border-slate-700 text-amber-500" data-role="${r}" data-tab="${t}" ${checked}> <span>${t}</span></label>`;
-                });
-                html += `</div></div>`;
-            });
-            container.innerHTML = html;
-        }
-
-        function savePermissions() {
-            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
-            let checkboxes = document.querySelectorAll('.perm-checkbox');
-            let newPerms = {};
-            checkboxes.forEach(cb => {
-                let r = cb.getAttribute('data-role');
-                let t = cb.getAttribute('data-tab');
-                if(!newPerms[r]) newPerms[r] = [];
-                if(cb.checked) newPerms[r].push(t);
-            });
-            rolePermissions = newPerms;
-            localStorage.setItem('ark_permissions', JSON.stringify(rolePermissions));
-            alert("Access permission rules updated successfully! Please re-login or switch tab to apply.");
         }
 
         function saveData() {
@@ -634,6 +628,7 @@
 
             if(currentUser && currentUser.role === 'Director') {
                 document.getElementById('directorNotesArea').value = directorNotes;
+                if(directorDoc) document.getElementById('dirAttachedDocView').innerHTML = `<a href="${directorDoc}" target="_blank" class="underline text-amber-300"><i class="fa-solid fa-file-arrow-down mr-1"></i> View Attached Document</a>`;
             }
 
             if(currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin' || currentUser.role === 'Team Leader')) {
@@ -663,7 +658,8 @@
             let cacsHtml = '';
             caUpdates.forEach((c, index) => {
                 let delBtn = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin' || currentUser.role === 'CA/CS') ? `<button onclick="deleteCaUpdate(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button>` : '';
-                cacsHtml += `<div class="bg-slate-950 border border-slate-800 p-4 rounded-xl space-y-1"><div class="flex justify-between"><strong class="text-purple-400">${c.title}</strong><span class="text-slate-500">${c.date} ${delBtn}</span></div><p class="text-slate-300">${c.desc}</p></div>`;
+                let docLink = c.doc ? `<br><a href="${c.doc}" target="_blank" class="text-xs text-sky-400 underline"><i class="fa-solid fa-file mr-1"></i> Attachment</a>` : '';
+                cacsHtml += `<div class="bg-slate-950 border border-slate-800 p-4 rounded-xl space-y-1"><div class="flex justify-between"><strong class="text-purple-400">${c.title}</strong><span class="text-slate-500">${c.date} ${delBtn}</span></div><p class="text-slate-300">${c.desc}</p>${docLink}</div>`;
             });
             let caEl = document.getElementById('caUpdatesList');
             if(caEl) caEl.innerHTML = cacsHtml || `<p class="text-slate-500">No compliance updates.</p>`;
@@ -681,7 +677,7 @@
 
             let hHtml = '';
             restrictedHolidays.forEach((h, index) => {
-                let delBtn = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin') ? `<button onclick="deleteHoliday(${index})" class="text-rose-400 hover:text-rose-300 ml-2"><i class="fa-solid fa-trash"></i></button>` : '';
+                let delBtn = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin' || currentUser.role === 'HR') ? `<button onclick="deleteHoliday(${index})" class="text-rose-400 hover:text-rose-300 ml-2"><i class="fa-solid fa-trash"></i></button>` : '';
                 hHtml += `<div class="flex justify-between items-center p-2 bg-slate-900 rounded-xl border border-slate-800"><span class="text-white">${h.date}</span><span class="text-amber-400">${h.name} ${delBtn}</span></div>`;
             });
             document.getElementById('restrictedHolidaysList').innerHTML = hHtml;
@@ -717,7 +713,8 @@
 
             let mHtml = '';
             meetings.forEach((m, index) => {
-                mHtml += `<div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-2"><div class="flex justify-between"><span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/20">${m.client}</span><span class="text-xs text-slate-400">${m.date}</span></div><h4 class="text-sm font-bold text-white">${m.topic}</h4><p class="text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800"><strong>MOM:</strong> ${m.mom}</p></div>`;
+                let docView = m.doc ? `<br><a href="${m.doc}" target="_blank" class="text-xs text-sky-400 underline mt-1 inline-block"><i class="fa-solid fa-file mr-1"></i> Attached MOM Document</a>` : '';
+                mHtml += `<div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl space-y-2"><div class="flex justify-between"><span class="text-xs bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/20">${m.client}</span><span class="text-xs text-slate-400">${m.date}</span></div><h4 class="text-sm font-bold text-white">${m.topic}</h4><p class="text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800"><strong>MOM:</strong> ${m.mom} ${docView}</p></div>`;
             });
             document.getElementById('meetingList').innerHTML = mHtml || `<p class="text-slate-500 text-sm">No meetings recorded.</p>`;
 
@@ -739,12 +736,26 @@
             alert("Director's private notes saved securely!");
         }
 
+        function attachDirDoc(event) {
+            let file = event.target.files[0];
+            if(!file) return;
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                directorDoc = e.target.result;
+                localStorage.setItem('ark_dir_doc', directorDoc);
+                document.getElementById('dirAttachedDocView').innerHTML = `<a href="${directorDoc}" target="_blank" class="underline text-amber-300"><i class="fa-solid fa-file-arrow-down mr-1"></i> View Attached Document</a>`;
+                alert("Document attached to Director Diary!");
+            };
+            reader.readAsDataURL(file);
+        }
+
         function addCaUpdate() {
             if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'CA/CS') { alert("Access Denied!"); return; }
             let title = prompt("Enter Tax / Compliance Update Title:");
             if(!title) return;
             let desc = prompt("Enter Details / Notice:");
-            caUpdates.unshift({ title, desc, date: new Date().toLocaleDateString('en-IN') });
+            let docUrl = prompt("Enter Optional Attachment Document URL (or leave blank):") || "";
+            caUpdates.unshift({ title, desc, date: new Date().toLocaleDateString('en-IN'), doc: docUrl });
             saveData();
         }
         function deleteCaUpdate(index) { caUpdates.splice(index, 1); saveData(); }
@@ -757,7 +768,9 @@
             reader.onload = function(e) {
                 companyInfo.logoUrl = e.target.result;
                 saveData();
-                alert("Company logo uploaded successfully!");
+                document.getElementById('navLogoImg').src = companyInfo.logoUrl;
+                document.getElementById('loginLogoImg').src = companyInfo.logoUrl;
+                alert("Company logo uploaded and updated successfully!");
             };
             reader.readAsDataURL(file);
         }
@@ -858,10 +871,7 @@
             if(!name) return;
             let email = prompt("Enter Login Username:") || "staff";
             let pass = prompt("Set Password:") || "123456";
-            
-            // Interactive Prompt for Designation / Role Selection
-            let roleInput = prompt("Select Designation / Role:\n1. Director\n2. Admin\n3. Team Leader\n4. Accountant\n5. HR\n6. CA/CS\n7. Employee\n(Type the exact role name e.g. Employee or Team Leader):") || "Employee";
-            
+            let roleInput = prompt("Select Designation / Role (Director, Admin, Team Leader, Accountant, HR, CA/CS, Employee):") || "Employee";
             let parents = prompt("Enter Parents Name:") || "";
             let university = prompt("Enter University / College:") || "";
             let phone = prompt("Enter Contact Number:") || "";
@@ -873,14 +883,18 @@
         }
 
         function addRestrictedHoliday() {
-            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'HR') { alert("Access Denied!"); return; }
             let date = prompt("Holiday Date:");
             if(!date) return;
             let name = prompt("Holiday Name:") || "Restricted Holiday";
             restrictedHolidays.push({date, name});
             saveData();
         }
-        function deleteHoliday(index) { restrictedHolidays.splice(index, 1); saveData(); }
+        function deleteHoliday(index) {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'HR') { alert("Access Denied!"); return; }
+            restrictedHolidays.splice(index, 1);
+            saveData();
+        }
 
         function addDepartmentHead() {
             if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
@@ -954,7 +968,8 @@
             let topic = prompt("Subject:") || "Review";
             let mom = prompt("MOM:") || "Discussed.";
             let date = prompt("Date:") || "Today";
-            meetings.push({client, topic, mom, date});
+            let doc = prompt("Optional Attachment Link/URL:") || "";
+            meetings.push({client, topic, mom, date, doc});
             saveData();
         }
         function deleteMeeting(index) { meetings.splice(index, 1); saveData(); }
