@@ -17,8 +17,8 @@
     <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950 p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-8 shadow-2xl">
             <div class="text-center mb-6">
-                <div id="loginLogoBox" class="inline-flex items-center justify-center mb-3">
-                    <img id="loginLogoImg" src="" alt="ADC Logo" class="h-12 object-contain" onerror="this.style.display='none'">
+                <div class="inline-flex items-center justify-center mb-3">
+                    <img id="loginLogoImg" src="ADC_LOGO-removebg-preview.png" alt="ADC Logo" class="h-12 object-contain" onerror="this.style.display='none'">
                 </div>
                 <h1 id="loginCompanyName" class="text-xl font-bold text-white">Arknest Design Consultants</h1>
                 <p class="text-xs text-slate-400 mt-1">Enterprise Practice Management Portal</p>
@@ -36,9 +36,6 @@
                     Sign In to Portal
                 </button>
             </form>
-            <div class="mt-4 text-center text-[11px] text-slate-500">
-                <p>Director Login: <span class="text-amber-400">director</span> / <span class="text-amber-400">dir2026</span></p>
-            </div>
         </div>
     </div>
 
@@ -47,8 +44,8 @@
         <!-- Top Navbar -->
         <header class="bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div id="navLogoBox" class="flex items-center">
-                    <img id="navLogoImg" src="" alt="Logo" class="h-9 object-contain" onerror="this.style.display='none'">
+                <div class="flex items-center">
+                    <img id="navLogoImg" src="ADC_LOGO-removebg-preview.png" alt="Logo" class="h-9 object-contain" onerror="this.style.display='none'">
                 </div>
                 <div>
                     <h2 id="navCompanyName" class="font-bold text-white text-sm">Arknest Design Consultants</h2>
@@ -91,10 +88,10 @@
                     <i class="fa-solid fa-calendar-check w-5"></i><span>Attendance & Calendar</span>
                 </button>
                 <button onclick="switchTab('hrPortal')" id="nav-hrPortal" class="nav-perm-hr w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-emerald-400 hover:bg-slate-900 border border-emerald-500/20 hidden">
-                    <i class="fa-solid fa-users-gear w-5"></i><span>HR & Staff Portal</span>
+                    <i class="fa-solid fa-users-gear w-5"></i><span>HR Portal</span>
                 </button>
-                <button onclick="switchTab('cacsSection')" id="nav-cacsSection" class="nav-perm-cacs w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-purple-400 hover:bg-slate-900 border border-purple-500/20 hidden">
-                    <i class="fa-solid fa-scale-balanced w-5"></i><span>CA / CS Compliance</span>
+                <button onclick="switchTab('cacsPortal')" id="nav-cacsPortal" class="nav-perm-cacs w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-purple-400 hover:bg-slate-900 border border-purple-500/20 hidden">
+                    <i class="fa-solid fa-scale-balanced w-5"></i><span>CA / CS Portal</span>
                 </button>
                 <button onclick="switchTab('directorDiary')" id="nav-directorDiary" class="nav-perm-director w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-amber-300 hover:bg-slate-900 border border-amber-500/30 hidden">
                     <i class="fa-solid fa-book-lock w-5"></i><span>Director's Private Diary</span>
@@ -103,7 +100,7 @@
                     <i class="fa-solid fa-key w-5"></i><span>Change Password</span>
                 </button>
                 <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="nav-perm-admin w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20 hidden">
-                    <i class="fa-solid fa-user-shield w-5"></i><span>Director Master Control</span>
+                    <i class="fa-solid fa-user-shield w-5"></i><span>Admin Master Control</span>
                 </button>
             </nav>
 
@@ -314,13 +311,16 @@
                     </div>
                 </div>
 
-                <!-- TAB: CA / CS SECTION -->
-                <div id="tab-cacsSection" class="space-y-6 hidden">
+                <!-- TAB: CA / CS PORTAL -->
+                <div id="tab-cacsPortal" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
-                        <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-scale-balanced text-purple-400 mr-2"></i> CA / CS Compliance & Tax Updates</h3>
-                        <button onclick="addCaUpdate()" class="bg-purple-500 hover:bg-purple-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Post Tax/Compliance Update</button>
+                        <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-scale-balanced text-purple-400 mr-2"></i> CA / CS Dedicated Compliance Portal</h3>
+                        <button onclick="addCaUpdate()" class="bg-purple-500 hover:bg-purple-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Post Tax / Audit Update</button>
                     </div>
-                    <div id="caUpdatesList" class="space-y-4 text-xs"></div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
+                        <h4 class="font-semibold text-white text-sm">Official Taxation & Compliance Updates</h4>
+                        <div id="caUpdatesList" class="space-y-4 text-xs"></div>
+                    </div>
                 </div>
 
                 <!-- TAB: DIRECTOR PRIVATE DIARY -->
@@ -364,11 +364,11 @@
                     </div>
                 </div>
 
-                <!-- TAB: DIRECTOR MASTER CONTROL -->
+                <!-- TAB: ADMIN MASTER CONTROL -->
                 <div id="tab-adminPanel" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <div>
-                            <h3 class="text-xl font-bold text-white">Director Master Control</h3>
+                            <h3 class="text-xl font-bold text-white">Admin Master Control</h3>
                             <p class="text-xs text-slate-400 mt-1">Upload company logo and manage studio roles.</p>
                         </div>
                         <div class="space-x-2">
@@ -402,18 +402,20 @@
     </div>
 
     <input type="file" id="staffPhotoInput" accept="image/*" class="hidden" onchange="saveStaffPhoto(event)">
+    <input type="file" id="deptPhotoInput" accept="image/*" class="hidden" onchange="saveDeptPhoto(event)">
 
     <!-- JavaScript Logic -->
     <script>
-        let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "" };
+        let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "ADC_LOGO-removebg-preview.png" };
         
         let staffList = JSON.parse(localStorage.getItem('ark_staff')) || [
-            { empid: "ARK-EMP-01", name: "Director", email: "director", pass: "dir2026", role: "Admin", parents: "Mr. & Mrs. Sharma", university: "SPA Delhi", phone: "+91 9876543210", address: "Greater Kailash, Delhi", photo: "" },
-            { empid: "ARK-EMP-02", name: "Ar. Rohan Mehta", email: "rohan", pass: "rohan123", role: "Team Leader", parents: "Mr. & Mrs. Mehta", university: "CEPT", phone: "+91 9123456789", address: "Gurgaon", photo: "" },
-            { empid: "ARK-EMP-03", name: "Priya Sharma", email: "accountant", pass: "acc123", role: "Accountant", parents: "Mr. & Mrs. Sharma", university: "Delhi Univ", phone: "+91 9988776655", address: "Noida", photo: "" },
-            { empid: "ARK-EMP-04", name: "Sunil Verma", email: "hr", pass: "hr123", role: "HR", parents: "Mr. & Mrs. Verma", university: "MDI Gurgaon", phone: "+91 9811223344", address: "Delhi", photo: "" },
-            { empid: "ARK-EMP-05", name: "CA Ramesh Gupta", email: "cacs", pass: "tax123", role: "CA/CS", parents: "Mr. & Mrs. Gupta", university: "ICAI", phone: "+91 9711556677", address: "Connaught Place", photo: "" },
-            { empid: "ARK-EMP-06", name: "Rahul Sen", email: "rahul", pass: "rahul123", role: "Employee", parents: "Mr. & Mrs. Sen", university: "IIT Roorkee", phone: "+91 9988776655", address: "Lajpat Nagar", photo: "" }
+            { empid: "ARK-EMP-01", name: "Director", email: "director", pass: "dir2026", role: "Director", parents: "Mr. & Mrs. Sharma", university: "SPA Delhi", phone: "+91 9876543210", address: "Greater Kailash, Delhi", photo: "" },
+            { empid: "ARK-EMP-02", name: "System Admin", email: "admin", pass: "admin2026", role: "Admin", parents: "Mr. & Mrs. Verma", university: "IIT Delhi", phone: "+91 9112233445", address: "South Extension, Delhi", photo: "" },
+            { empid: "ARK-EMP-03", name: "Ar. Rohan Mehta", email: "rohan", pass: "rohan123", role: "Team Leader", parents: "Mr. & Mrs. Mehta", university: "CEPT", phone: "+91 9123456789", address: "Gurgaon", photo: "" },
+            { empid: "ARK-EMP-04", name: "Priya Sharma", email: "accountant", pass: "acc123", role: "Accountant", parents: "Mr. & Mrs. Sharma", university: "Delhi Univ", phone: "+91 9988776655", address: "Noida", photo: "" },
+            { empid: "ARK-EMP-05", name: "Sunil Verma", email: "hr", pass: "hr123", role: "HR", parents: "Mr. & Mrs. Verma", university: "MDI Gurgaon", phone: "+91 9811223344", address: "Delhi", photo: "" },
+            { empid: "ARK-EMP-06", name: "CA Ramesh Gupta", email: "cacs", pass: "tax123", role: "CA/CS", parents: "Mr. & Mrs. Gupta", university: "ICAI", phone: "+91 9711556677", address: "Connaught Place", photo: "" },
+            { empid: "ARK-EMP-07", name: "Rahul Sen", email: "rahul", pass: "rahul123", role: "Employee", parents: "Mr. & Mrs. Sen", university: "IIT Roorkee", phone: "+91 9988776655", address: "Lajpat Nagar", photo: "" }
         ];
 
         let restrictedHolidays = JSON.parse(localStorage.getItem('ark_holidays')) || [
@@ -449,6 +451,7 @@
 
         let currentUser = null;
         let selectedStaffIndexForPhoto = null;
+        let selectedDeptIndexForPhoto = null;
 
         function handleLogin(e) {
             e.preventDefault();
@@ -529,8 +532,10 @@
             document.querySelectorAll('.nav-perm-cacs').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.nav-perm-director').forEach(el => el.classList.add('hidden'));
 
-            if(role === 'Admin') {
+            if(role === 'Director') {
                 document.querySelectorAll('.nav-perm-admin, .nav-perm-leader, .nav-perm-accountant, .nav-perm-hr, .nav-perm-cacs, .nav-perm-director').forEach(el => el.classList.remove('hidden'));
+            } else if(role === 'Admin') {
+                document.querySelectorAll('.nav-perm-admin, .nav-perm-leader, .nav-perm-accountant, .nav-perm-hr, .nav-perm-cacs').forEach(el => el.classList.remove('hidden'));
             } else if(role === 'Team Leader') {
                 document.querySelectorAll('.nav-perm-leader').forEach(el => el.classList.remove('hidden'));
             } else if(role === 'Accountant') {
@@ -543,7 +548,7 @@
 
             if(role === 'Accountant') switchTab('payments');
             else if(role === 'HR') switchTab('hrPortal');
-            else if(role === 'CA/CS') switchTab('cacsSection');
+            else if(role === 'CA/CS') switchTab('cacsPortal');
             else if(role === 'Employee') switchTab('attendance');
             else switchTab('dashboard');
         }
@@ -572,11 +577,11 @@
             let staffCountEl = document.getElementById('dashStaffCount');
             if(staffCountEl) staffCountEl.innerText = staffList.length;
 
-            if(currentUser && currentUser.role === 'Admin') {
+            if(currentUser && currentUser.role === 'Director') {
                 document.getElementById('directorNotesArea').value = directorNotes;
             }
 
-            if(currentUser && (currentUser.role === 'Admin' || currentUser.role === 'Team Leader')) {
+            if(currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin' || currentUser.role === 'Team Leader')) {
                 let priHtml = '';
                 projects.forEach(p => {
                     if(p.priority && p.priority.includes("High")) {
@@ -600,7 +605,7 @@
 
             let cacsHtml = '';
             caUpdates.forEach((c, index) => {
-                let delBtn = currentUser && currentUser.role === 'Admin' ? `<button onclick="deleteCaUpdate(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button>` : '';
+                let delBtn = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin' || currentUser.role === 'CA/CS') ? `<button onclick="deleteCaUpdate(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button>` : '';
                 cacsHtml += `<div class="bg-slate-950 border border-slate-800 p-4 rounded-xl space-y-1"><div class="flex justify-between"><strong class="text-purple-400">${c.title}</strong><span class="text-slate-500">${c.date} ${delBtn}</span></div><p class="text-slate-300">${c.desc}</p></div>`;
             });
             let caEl = document.getElementById('caUpdatesList');
@@ -619,36 +624,36 @@
 
             let hHtml = '';
             restrictedHolidays.forEach((h, index) => {
-                let delBtn = currentUser && currentUser.role === 'Admin' ? `<button onclick="deleteHoliday(${index})" class="text-rose-400 hover:text-rose-300 ml-2"><i class="fa-solid fa-trash"></i></button>` : '';
+                let delBtn = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin') ? `<button onclick="deleteHoliday(${index})" class="text-rose-400 hover:text-rose-300 ml-2"><i class="fa-solid fa-trash"></i></button>` : '';
                 hHtml += `<div class="flex justify-between items-center p-2 bg-slate-900 rounded-xl border border-slate-800"><span class="text-white">${h.date}</span><span class="text-amber-400">${h.name} ${delBtn}</span></div>`;
             });
             document.getElementById('restrictedHolidaysList').innerHTML = hHtml;
 
             let dHtml = '';
             departments.forEach((d, index) => {
-                let avatar = d.photo ? `<img src="${d.photo}" class="w-12 h-12 rounded-xl object-cover border border-slate-700">` : `<div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-amber-400 font-bold">👤</div>`;
-                let adminBtns = currentUser && currentUser.role === 'Admin' ? `<div class="flex space-x-2"><button onclick="editDept(${index})" class="text-amber-400 text-xs"><i class="fa-solid fa-pen"></i></button><button onclick="deleteDept(${index})" class="text-rose-400 text-xs"><i class="fa-solid fa-trash"></i></button></div>` : '';
+                let avatar = d.photo ? `<img src="${d.photo}" class="w-12 h-12 rounded-xl object-cover border border-slate-700 cursor-pointer" onclick="triggerDeptPhotoUpload(${index})" title="Click to change head photo">` : `<div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-amber-400 font-bold cursor-pointer" onclick="triggerDeptPhotoUpload(${index})" title="Click to upload head photo">📷</div>`;
+                let adminBtns = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin') ? `<div class="flex space-x-2"><button onclick="editDept(${index})" class="text-amber-400 text-xs"><i class="fa-solid fa-pen"></i></button><button onclick="deleteDept(${index})" class="text-rose-400 text-xs"><i class="fa-solid fa-trash"></i></button></div>` : '';
                 dHtml += `<div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4"><div class="flex items-center justify-between"><div class="flex items-center space-x-3">${avatar}<div><h4 class="font-bold text-white text-sm">${d.title}</h4><p class="text-xs text-slate-400">Head: ${d.head}</p></div></div>${adminBtns}</div><p class="text-xs text-slate-300 pt-2 border-t border-slate-800">${d.details}</p></div>`;
             });
             document.getElementById('departmentsContainer').innerHTML = dHtml;
 
             let lHtml = '';
             leads.forEach((l, index) => {
-                let actionBtn = currentUser && currentUser.role === 'Admin' ? `<td class="p-4 text-right"><button onclick="deleteLead(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
+                let actionBtn = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin') ? `<td class="p-4 text-right"><button onclick="deleteLead(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
                 lHtml += `<tr><td class="p-4 font-semibold text-white">${l.name}</td><td class="p-4">${l.phone}</td><td class="p-4 text-amber-400">${l.source}</td><td class="p-4">${l.typology}</td><td class="p-4 text-white">₹${l.value}</td>${actionBtn}</tr>`;
             });
             document.getElementById('leadTableBody').innerHTML = lHtml || `<tr><td colspan="6" class="p-4 text-center text-slate-500">No leads added.</td></tr>`;
 
             let pHtml = '';
             projects.forEach((p, index) => {
-                let actionBtn = currentUser && currentUser.role === 'Admin' ? `<td class="p-4 text-right space-x-2"><button onclick="editProject(${index})" class="text-amber-400"><i class="fa-solid fa-pen"></i></button><button onclick="deleteProject(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
+                let actionBtn = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin') ? `<td class="p-4 text-right space-x-2"><button onclick="editProject(${index})" class="text-amber-400"><i class="fa-solid fa-pen"></i></button><button onclick="deleteProject(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
                 pHtml += `<tr><td class="p-4 font-mono text-amber-400 font-bold">${p.code}</td><td class="p-4 font-semibold text-white">${p.name}</td><td class="p-4">${p.architect}</td><td class="p-4"><span class="bg-amber-500/10 text-amber-400 px-2 py-1 rounded-full border border-amber-500/20 text-[10px]">${p.priority || 'Normal'}</span> - ${p.stage}</td>${actionBtn}</tr>`;
             });
             document.getElementById('projTableBody').innerHTML = pHtml || `<tr><td colspan="5" class="p-4 text-center text-slate-500">No projects assigned.</td></tr>`;
 
             let payHtml = '';
             payments.forEach((pay, index) => {
-                let payAction = currentUser && (currentUser.role === 'Admin' || currentUser.role === 'Accountant') ? `<td class="p-4 text-right"><button onclick="deletePayment(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
+                let payAction = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin' || currentUser.role === 'Accountant') ? `<td class="p-4 text-right"><button onclick="deletePayment(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
                 payHtml += `<tr><td class="p-4 font-semibold text-white">${pay.project}</td><td class="p-4">${pay.stage}</td><td class="p-4 text-amber-400 font-semibold">₹${pay.amount}</td><td class="p-4"><span class="bg-amber-500/10 text-amber-400 px-2 py-1 rounded-full border border-amber-500/20">${pay.status}</span></td>${payAction}</tr>`;
             });
             document.getElementById('payTableBody').innerHTML = payHtml || `<tr><td colspan="5" class="p-4 text-center text-slate-500">No payments added.</td></tr>`;
@@ -670,16 +675,17 @@
         }
 
         function saveDirectorDiary() {
-            if(currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
+            if(currentUser.role !== 'Director') { alert("Access Denied!"); return; }
             directorNotes = document.getElementById('directorNotesArea').value;
             localStorage.setItem('ark_dir_notes', directorNotes);
             alert("Director's private notes saved securely!");
         }
 
         function addCaUpdate() {
-            let title = prompt("Enter Update Title:");
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'CA/CS') { alert("Access Denied!"); return; }
+            let title = prompt("Enter Tax / Compliance Update Title:");
             if(!title) return;
-            let desc = prompt("Enter Details:");
+            let desc = prompt("Enter Details / Notice:");
             caUpdates.unshift({ title, desc, date: new Date().toLocaleDateString('en-IN') });
             saveData();
         }
@@ -711,6 +717,23 @@
                 saveData();
                 alert("Staff photo uploaded successfully!");
                 selectedStaffIndexForPhoto = null;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function triggerDeptPhotoUpload(index) {
+            selectedDeptIndexForPhoto = index;
+            document.getElementById('deptPhotoInput').click();
+        }
+        function saveDeptPhoto(event) {
+            let file = event.target.files[0];
+            if(!file || selectedDeptIndexForPhoto === null) return;
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                departments[selectedDeptIndexForPhoto].photo = e.target.result;
+                saveData();
+                alert("Department head photo uploaded successfully!");
+                selectedDeptIndexForPhoto = null;
             };
             reader.readAsDataURL(file);
         }
@@ -769,13 +792,13 @@
         function rejectLeave(email, idx) { leaveRequests[email][idx].status = "Rejected ❌"; saveData(); }
 
         function registerNewStaff() {
-            if(currentUser.role !== 'Admin' && currentUser.role !== 'HR') { alert("Access Denied!"); return; }
-            let empid = prompt("Employee ID:") || "ARK-EMP-07";
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'HR') { alert("Access Denied!"); return; }
+            let empid = prompt("Employee ID:") || "ARK-EMP-08";
             let name = prompt("Staff Full Name:");
             if(!name) return;
             let email = prompt("Login Username:") || "staff";
             let pass = prompt("Password:") || "123456";
-            let role = prompt("Role (Admin, Team Leader, Accountant, HR, CA/CS, Employee):") || "Employee";
+            let role = prompt("Role (Director, Admin, Team Leader, Accountant, HR, CA/CS, Employee):") || "Employee";
             let parents = prompt("Parents Name:") || "";
             let university = prompt("University:") || "";
             let phone = prompt("Contact Number:") || "";
@@ -806,7 +829,9 @@
             let d = departments[index];
             let title = prompt("Edit Dept:", d.title);
             if(!title) return;
+            let head = prompt("Edit Head Name:", d.head);
             departments[index].title = title;
+            departments[index].head = head;
             saveData();
         }
         function deleteDept(index) { departments.splice(index, 1); saveData(); }
@@ -869,7 +894,7 @@
         }
 
         function switchTab(tabId) {
-            const tabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsSection', 'directorDiary', 'changePassword', 'adminPanel'];
+            const tabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'directorDiary', 'changePassword', 'adminPanel'];
             tabs.forEach(t => {
                 let tabEl = document.getElementById('tab-' + t);
                 let navEl = document.getElementById('nav-' + t);
