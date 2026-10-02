@@ -69,7 +69,7 @@
                 <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition bg-amber-500/10 text-amber-400 border border-amber-500/20">
                     <i class="fa-solid fa-chart-pie w-5"></i><span>Master Dashboard</span>
                 </button>
-                <button onclick="switchTab('crm')" id="nav-crm" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-roles="Director,Admin,Team Leader">
+                <button onclick="switchTab('crm')" id="nav-crm" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-users-viewfinder w-5"></i><span>CRM & Leads</span>
                 </button>
                 <button onclick="switchTab('projects')" id="nav-projects" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
@@ -78,28 +78,28 @@
                 <button onclick="switchTab('departments')" id="nav-departments" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-sitemap w-5"></i><span>Departments & Heads</span>
                 </button>
-                <button onclick="switchTab('payments')" id="nav-payments" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-roles="Director,Admin,Accountant">
+                <button onclick="switchTab('payments')" id="nav-payments" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-file-invoice-dollar w-5"></i><span>Payment Schedule (Accounts)</span>
                 </button>
-                <button onclick="switchTab('meetings')" id="nav-meetings" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white" data-roles="Director,Admin,Team Leader">
+                <button onclick="switchTab('meetings')" id="nav-meetings" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-handshake w-5"></i><span>Meetings & MOM</span>
                 </button>
                 <button onclick="switchTab('attendance')" id="nav-attendance" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-slate-400 hover:bg-slate-900 hover:text-white">
                     <i class="fa-solid fa-calendar-check w-5"></i><span>Attendance & Calendar</span>
                 </button>
-                <button onclick="switchTab('hrPortal')" id="nav-hrPortal" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-emerald-400 hover:bg-slate-900 border border-emerald-500/20" data-roles="Director,Admin,HR">
+                <button onclick="switchTab('hrPortal')" id="nav-hrPortal" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-emerald-400 hover:bg-slate-900 border border-emerald-500/20">
                     <i class="fa-solid fa-users-gear w-5"></i><span>HR Portal</span>
                 </button>
-                <button onclick="switchTab('cacsPortal')" id="nav-cacsPortal" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-purple-400 hover:bg-slate-900 border border-purple-500/20" data-roles="Director,Admin,CA/CS">
+                <button onclick="switchTab('cacsPortal')" id="nav-cacsPortal" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-purple-400 hover:bg-slate-900 border border-purple-500/20">
                     <i class="fa-solid fa-scale-balanced w-5"></i><span>CA / CS Portal</span>
                 </button>
-                <button onclick="switchTab('directorDiary')" id="nav-directorDiary" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-amber-300 hover:bg-slate-900 border border-amber-500/30" data-roles="Director">
+                <button onclick="switchTab('directorDiary')" id="nav-directorDiary" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-amber-300 hover:bg-slate-900 border border-amber-500/30">
                     <i class="fa-solid fa-book-lock w-5"></i><span>Director's Private Diary</span>
                 </button>
                 <button onclick="switchTab('changePassword')" id="nav-changePassword" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-sky-400 hover:bg-slate-900 border border-sky-500/20">
                     <i class="fa-solid fa-key w-5"></i><span>Change Password</span>
                 </button>
-                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20" data-roles="Director,Admin">
+                <button onclick="switchTab('adminPanel')" id="nav-adminPanel" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition text-rose-400 hover:bg-slate-900 border border-rose-500/20">
                     <i class="fa-solid fa-user-shield w-5"></i><span>Admin Master Control</span>
                 </button>
             </nav>
@@ -111,7 +111,7 @@
                 <div id="tab-dashboard" class="space-y-6">
                     <h3 class="text-xl font-bold text-white">Executive Command Dashboard</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="nav-item role-dir-admin-leader bg-slate-950 border border-slate-800 p-5 rounded-2xl" data-roles="Director,Admin,Team Leader">
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
                             <p class="text-xs font-semibold text-slate-400 uppercase">Active Leads</p>
                             <h4 id="dashLeadCount" class="text-3xl font-bold text-white mt-2">0</h4>
                         </div>
@@ -119,17 +119,17 @@
                             <p class="text-xs font-semibold text-slate-400 uppercase">Active Projects</p>
                             <h4 id="dashProjCount" class="text-3xl font-bold text-white mt-2">0</h4>
                         </div>
-                        <div class="nav-item role-dir-admin-accountant bg-slate-950 border border-slate-800 p-5 rounded-2xl" data-roles="Director,Admin,Accountant">
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
                             <p class="text-xs font-semibold text-slate-400 uppercase">Total Billed</p>
                             <h4 id="dashPayTotal" class="text-3xl font-bold text-amber-400 mt-2">₹0</h4>
                         </div>
-                        <div class="nav-item role-dir-admin-only bg-slate-950 border border-slate-800 p-5 rounded-2xl" data-roles="Director,Admin">
+                        <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl">
                             <p class="text-xs font-semibold text-slate-400 uppercase">Staff Registered</p>
                             <h4 id="dashStaffCount" class="text-3xl font-bold text-emerald-400 mt-2">0</h4>
                         </div>
                     </div>
 
-                    <div id="managementLiveSection" class="nav-item role-dir-admin-leader grid grid-cols-1 md:grid-cols-2 gap-6 pt-4" data-roles="Director,Admin,Team Leader">
+                    <div id="managementLiveSection" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
                         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-3">
                             <h4 class="font-bold text-amber-400 text-sm flex items-center"><i class="fa-solid fa-fire mr-2"></i> Top Priority Projects & Lead Architect</h4>
                             <div id="dashPriorityList" class="space-y-2 text-xs"></div>
@@ -145,7 +145,7 @@
                 <div id="tab-crm" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">CRM & Client Lead Tracker</h3>
-                        <button onclick="addLead()" class="director-admin-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">
+                        <button onclick="addLead()" class="director-admin-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
                             + Add New Lead
                         </button>
                     </div>
@@ -158,7 +158,7 @@
                                     <th class="p-4">Source</th>
                                     <th class="p-4">Typology</th>
                                     <th class="p-4">Est. Value</th>
-                                    <th class="director-admin-action p-4 text-right hidden">Action</th>
+                                    <th class="director-admin-action p-4 text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="leadTableBody" class="divide-y divide-slate-800 text-xs text-slate-300"></tbody>
@@ -170,7 +170,7 @@
                 <div id="tab-projects" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Team Tasks & Assigned Projects</h3>
-                        <button onclick="addProject()" class="director-admin-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">
+                        <button onclick="addProject()" class="director-admin-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
                             + Assign Project
                         </button>
                     </div>
@@ -182,7 +182,7 @@
                                     <th class="p-4">Project Name</th>
                                     <th class="p-4">Lead Architect</th>
                                     <th class="p-4">Priority & Stage</th>
-                                    <th class="director-admin-action p-4 text-right hidden">Action</th>
+                                    <th class="director-admin-action p-4 text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="projTableBody" class="divide-y divide-slate-800 text-xs text-slate-300"></tbody>
@@ -194,7 +194,7 @@
                 <div id="tab-departments" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Departments & Team Heads</h3>
-                        <button onclick="addDepartmentHead()" class="director-admin-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">+ Add Department Head</button>
+                        <button onclick="addDepartmentHead()" class="director-admin-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">+ Add Department Head</button>
                     </div>
                     <div id="departmentsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
                 </div>
@@ -203,7 +203,7 @@
                 <div id="tab-payments" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white">Project Payment Schedule & Milestones (Accountants & Director)</h3>
-                        <button onclick="addPayment()" class="accountant-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition hidden">
+                        <button onclick="addPayment()" class="accountant-action bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
                             + Add Payment Milestone
                         </button>
                     </div>
@@ -215,7 +215,7 @@
                                     <th class="p-4">Milestone Stage</th>
                                     <th class="p-4">Amount (₹)</th>
                                     <th class="p-4">Status</th>
-                                    <th class="accountant-action p-4 text-right hidden">Action</th>
+                                    <th class="accountant-action p-4 text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="payTableBody" class="divide-y divide-slate-800 text-xs text-slate-300"></tbody>
@@ -281,7 +281,7 @@
                         <div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl space-y-4">
                             <div class="flex justify-between items-center">
                                 <h4 class="font-semibold text-white text-sm"><i class="fa-solid fa-umbrella-beach text-amber-400 mr-2"></i> Restricted Holidays</h4>
-                                <button onclick="addRestrictedHoliday()" class="director-admin-action text-[10px] bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg font-bold hidden">+ Add</button>
+                                <button onclick="addRestrictedHoliday()" class="director-admin-action text-[10px] bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg font-bold">+ Add</button>
                             </div>
                             <div id="restrictedHolidaysList" class="space-y-2 text-xs"></div>
                         </div>
@@ -364,12 +364,12 @@
                     </div>
                 </div>
 
-                <!-- TAB: ADMIN MASTER CONTROL & ACCESS LOCKER -->
+                <!-- TAB: ADMIN MASTER CONTROL -->
                 <div id="tab-adminPanel" class="space-y-6 hidden">
                     <div class="flex justify-between items-center flex-wrap gap-4">
                         <div>
-                            <h3 class="text-xl font-bold text-white">Director & Admin Access Control Master</h3>
-                            <p class="text-xs text-slate-400 mt-1">Upload logo, manage staff roles, and lock/unlock specific tabs for roles.</p>
+                            <h3 class="text-xl font-bold text-white">Director Master Control</h3>
+                            <p class="text-xs text-slate-400 mt-1">Upload company logo and manage studio staff records.</p>
                         </div>
                         <div class="space-x-2">
                             <button onclick="triggerLogoUpload()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">
@@ -377,14 +377,6 @@
                             </button>
                             <input type="file" id="companyLogoInput" accept="image/*" class="hidden" onchange="uploadCompanyLogo(event)">
                         </div>
-                    </div>
-
-                    <!-- Role Access Matrix Configuration -->
-                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4">
-                        <h4 class="font-semibold text-white text-sm"><i class="fa-solid fa-shield-halved text-amber-400 mr-2"></i> Role-Based Tab Permission Lock</h4>
-                        <p class="text-xs text-slate-400">Select which roles can access specific tabs in the system:</p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs" id="permissionMatrixContainer"></div>
-                        <button onclick="savePermissions()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl text-xs transition">Save Access Rules</button>
                     </div>
 
                     <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden p-6 space-y-4">
@@ -414,9 +406,9 @@
 
     <!-- JavaScript Logic -->
     <script>
-        if(!localStorage.getItem('ark_version_v10')) {
+        if(!localStorage.getItem('ark_version_v11')) {
             localStorage.clear();
-            localStorage.setItem('ark_version_v10', 'true');
+            localStorage.setItem('ark_version_v11', 'true');
         }
 
         let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "ADC_LOGO-removebg-preview.png" };
@@ -430,17 +422,6 @@
             { empid: "ARK-EMP-06", name: "CA Ramesh Gupta", email: "cacs", pass: "tax123", role: "CA/CS", parents: "Mr. & Mrs. Gupta", university: "ICAI", phone: "+91 9711556677", address: "Connaught Place", photo: "" },
             { empid: "ARK-EMP-07", name: "Rahul Sen", email: "rahul", pass: "rahul123", role: "Employee", parents: "Mr. & Mrs. Sen", university: "IIT Roorkee", phone: "+91 9988776655", address: "Lajpat Nagar", photo: "" }
         ];
-
-        // Default Role Access Rules (Which role can view which tab ID)
-        let rolePermissions = JSON.parse(localStorage.getItem('ark_permissions')) || {
-            "Director": ["dashboard", "crm", "projects", "departments", "payments", "meetings", "attendance", "hrPortal", "cacsPortal", "directorDiary", "changePassword", "adminPanel"],
-            "Admin": ["dashboard", "crm", "projects", "departments", "payments", "meetings", "attendance", "hrPortal", "cacsPortal", "changePassword", "adminPanel"],
-            "Team Leader": ["dashboard", "crm", "projects", "departments", "meetings", "attendance", "changePassword"],
-            "Accountant": ["dashboard", "payments", "attendance", "changePassword"],
-            "HR": ["dashboard", "attendance", "hrPortal", "changePassword"],
-            "CA/CS": ["dashboard", "cacsPortal", "attendance", "changePassword"],
-            "Employee": ["dashboard", "attendance", "changePassword"]
-        };
 
         let restrictedHolidays = JSON.parse(localStorage.getItem('ark_holidays')) || [
             { date: "24 Oct 2026", name: "Dussehra (Restricted)" },
@@ -544,22 +525,33 @@
             let role = currentUser.role;
             document.getElementById('userRoleBadge').innerText = "Role: " + currentUser.name + " (" + role + ")";
 
-            let allowedTabs = rolePermissions[role] || ["dashboard", "attendance", "changePassword"];
+            // Define exact tab visibility per role
+            let allowedTabs = ['dashboard', 'projects', 'departments', 'meetings', 'attendance', 'changePassword'];
 
-            // Hide/Show sidebar buttons based on permission matrix
+            if(role === 'Director' || role === 'Admin') {
+                allowedTabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'directorDiary', 'changePassword', 'adminPanel'];
+            } else if(role === 'Team Leader') {
+                allowedTabs = ['dashboard', 'crm', 'projects', 'departments', 'meetings', 'attendance', 'changePassword'];
+            } else if(role === 'Accountant') {
+                allowedTabs = ['dashboard', 'payments', 'attendance', 'changePassword'];
+            } else if(role === 'HR') {
+                allowedTabs = ['dashboard', 'attendance', 'hrPortal', 'changePassword'];
+            } else if(role === 'CA/CS') {
+                allowedTabs = ['dashboard', 'cacsPortal', 'attendance', 'changePassword'];
+            } else if(role === 'Employee') {
+                allowedTabs = ['dashboard', 'attendance', 'changePassword'];
+            }
+
             const allTabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'directorDiary', 'changePassword', 'adminPanel'];
             allTabs.forEach(t => {
                 let navBtn = document.getElementById('nav-' + t);
                 if(navBtn) {
-                    if(allowedTabs.includes(t)) {
-                        navBtn.classList.remove('hidden');
-                    } else {
-                        navBtn.classList.add('hidden');
-                    }
+                    if(allowedTabs.includes(t)) navBtn.classList.remove('hidden');
+                    else navBtn.classList.add('hidden');
                 }
             });
 
-            // Show/Hide editing action buttons for Director & Admin only
+            // Toggle editing action buttons
             let isDirectorOrAdmin = (role === 'Director' || role === 'Admin');
             document.querySelectorAll('.director-admin-action').forEach(el => {
                 if(isDirectorOrAdmin) el.classList.remove('hidden');
@@ -572,44 +564,7 @@
                 else el.classList.add('hidden');
             });
 
-            // Switch to first allowed tab
             switchTab(allowedTabs[0] || 'dashboard');
-            renderPermissionMatrix();
-        }
-
-        function renderPermissionMatrix() {
-            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') return;
-            let container = document.getElementById('permissionMatrixContainer');
-            if(!container) return;
-            
-            let html = '';
-            let roles = Object.keys(rolePermissions);
-            let tabs = ['dashboard', 'crm', 'projects', 'departments', 'payments', 'meetings', 'attendance', 'hrPortal', 'cacsPortal', 'directorDiary', 'adminPanel'];
-
-            roles.forEach(r => {
-                html += `<div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2"><strong class="text-amber-400 block border-b border-slate-800 pb-1">${r}</strong><div class="space-y-1 pt-1">`;
-                tabs.forEach(t => {
-                    let checked = rolePermissions[r].includes(t) ? 'checked' : '';
-                    html += `<label class="flex items-center space-x-2 text-slate-300 text-[11px]"><input type="checkbox" class="perm-checkbox rounded bg-slate-800 border-slate-700 text-amber-500" data-role="${r}" data-tab="${t}" ${checked}> <span>${t}</span></label>`;
-                });
-                html += `</div></div>`;
-            });
-            container.innerHTML = html;
-        }
-
-        function savePermissions() {
-            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
-            let checkboxes = document.querySelectorAll('.perm-checkbox');
-            let newPerms = {};
-            checkboxes.forEach(cb => {
-                let r = cb.getAttribute('data-role');
-                let t = cb.getAttribute('data-tab');
-                if(!newPerms[r]) newPerms[r] = [];
-                if(cb.checked) newPerms[r].push(t);
-            });
-            rolePermissions = newPerms;
-            localStorage.setItem('ark_permissions', JSON.stringify(rolePermissions));
-            alert("Access permission rules updated successfully!");
         }
 
         function saveData() {
@@ -728,7 +683,8 @@
             let sHtml = '';
             staffList.forEach((s, index) => {
                 let avatar = s.photo ? `<img src="${s.photo}" class="w-10 h-10 rounded-full object-cover border border-slate-700 cursor-pointer" onclick="triggerStaffPhotoUpload(${index})" title="Change Photo">` : `<div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-amber-400 cursor-pointer" onclick="triggerStaffPhotoUpload(${index})" title="Upload Photo">📷</div>`;
-                sHtml += `<tr><td class="p-4">${avatar}</td><td class="p-4"><strong class="text-white">${s.name}</strong><br><span class="text-amber-400 font-mono text-[10px]">${s.empid}</span></td><td class="p-4 text-emerald-400 font-semibold">${s.role}</td><td class="p-4 text-slate-300">${s.parents || 'N/A'}<br><span class="text-[10px] text-amber-300">${s.university || ''}</span></td><td class="p-4 text-slate-300 text-[11px]">📞 ${s.phone || 'N/A'}<br>🏠 ${s.address || 'N/A'}</td><td class="p-4 text-right"><button onclick="deleteStaff(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td></tr>`;
+                let staffAction = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin') ? `<td class="p-4 text-right"><button onclick="deleteStaff(${index})" class="text-rose-400"><i class="fa-solid fa-trash"></i></button></td>` : '';
+                sHtml += `<tr><td class="p-4">${avatar}</td><td class="p-4"><strong class="text-white">${s.name}</strong><br><span class="text-amber-400 font-mono text-[10px]">${s.empid}</span></td><td class="p-4 text-emerald-400 font-semibold">${s.role}</td><td class="p-4 text-slate-300">${s.parents || 'N/A'}<br><span class="text-[10px] text-amber-300">${s.university || ''}</span></td><td class="p-4 text-slate-300 text-[11px]">📞 ${s.phone || 'N/A'}<br>🏠 ${s.address || 'N/A'}</td>${staffAction}</tr>`;
             });
             document.getElementById('staffTableBody').innerHTML = sHtml;
 
@@ -766,6 +722,7 @@
         }
 
         function triggerStaffPhotoUpload(index) {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
             selectedStaffIndexForPhoto = index;
             document.getElementById('staffPhotoInput').click();
         }
@@ -783,6 +740,7 @@
         }
 
         function triggerDeptPhotoUpload(index) {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
             selectedDeptIndexForPhoto = index;
             document.getElementById('deptPhotoInput').click();
         }
@@ -870,6 +828,7 @@
         }
 
         function addRestrictedHoliday() {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
             let date = prompt("Holiday Date:");
             if(!date) return;
             let name = prompt("Holiday Name:") || "Restricted Holiday";
@@ -879,6 +838,7 @@
         function deleteHoliday(index) { restrictedHolidays.splice(index, 1); saveData(); }
 
         function addDepartmentHead() {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
             let title = prompt("Department Name:");
             if(!title) return;
             let head = prompt("Head Name:") || "";
@@ -887,6 +847,7 @@
             saveData();
         }
         function editDept(index) {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
             let d = departments[index];
             let title = prompt("Edit Dept:", d.title);
             if(!title) return;
@@ -898,18 +859,20 @@
         function deleteDept(index) { departments.splice(index, 1); saveData(); }
 
         function addLead() {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
             let name = prompt("Client Name:");
             if(!name) return;
             let phone = prompt("Phone:") || "";
             let source = prompt("Source:") || "Direct";
             let typology = prompt("Typology:") || "General";
             let value = prompt("Value (₹):") || "5,00,000";
-            leads.push({name, phone, source, typology, value});
+            leads.push({name, phone, source, typology,value});
             saveData();
         }
         function deleteLead(index) { leads.splice(index, 1); saveData(); }
 
         function addProject() {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
             let code = prompt("Job Code:") || "ARK-2026-003";
             let name = prompt("Project Name:");
             if(!name) return;
@@ -920,6 +883,7 @@
             saveData();
         }
         function editProject(index) {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
             let p = projects[index];
             let name = prompt("Edit Project:", p.name);
             if(!name) return;
@@ -929,6 +893,7 @@
         function deleteProject(index) { projects.splice(index, 1); saveData(); }
 
         function addPayment() {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'Accountant') { alert("Access Denied!"); return; }
             let project = prompt("Project Name:") || "General";
             let stage = prompt("Stage:") || "Advance";
             let amount = prompt("Amount (₹):") || "1,00,000";
@@ -939,6 +904,7 @@
         function deletePayment(index) { payments.splice(index, 1); saveData(); }
 
         function addMeeting() {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'Team Leader') { alert("Access Denied!"); return; }
             let client = prompt("Client:") || "Client";
             let topic = prompt("Subject:") || "Review";
             let mom = prompt("MOM:") || "Discussed.";
@@ -949,6 +915,7 @@
         function deleteMeeting(index) { meetings.splice(index, 1); saveData(); }
 
         function deleteStaff(index) {
+            if(currentUser.role !== 'Director' && currentUser.role !== 'Admin') { alert("Access Denied!"); return; }
             if(staffList.length <= 1) { alert("Cannot delete last admin!"); return; }
             staffList.splice(index, 1);
             saveData();
