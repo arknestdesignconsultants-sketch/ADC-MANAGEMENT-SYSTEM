@@ -302,7 +302,7 @@
                     </div>
                 </div>
 
-                <!-- TAB: HR PORTAL WITH STAFF DELETION -->
+                <!-- TAB: HR PORTAL -->
                 <div id="tab-hrPortal" class="space-y-6 hidden">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-users-gear text-emerald-400 mr-2"></i> HR & Staff Management Portal</h3>
@@ -422,9 +422,9 @@
 
     <!-- JavaScript Logic -->
     <script>
-        if(!localStorage.getItem('ark_version_v17')) {
+        if(!localStorage.getItem('ark_version_v19')) {
             localStorage.clear();
-            localStorage.setItem('ark_version_v17', 'true');
+            localStorage.setItem('ark_version_v19', 'true');
         }
 
         let companyInfo = JSON.parse(localStorage.getItem('ark_company')) || { name: "Arknest Design Consultants", logoUrl: "ADC_LOGO-removebg-preview.png" };
@@ -562,6 +562,7 @@
             let role = currentUser.role;
             document.getElementById('userRoleBadge').innerText = "Role: " + currentUser.name + " (" + role + ")";
 
+            // Strict Role-Based Visibility Check for Sidebar Navigation Buttons
             const navButtons = document.querySelectorAll('.tab-btn');
             navButtons.forEach(btn => {
                 let allowedRoles = btn.getAttribute('data-roles').split(',');
@@ -720,7 +721,6 @@
                 let staffAction = currentUser && (currentUser.role === 'Director' || currentUser.role === 'Admin') ? `<td class="p-4 text-right"><button onclick="deleteStaff(${index})" class="text-rose-400" title="Delete Staff"><i class="fa-solid fa-trash"></i></button></td>` : '';
                 sHtml += `<tr><td class="p-4">${avatar}</td><td class="p-4"><strong class="text-white">${s.name}</strong><br><span class="text-amber-400 font-mono text-[10px]">${s.empid}</span></td><td class="p-4 text-emerald-400 font-semibold">${s.role}</td><td class="p-4 text-slate-300">DOB: ${s.dob || 'N/A'}<br><span class="text-[10px] text-amber-300">${s.parents || ''}</span></td><td class="p-4 text-slate-300 text-[11px]">📞 ${s.phone || 'N/A'}<br>🏠 ${s.address || 'N/A'}</td>${staffAction}</tr>`;
 
-                // HR Offboarding List (HR can remove staff who left)
                 hrStaffHtml += `<div class="flex justify-between items-center p-3 bg-slate-900 rounded-xl border border-slate-800"><div><strong class="text-white">${s.name}</strong> <span class="text-amber-400 text-[10px]">(${s.empid} - ${s.role})</span><p class="text-slate-400 text-[11px]">Phone: ${s.phone || 'N/A'}</p></div><button onclick="deleteStaff(${index})" class="bg-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-slate-950 px-3 py-1.5 rounded-lg font-bold text-xs transition"><i class="fa-solid fa-user-xmark mr-1"></i> Remove / Offboard</button></div>`;
             });
             document.getElementById('staffTableBody').innerHTML = sHtml;
@@ -871,7 +871,6 @@
         function registerNewStaff() {
             if(currentUser.role !== 'Director' && currentUser.role !== 'Admin' && currentUser.role !== 'HR') { alert("Access Denied!"); return; }
             
-            // Automatic Employee ID Generation
             let nextIdNum = staffList.length + 1;
             let autoEmpId = "ARK-EMP-" + String(nextIdNum).padStart(2, '0');
 
